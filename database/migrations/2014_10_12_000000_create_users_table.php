@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->bigInteger('role_id')->unsigned()->default(1);
             $table->foreign('role_id')->references('id')->on('roles');
+            $table->bigInteger('setting_id')->unsigned()->nullable();
+            $table->foreign('setting_id')->references('id')->on('settings');
         });
     }
 
