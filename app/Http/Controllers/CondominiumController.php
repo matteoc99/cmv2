@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class CondominiumController extends Controller
 {
+    public function show(Condominium $condominium)
+    {
+        return view("tickets");
+    }
     public function create(Request $request)
     {
         $request->validate([

@@ -1,18 +1,11 @@
 @extends("layouts.dashMaster")
 
 @section("content")
-@if(count($condominia)>0)
-    <ul class="collapsible">
+    @if(count($condominia)>0)
+        <div class="row">
         @foreach($condominia as $condominium)
-            <li>
-                <div class="collapsible-header">
-                    <pre><b>{{$condominium->name}}</b></pre>
-                </div>
-                <div class="collapsible-body">
-                    <pre>{{$condominium->address}}</pre>
-                </div>
-            </li>
+                @include("components.condominiumBox",["condominium", $condominium])
         @endforeach
-    </ul>
-@endif
+        </div>
+    @endif
 @endsection

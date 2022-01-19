@@ -2,6 +2,7 @@
     <h5 href="#" class="brand-logo center light-green-text">
         Condominium&nbsp;Manager
     </h5>
+    <li><a href="{{route("dashboard")}}">Dashboard</a></li>
     @include("components.langSelect")
     <li><a href="{{route("logout")}}">Logout</a></li>
 </ul>
@@ -13,6 +14,7 @@
                 Condominium&nbsp;Manager
             </a>
             <ul class="right hide-on-med-and-down">
+                <li><a href="{{route("dashboard")}}">Dashboard</a></li>
                 @include("components.langSelect")
                 <li><a href="{{route("logout")}}">Logout</a></li>
             </ul>

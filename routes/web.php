@@ -37,5 +37,6 @@ Route::group(['middleware'=>['auth']],function () {
         return view('dashboard');
     })->name("dashboard2");
     Route::post('/createCondominium', 'App\\Http\\Controllers\\CondominiumController@create')->name('createCondominium');
+    Route::get('/condominium/{condominium}', 'App\\Http\\Controllers\\CondominiumController@show')->name("condominium");
 
 });
