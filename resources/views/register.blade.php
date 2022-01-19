@@ -1,9 +1,9 @@
-@extends('layouts.master')
+@extends("layouts.AuthMaster")
 
 @section('content')
-    <div class="container">
+    <div class="container" >
         <div class="row">
-            <div class="col s12 m10 l8 card offset-l2 offset-m1">
+            <div class="col s12 m8 l6 xl4 card offset-l3 offset-m2 offset-xl4">
                 <div class="card-header center"><h4> @lang('auth.register') </h4></div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -12,7 +12,7 @@
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">account_circle</i>
                                 <input id="name" type="text" name="name" value="{{ old('name') }}" required
-                                       autofocus>
+                                       >
                                 <label for="name">@lang("auth.name")</label>
                                 <div class="col">
                                     @foreach($errors->get("name") as $error)
@@ -27,7 +27,7 @@
                                 <i class="material-icons prefix">mail_outline</i>
                                 <input class="validate" id="email" type="email" name="email"
                                        value="{{ old('email') }}"
-                                       required autofocus>
+                                       required >
                                 <label for="email" data-error="wrong"
                                        data-success="right"> @lang('auth.mail') </label>
                                 <div class="col">
@@ -69,7 +69,7 @@
                             <div class="row">
                                 <div class="input-field col s12 m6 offset-m3">
                                     <button type="submit"
-                                            class="btn waves-effect waves-light main-blue-bg col s12"> @lang('auth.register') </button>
+                                            class="btn waves-effect waves-light blue darken-4 col s12"> @lang('auth.register') </button>
                                 </div>
                             </div>
                         </div>

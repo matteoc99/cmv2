@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col s12 m4">
                 <div class="icon-block">
-                    <h2 class="center pistachio"><i class="material-icons">access_time</i></h2>
+                    <h2 class="center light-green-text"><i class="material-icons">access_time</i></h2>
                     <h5 class="center">Speeds Up Administration Tasks</h5>
 
                     <p class="light justified">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id semper
@@ -49,7 +49,7 @@
 
             <div class="col s12 m4">
                 <div class="icon-block">
-                    <h2 class="center pistachio"><i class="material-icons">group</i></h2>
+                    <h2 class="center light-green-text"><i class="material-icons">group</i></h2>
                     <h5 class="center">User Experience Focused</h5>
 
                     <p class="light justified">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id semper
@@ -67,7 +67,7 @@
 
             <div class="col s12 m4">
                 <div class="icon-block">
-                    <h2 class="center pistachio"><i class="material-icons">folder_shared</i></h2>
+                    <h2 class="center light-green-text"><i class="material-icons">folder_shared</i></h2>
                     <h5 class="center">Easy to Organize Work</h5>
 
                     <p class="light justified">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id semper
@@ -92,16 +92,16 @@
     <div class="divider"></div>
 
     <div class="section">
-        <h3 class="center pistachio">Pricing</h3>
+        <h3 class="center light-green-text">Pricing</h3>
         <div class="row flex">
             <div class="col card-container s12 m6  l6 xl3">
                 <div class="card pricing style-2 full-height">
-                    <div class="plan-title waves-effect waves-block waves-light main-blue-bg">
+                    <div class="plan-title waves-effect waves-block waves-light blue darken-4">
                         <h5 class="white-text">
                             <span class="plan">FREE</span>
                         </h5>
                     </div>
-                    <div class="price waves-effect waves-block waves-light main-blue-bg-lighter">
+                    <div class="price waves-effect waves-block waves-light  blue darken-2">
                         <h4 class="white-text">
                             <span class="currency">€</span>
                             <span class="amount">0</span>
@@ -124,12 +124,12 @@
             </div>
             <div class="col card-container s12 m6 l6 xl3">
                 <div class="card pricing style-2 full-height">
-                    <div class="plan-title waves-effect waves-block waves-light main-blue-bg">
+                    <div class="plan-title waves-effect waves-block waves-light blue darken-4">
                         <h5 class="white-text">
                             <span class="plan">BASIC</span>
                         </h5>
                     </div>
-                    <div class="price waves-effect waves-block waves-light main-blue-bg-lighter">
+                    <div class="price waves-effect waves-block waves-light  blue darken-2">
                         <h4 class="white-text">
                             <span class="currency">€</span>
                             <span class="amount">9</span>
@@ -155,12 +155,12 @@
             <div class="col card-container s12 m6 l6 xl3">
                 <div class="card pricing style-2 full-height">
                     <div class="ribbon"><span>POPULAR</span></div>
-                    <div class="plan-title waves-effect waves-block waves-light main-blue-bg">
+                    <div class="plan-title waves-effect waves-block waves-light blue darken-4">
                         <h5 class="white-text">
                             <span class="plan">Professional</span>
                         </h5>
                     </div>
-                    <div class="price waves-effect waves-block waves-light main-blue-bg-lighter">
+                    <div class="price waves-effect waves-block waves-light  blue darken-2">
                         <h4 class="white-text">
                             <span class="currency">€</span>
                             <span class="amount">19</span>
@@ -194,12 +194,12 @@
             </div>
             <div class="col s12 m6 l6 xl3 card-container">
                 <div class="card pricing style-2 full-height">
-                    <div class="plan-title waves-effect waves-block waves-light main-blue-bg">
+                    <div class="plan-title waves-effect waves-block waves-light blue darken-4">
                         <h5 class="white-text">
                             <span class="plan">Business</span>
                         </h5>
                     </div>
-                    <div class="price waves-effect waves-block waves-light main-blue-bg-lighter">
+                    <div class="price waves-effect waves-block waves-light  blue darken-2">
                         <h4 class="white-text">
                             <span class="currency">€</span>
                             <span class="amount">29</span>
@@ -245,7 +245,7 @@
     </div>
     <div class="row center">
         <a href="{{route("register")}}"
-           class="btn-large waves-effect waves-light pistachio-bg">Get Started for Free</a>
+           class="btn-large waves-effect waves-light light-green">Get Started for Free</a>
     </div>
     <br><br>
 

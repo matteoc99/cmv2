@@ -49,3 +49,11 @@ a.anchor {
 .full-height {
     height: 100% !important;
 }
+.bg-img{
+    background-image: url("../img/mainBGv2.jpg");
+    align-items: center;
+    justify-content: center;
+}
+.invalid-feedback{
+    color: red;
+}

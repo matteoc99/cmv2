@@ -1,4 +1,4 @@
-<footer class="page-footer main-blue-bg">
+<footer class="page-footer blue darken-4">
     <div class="container">
         <div class="row">
             <div class="col offset-l1 l6 m8 s12">
@@ -28,7 +28,7 @@
     </div>
     <div class="footer-copyright">
         <div class="container">
-            Made by <a class="pistachio text-lighten-3" href="mailto:matteo.cosi@live.it">Matteo Cosi</a>
+            Made by <a class="light-green-text" href="mailto:matteo.cosi@live.it">Matteo Cosi</a>
         </div>
     </div>
 </footer>
