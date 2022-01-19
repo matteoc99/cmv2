@@ -13,7 +13,7 @@ class AddFamiliesToUser extends Migration
      */
     public function up()
     {
-        Schema::table('user', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->bigInteger('family_id')->unsigned()->nullable();
             $table->foreign('family_id')->references('id')->on('families');
         });

@@ -11,4 +11,8 @@ class Condominium extends Model
     public function Admin(){
         return $this->belongsTo('App\Models\User',"admin_id","id");
     }
+    public function families()
+    {
+        return $this->hasMany(Family::class);
+    }
 }
