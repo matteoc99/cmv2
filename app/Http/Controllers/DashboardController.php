@@ -13,11 +13,10 @@ class DashboardController extends Controller
         }else{
             return $this->showTickets($request);
         }
-
     }
     public function showCondominiums(Request $request)
     {
-        return view("dashboard",["condominia"=>Auth::user()->Administrates()->get()]);
+        return view("dashboard",["condominia"=>Auth::user()->administrates()->get()]);
     }
 
     public function showTickets(Request $request)

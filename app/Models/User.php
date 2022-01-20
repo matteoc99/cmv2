@@ -42,7 +42,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function Administrates(){
+    public function administrates(){
         return $this->hasMany('App\Models\Condominium',"admin_id","id");
+    }
+    public function family(){
+        return $this->hasOne('App\Models\Family');
+    }
+    public function isUser(){
+        return $this->role_id === 1;
+    }
+    public function isAdmin(){
+        return $this->role_id === 2;
+    }
+    public function isCraftsman(){
+        return $this->role_id === 3;
+    }
+    public function hasFamily(){
+        return !is_null($this->family_id);
     }
 }

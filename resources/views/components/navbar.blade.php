@@ -5,8 +5,12 @@
     <li><a data-value="features" class="scrollto" href="{{route("landing")}}">Features</a></li>
     <li><a data-value="pricing" class="scrollto" href="{{route("landing")}}">Pricing</a></li>
 
-    <li><a href="{{route("logout")}}">Logout</a></li>
-
+    @if(is_null(Auth::user()))
+        <li><a href="{{route("login")}}">Login</a></li>
+        <li><a href="{{route("register")}}">Register</a></li>
+    @else
+        <li><a href="{{route("logout")}}">Logout</a></li>
+    @endif
 </ul>
 <div class="navbar-fixed">
 

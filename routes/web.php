@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('landing');
-})->name("landing");
+Route::get('/',"App\\Http\\Controllers\\FrontendController@showLanding")->name("landing");
 
 Route::get("login", function () {
     return view('login');
@@ -30,13 +28,11 @@ Route::get('/privacy', 'FrontendController@privacy')->name('privacy');
 Route::get('/terms', 'FrontendController@terms')->name('terms');
 Route::group(['middleware'=>['auth']],function () {
     Route::get('/dashboard', 'App\\Http\\Controllers\\DashboardController@show')->name("dashboard");
-    Route::get('/createCondominium', function () {
-        return view('createCondominium');
-    })->name("createCondominium");
-    Route::get('/dashboard2', function () {
-        return view('dashboard');
-    })->name("dashboard2");
+    Route::get('/createCondominium', 'App\\Http\\Controllers\\CondominiumController@showCreate')->name("createCondominium");
     Route::post('/createCondominium', 'App\\Http\\Controllers\\CondominiumController@create')->name('createCondominium');
     Route::get('/condominium/{condominium}', 'App\\Http\\Controllers\\CondominiumController@show')->name("condominium");
+
+    Route::get('/createFamily', "App\\Http\\Controllers\\FamilyController@showCreate")->name("createFamily");
+    Route::post('/createFamily', 'App\\Http\\Controllers\\FamilyController@create')->name('createFamily');
 
 });

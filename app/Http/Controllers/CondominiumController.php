@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Condominium;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,10 +11,20 @@ class CondominiumController extends Controller
 {
     public function show(Condominium $condominium)
     {
+        if(Auth::user()->cannot("view",$condominium))
+            return response("401",401);
         return view("tickets");
+    }
+    public function showCreate(Request $request)
+    {
+        if(Auth::user()->cannot("create",Condominium::class))
+            return response("401",401);
+        return view("createCondominium");
     }
     public function create(Request $request)
     {
+        if(Auth::user()->cannot("create",Condominium::class))
+            return response("401",401);
         $request->validate([
             "name" => "required",
             'address' => "required",
