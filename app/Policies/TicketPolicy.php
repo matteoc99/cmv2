@@ -42,7 +42,7 @@ class TicketPolicy
      */
     public function create(User $user)
     {
-        return $user->isUser()
+        return $user->isUser() ||  $user->isAdmin()
             ? Response::allow()
             : Response::deny('You do not an User');
     }
@@ -56,7 +56,7 @@ class TicketPolicy
      */
     public function update(User $user, Ticket $ticket)
     {
-        $fam =$ticket->family()->get();
+        $fam =$ticket->family();
         $con =$fam->condominium()->get();
 
         return ($user->isUser()&&$user->family_id==$fam->id) ||

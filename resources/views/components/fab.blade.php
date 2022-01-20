@@ -4,15 +4,26 @@
     </a>
     <ul>
         @if(Request::route()->getName()=="condominium")
-            <li><a href="{{route("createFamily",Request::route('condominium')->id)}}"
-                   class="btn-floating blue lighten-1"><i class="material-icons">group_add</i></a>
-            </li>
+            @can("create",\App\Models\Family::class)
+                <li><a href="{{route("createFamily",Request::route('condominium')->id)}}"
+                       class="btn-floating blue lighten-1"><i class="material-icons">group_add</i></a>
+                </li>
+            @endcan
         @endif
         @can("create",\App\Models\Condominium::class)
             <li><a href="{{route("createCondominium")}}" class="btn-floating blue lighten-1"><i
                         class="material-icons">home</i></a></li>
         @endcan
-         <li><a href="{{route("support")}}" class="btn-floating blue lighten-1"><i class="material-icons">help</i></a></li>
+        @if(Request::route()->getName()=="condominium")
+            @can("create",\App\Models\Ticket::class)
+                <li><a href="{{route("createTicket",Request::route('condominium')->id)}}"
+                       class="btn-floating blue lighten-1"><i
+                            class="material-icons">note_add</i></a></li>
+            @endcan
+        @endif
+
+        <li><a href="{{route("support")}}" class="btn-floating blue lighten-1"><i class="material-icons">help</i></a>
+        </li>
 
     </ul>
 </div>

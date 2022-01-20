@@ -46,7 +46,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Condominium',"admin_id","id");
     }
     public function family(){
-        return $this->hasOne('App\Models\Family');
+        return $this->hasOne('App\Models\Family')->get()->first();
     }
     public function isUser(){
         return $this->role_id === 1;

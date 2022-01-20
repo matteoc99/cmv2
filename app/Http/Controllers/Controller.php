@@ -14,6 +14,16 @@ class Controller extends BaseController
 
     public function isAdministrator()
     {
-       return Auth::user()->role_id==2;
+        return Auth::user()->role_id == 2;
+    }
+
+    public function isCraftsman()
+    {
+        return Auth::user()->role_id == 3;
+    }
+
+    public function isUser()
+    {
+        return Auth::user()->role_id == 1;
     }
 }

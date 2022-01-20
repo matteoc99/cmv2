@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Condominium;
+use App\Models\Ticket;
 use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,10 @@ class CondominiumController extends Controller
     {
         if(Auth::user()->cannot("view",$condominium))
             return response("401",401);
-        return view("tickets",["families"=>$condominium->families()->get()]);
+        return view("tickets",[
+            "families"=>$condominium->families()->get(),
+            "tickets"=>Ticket::where("condominium_id","=",$condominium->id)->get()
+        ]);
     }
     public function showCreate(Request $request)
     {

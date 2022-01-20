@@ -18,9 +18,9 @@ class CreateTicketsTable extends Migration
             $table->timestamps();
             $table->string("title");
             $table->string("desc");
-            $table->date("estimated");
-            $table->decimal("price");
-            $table->bigInteger("nrFattura");
+            $table->decimal("price")->nullable();
+            $table->bigInteger("nrFattura")->nullable();
+            $table->date("estimated")->nullable();
             $table->bigInteger('urgency_id')->unsigned()->nullable();
             $table->foreign('urgency_id')->references('id')->on('urgencies');
             $table->bigInteger('tag_id')->unsigned()->nullable();

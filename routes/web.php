@@ -40,6 +40,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/condominium/{condominium}', 'App\\Http\\Controllers\\CondominiumController@show')->name("condominium");
     Route::get('/condominium/{condominium}/createFamily', "App\\Http\\Controllers\\FamilyController@showCreate")->name("createFamily");
     Route::post('/createFamily', 'App\\Http\\Controllers\\FamilyController@create')->name('createFamilyPost');
+    Route::get('/condominium/{condominium}/createTicket', "App\\Http\\Controllers\\TicketController@showCreate")->name("createTicket");
+    Route::post('/createTicket', 'App\\Http\\Controllers\\TicketController@create')->name('createTicketPost');
     Route::post('/support', function () {
         return view('support');
     }
