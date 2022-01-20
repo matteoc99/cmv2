@@ -6,7 +6,7 @@
             <div class="col s12 m8 l6 xl4 card offset-l3 offset-m2 offset-xl4">
                 <div class="card-header center"><h4>Header</h4></div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('createCondominium') }}">
+                    <form method="POST" action="{{ route('createCondominiumPost') }}">
                         @csrf
                         <input type="hidden" name="lat" id="lat" value="">
                         <input type="hidden" name="lng" id="lng" value="">

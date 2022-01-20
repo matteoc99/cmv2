@@ -21,7 +21,7 @@ class DashboardController extends Controller
 
     public function showTickets(Request $request)
     {
-        return view("tickets");
+        return view("tickets",["families"=>null]);
 
     }
 }

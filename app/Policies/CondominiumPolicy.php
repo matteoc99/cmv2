@@ -34,7 +34,7 @@ class CondominiumPolicy
     public function view(User $user, Condominium $condominium)
     {
         return count($user->administrates()->where("id","=",$condominium->id)->get())==1
-            || ($user->hasFamily() && $user->family()->get()->condominium_id===$condominium->id)
+            || ($user->hasFamily() && $user->family()->first()->get()->condominium_id===$condominium->id)
             ? Response::allow()
             : Response::deny('You are not allowed to view this Condominium');
     }

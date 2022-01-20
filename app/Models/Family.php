@@ -13,6 +13,10 @@ class Family extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function condominium()
+    {
+        return $this->hasOne(User::class);
+    }
     public function tickets()
     {
         return $this->hasMany(Ticket::class);

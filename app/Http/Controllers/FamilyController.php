@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Family;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,19 +23,29 @@ class FamilyController extends Controller
             return response("401",401);
         $request->validate([
             "name" => "required",
-            'address' => "required",
-            'lat' => 'required',
-            "lng" => "required",
+            'email' => "required",
+
         ]);
 
-        $con = new Condominium();
-        $con->name=$request->get("name");
-        $con->address=$request->get("address");
-        $con->lat=$request->get("lat");
-        $con->lng=$request->get("lng");
-        $con->admin_id=Auth::id();
-        $con->save();
-        return redirect("dashboard");
+        $fam = new Family();
+        $fam->name=$request->get("name");
+        $fam->count=$request->get("count");
+        $fam->condominium_id=$request->get("condominium");
+
+        $fam->save();
+
+
+        $user = new User();
+        $user->name = $fam->name;
+        $user->email = $request->get("email");
+        $user->password = bcrypt("random"); //TODO make random and send email
+        $user->role_id=1;
+        $user->family_id=$fam->id;
+        $user->change_password =true;
+        $user->save();
+        $fam->user_id=$user->id;
+        $fam->save();
+        return redirect(route("condominium",$request->get("condominium")));
 
     }
 }

@@ -2,10 +2,10 @@
     <h5 href="#" class="brand-logo center light-green-text">
         Condominium&nbsp;Manager
     </h5>
-    <li><a data-value="features" class="scrollto" href="{{route("landing")}}">Features</a></li>
-    <li><a data-value="pricing" class="scrollto" href="{{route("landing")}}">Pricing</a></li>
 
     @if(is_null(Auth::user()))
+        <li><a data-value="features" class="scrollto" href="{{route("landing")}}">Features</a></li>
+        <li><a data-value="pricing" class="scrollto" href="{{route("landing")}}">Pricing</a></li>
         <li><a href="{{route("login")}}">Login</a></li>
         <li><a href="{{route("register")}}">Register</a></li>
     @else
@@ -21,11 +21,13 @@
                 Condominium&nbsp;Manager
             </a>
             <ul class="left hide-on-med-and-down">
-                <li><a data-value="features" class="scrollto" href="{{route("landing")}}">Features</a></li>
+                @if(is_null(Auth::user()))
+                    <li><a data-value="features" class="scrollto" href="{{route("landing")}}">Features</a></li>
                 <li><a data-value="pricing" class="scrollto" href="{{route("landing")}}">Pricing</a></li>
-                @include("components.langSelect")
+                @endif
             </ul>
             <ul class="right hide-on-med-and-down">
+                @include("components.langSelect")
                 @if(is_null(Auth::user()))
                     <li><a href="{{route("login")}}">Login</a></li>
                     <li><a href="{{route("register")}}">Register</a></li>

@@ -17,6 +17,18 @@ class AuthController extends Controller
         return redirect("login")->with("credError",true);
 
     }
+   public function changePassword (Request $request){
+       $request->validate([
+           'password' => 'min:6|required|required_with:password_confirmation|same:password_confirmation',
+           'password_confirmation' => 'min:6',
+       ]);
+        $user = Auth::user();
+        $user->password=bcrypt($request->get("password"));
+        $user->change_password=false;
+        $user->save();
+
+       return redirect("dashboard");
+   }
    public function logout (Request $request){
        Auth::logout();
        return redirect("/");

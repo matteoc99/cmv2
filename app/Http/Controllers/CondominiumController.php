@@ -13,7 +13,7 @@ class CondominiumController extends Controller
     {
         if(Auth::user()->cannot("view",$condominium))
             return response("401",401);
-        return view("tickets");
+        return view("tickets",["families"=>$condominium->families()->get()]);
     }
     public function showCreate(Request $request)
     {
