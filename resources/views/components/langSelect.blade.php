@@ -15,5 +15,5 @@
     @endif
 
 </ul>
-<li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Language<i
+<li><a class="dropdown-trigger" href="#!" data-target="dropdown1">@lang("global.currentLang")<i
             class="material-icons right">arrow_drop_down</i></a>
