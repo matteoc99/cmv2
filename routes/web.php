@@ -26,26 +26,27 @@ Route::post("register", "App\\Http\\Controllers\\AuthController@register");
 Route::get("logout", "App\\Http\\Controllers\\AuthController@logout")->name("logout");
 Route::get('/privacy', 'FrontendController@privacy')->name('privacy');
 Route::get('/terms', 'FrontendController@terms')->name('terms');
+Route::get('/language/{locale}', 'App\\Http\\Controllers\\FrontendController@language')->name('language');
 Route::group(['middleware' => ['auth']], function () {
-    Route::get("/changePassword",  function () {
+    Route::get("/changePassword", function () {
         return view('changePassword');
     })->name("changePassword");
     Route::post("changePassword", "App\\Http\\Controllers\\AuthController@changePassword");
 
     Route::group(['middleware' => ['freshPass']], function () {
 
-    Route::get('/dashboard', 'App\\Http\\Controllers\\DashboardController@show')->name("dashboard");
-    Route::get('/createCondominium', 'App\\Http\\Controllers\\CondominiumController@showCreate')->name("createCondominium");
-    Route::post('/createCondominium', 'App\\Http\\Controllers\\CondominiumController@create')->name('createCondominiumPost');
-    Route::get('/condominium/{condominium}', 'App\\Http\\Controllers\\CondominiumController@show')->name("condominium");
-    Route::get('/condominium/{condominium}/createFamily', "App\\Http\\Controllers\\FamilyController@showCreate")->name("createFamily");
-    Route::post('/createFamily', 'App\\Http\\Controllers\\FamilyController@create')->name('createFamilyPost');
-    Route::get('/condominium/{condominium}/createTicket', "App\\Http\\Controllers\\TicketController@showCreate")->name("createTicket");
-    Route::post('/createTicket', 'App\\Http\\Controllers\\TicketController@create')->name('createTicketPost');
-    Route::post('/support', function () {
-        return view('support');
-    }
-    )->name('support');
+        Route::get('/dashboard', 'App\\Http\\Controllers\\DashboardController@show')->name("dashboard");
+        Route::get('/createCondominium', 'App\\Http\\Controllers\\CondominiumController@showCreate')->name("createCondominium");
+        Route::post('/createCondominium', 'App\\Http\\Controllers\\CondominiumController@create')->name('createCondominiumPost');
+        Route::get('/condominium/{condominium}', 'App\\Http\\Controllers\\CondominiumController@show')->name("condominium");
+        Route::get('/condominium/{condominium}/createFamily', "App\\Http\\Controllers\\FamilyController@showCreate")->name("createFamily");
+        Route::post('/createFamily', 'App\\Http\\Controllers\\FamilyController@create')->name('createFamilyPost');
+        Route::get('/condominium/{condominium}/createTicket', "App\\Http\\Controllers\\TicketController@showCreate")->name("createTicket");
+        Route::post('/createTicket', 'App\\Http\\Controllers\\TicketController@create')->name('createTicketPost');
+        Route::post('/support', function () {
+            return view('support');
+        }
+        )->name('support');
 
     });
 });
