@@ -16,12 +16,12 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->bigInteger('profile_picture_id')->unsigned()->default(1);
+            $table->bigInteger('profile_picture_id')->unsigned()->nullable();
             $table->foreign('profile_picture_id')->references('id')->on('pictures');
-            $table->string("desc");
-            $table->string("first_name");
-            $table->string("last_name");
-            $table->string("address");
+            $table->string("desc")->nullable();
+            $table->string("first_name")->nullable();
+            $table->string("last_name")->nullable();
+            $table->string("address")->nullable();
         });
     }
 

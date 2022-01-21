@@ -18,6 +18,13 @@ main {
     padding: 0 15px;
 }
 
+#toast-container {
+    min-width: 10%;
+    top: 90%;
+    right: 50%;
+    transform: translateX(50%) translateY(10%);
+}
+
 .icon-block .material-icons {
     font-size: inherit;
 }

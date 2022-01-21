@@ -48,6 +48,9 @@ class User extends Authenticatable
     public function family(){
         return $this->hasOne('App\Models\Family')->get()->first();
     }
+    public function setting(){
+        return $this->belongsTo('App\Models\Setting')->get()->first();
+    }
     public function isUser(){
         return $this->role_id === 1;
     }

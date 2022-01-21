@@ -36,6 +36,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['freshPass']], function () {
 
         Route::get('/dashboard', 'App\\Http\\Controllers\\DashboardController@show')->name("dashboard");
+        Route::get('/settings', 'App\\Http\\Controllers\\SettingController@show')->name("settings");
+        Route::post('/updateSettings', 'App\\Http\\Controllers\\SettingController@update')->name("updateSettings");
         Route::get('/createCondominium', 'App\\Http\\Controllers\\CondominiumController@showCreate')->name("createCondominium");
         Route::post('/createCondominium', 'App\\Http\\Controllers\\CondominiumController@create')->name('createCondominiumPost');
         Route::get('/condominium/{condominium}', 'App\\Http\\Controllers\\CondominiumController@show')->name("condominium");
