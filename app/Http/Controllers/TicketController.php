@@ -6,11 +6,17 @@ use App\Models\Status;
 use App\Models\Tag;
 use App\Models\Ticket;
 use App\Models\Urgency;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
 {
+    public function show(Ticket $ticket){
+        if(Auth::user()->cannot("view",$ticket))
+            return response("401",401);
+        return view("ticket",["ticket"=>$ticket]);
+    }
     public function showCreate(Request $request)
     {
         if(Auth::user()->cannot("create",Ticket::class))

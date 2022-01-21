@@ -33,7 +33,7 @@
                             </div>
                             @if($errors->get("email"))
                                 <span class="invalid-feedback" role="alert">
-                                            <strong>The email is missing </strong>
+                                            <strong>The email is missing, wrong or already in use </strong>
                                         </span>
                                 <br>
                             @endif

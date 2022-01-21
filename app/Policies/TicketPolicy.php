@@ -31,7 +31,13 @@ class TicketPolicy
      */
     public function view(User $user, Ticket $ticket)
     {
-        //
+
+        $administrates = $user->administrates()->where("id","=",$ticket->condominium_id)->get();
+        //todo craftsman view
+        return (($user->hasFamily()&&$user->family_id=$ticket->family_id) ||
+        (!is_null($administrates->first())))
+            ? Response::allow()
+            : Response::deny('You are not allowed to view this Condominium');
     }
 
     /**

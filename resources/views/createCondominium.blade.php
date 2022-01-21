@@ -28,7 +28,7 @@
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">location_on</i>
                                 <input class="validate" id="address" type="text" name="address">
-                                <label for="name" data-error="wrong"
+                                <label for="address" data-error="wrong"
                                        data-success="right"> Address </label>
                             </div>
                             @if($errors->get("address"))

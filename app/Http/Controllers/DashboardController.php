@@ -27,7 +27,7 @@ class DashboardController extends Controller
     }
     public function showTickets(Request $request)
     {
-        return view("tickets",["families"=>null,"tickets"=>null]); //TODO add tickets of craftsman
+        return view("condominium",["families"=>null,"tickets"=>null]); //TODO add tickets of craftsman
 
     }
 }

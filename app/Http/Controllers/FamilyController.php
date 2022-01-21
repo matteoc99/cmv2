@@ -6,6 +6,7 @@ use App\Models\Family;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class FamilyController extends Controller
 {
@@ -23,8 +24,7 @@ class FamilyController extends Controller
             return response("401",401);
         $request->validate([
             "name" => "required",
-            'email' => "required",
-
+            'email' => "required|unique:users",
         ]);
 
         $fam = new Family();

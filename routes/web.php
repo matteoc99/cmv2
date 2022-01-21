@@ -45,6 +45,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/createFamily', 'App\\Http\\Controllers\\FamilyController@create')->name('createFamilyPost');
         Route::get('/condominium/{condominium}/createTicket', "App\\Http\\Controllers\\TicketController@showCreate")->name("createTicket");
         Route::post('/createTicket', 'App\\Http\\Controllers\\TicketController@create')->name('createTicketPost');
+        Route::get('/ticket/{ticket}', 'App\\Http\\Controllers\\TicketController@show')->name('ticket');
+
+
+
         Route::post('/support', function () {
             return view('support');
         }

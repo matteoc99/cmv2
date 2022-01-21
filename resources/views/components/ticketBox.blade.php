@@ -4,5 +4,10 @@
             <span class="card-title">{{$ticket->title}}</span>
             <p>{{$ticket->desc}}</p>
         </div>
+        @can("view",$ticket)
+            <div class="card-action">
+                <a href="{{route("ticket",$ticket->id)}}">Manage</a>
+            </div>
+        @endcan
     </div>
 </div>
