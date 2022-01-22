@@ -17,19 +17,19 @@ class StatusSeeder extends Seeder
         DB::table('statuses')->insert([
             'nameDe' => "Nicht Zugewiesen",
             'nameIt' => "Non Asegnato",
-            'nameEn' => "Not Asigned",
+            'nameEn' => "Not Assigned",
         ]);
 
         DB::table('statuses')->insert([
             'nameDe' => "Zugewiesen",
             'nameIt' => "Asegnato",
-            'nameEn' => "Asigned",
+            'nameEn' => "Assigned",
         ]);
 
         DB::table('statuses')->insert([
             'nameDe' => "In Arbeit",
             'nameIt' => "In Lavoro",
-            'nameEn' => "work in progress",
+            'nameEn' => "Work in progress",
         ]);
 
         DB::table('statuses')->insert([

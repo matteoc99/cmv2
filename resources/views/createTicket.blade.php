@@ -40,7 +40,7 @@
                         <div class="input-field col s12">
                             <select name="urgency">
                                 @foreach($urgencies as $urgency)
-                                    <option value="{{$urgency->id}}">{{$urgency->nameEn}}</option>
+                                    <option value="{{$urgency->id}}">{{$urgency->name()}}</option>
                                 @endforeach
                             </select>
                             <label>Urcency</label>
@@ -48,7 +48,7 @@
                         <div class="input-field col s12">
                             <select name="tag">
                                 @foreach($tags as $tag)
-                                    <option value="{{$tag->id}}">{{$tag->nameEn}}</option>
+                                    <option value="{{$tag->id}}">{{$tag->name()}}</option>
                                 @endforeach
                             </select>
                             <label>Tag</label>

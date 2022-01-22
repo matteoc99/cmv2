@@ -97,9 +97,7 @@
         </div>
         <div class="row">
             @if(session()->has('success'))
-                <script>
-                    M.toast({html: 'Saved Successfully', classes: 'rounded blue darken-4 center'});
-                </script>
+                @include("components.successToast")
             @endif
         </div>
     </div>

@@ -64,3 +64,10 @@ a.anchor {
 .invalid-feedback{
     color: red;
 }
+.profile-pic {
+    height: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+}

@@ -19,16 +19,21 @@
                     @endif
                 @endif
                 @if(is_countable($tickets)&&count($tickets)>0)
-                    <li>
-                        <div class="collapsible-header"><i class="material-icons">insert_drive_file</i>Tickets</div>
-                        <div class="collapsible-body">
-                            <div class="row">
-                                @foreach($tickets as $ticket)
-                                    @include("components.ticketBox",["ticket", $ticket])
-                                @endforeach
+                    @foreach(\App\Models\Status::all() as $status)
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">insert_drive_file</i>Tickets
+                                : {{$status->name()}}</div>
+                            <div class="collapsible-body">
+                                <div class="row">
+                                    @foreach($tickets as $ticket)
+                                        @if($ticket->status_id==$status->id)
+                                            @include("components.ticketBox",["ticket", $ticket])
+                                        @endif
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
+                    @endforeach
                 @endif
 
 

@@ -47,6 +47,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['freshPass']], function () {
 
         Route::get('/dashboard', 'App\\Http\\Controllers\\DashboardController@show')->name("dashboard");
+        Route::get('/profile/{user}', 'App\\Http\\Controllers\\UserController@show')->name("profile");
         Route::get('/settings', 'App\\Http\\Controllers\\SettingController@show')->name("settings");
         Route::post('/updateSettings', 'App\\Http\\Controllers\\SettingController@update')->name("updateSettings");
         Route::get('/createCondominium', 'App\\Http\\Controllers\\CondominiumController@showCreate')->name("createCondominium");
@@ -54,8 +55,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/condominium/{condominium}', 'App\\Http\\Controllers\\CondominiumController@show')->name("condominium");
         Route::get('/condominium/{condominium}/createFamily', "App\\Http\\Controllers\\FamilyController@showCreate")->name("createFamily");
         Route::post('/createFamily', 'App\\Http\\Controllers\\FamilyController@create')->name('createFamilyPost');
+
         Route::get('/condominium/{condominium}/createTicket', "App\\Http\\Controllers\\TicketController@showCreate")->name("createTicket");
         Route::post('/createTicket', 'App\\Http\\Controllers\\TicketController@create')->name('createTicketPost');
+        Route::post('/updateTicket/{ticket}', 'App\\Http\\Controllers\\TicketController@update')->name('updateTicketPost');
         Route::post('/addToCraftsman', 'App\\Http\\Controllers\\TicketController@addToCraftsman')->name('addToCraftsman');
         Route::get('/ticket/{ticket}', 'App\\Http\\Controllers\\TicketController@show')->name('ticket');
         Route::get('/ticket/generateToken/{ticket}', 'App\\Http\\Controllers\\TicketController@generateTicketToken')->name('generateTicketToken');

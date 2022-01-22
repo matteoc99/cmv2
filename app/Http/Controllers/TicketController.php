@@ -22,26 +22,26 @@ class TicketController extends Controller
 
     public function showBytoken(Request $request)
     {
-        $ticket = Ticket::where("token","=",$request->route("token"))->get()->first();
-        if(is_null($ticket))
-            return response("",404);
+        $ticket = Ticket::where("token", "=", $request->route("token"))->get()->first();
+        if (is_null($ticket))
+            return response("", 404);
 
-        if(!is_null(Auth::user())&&Auth::user()->isCraftsman())
-        {
-            $ticket->craftsman_id=Auth::user()->id;
-            $ticket->status_id=2;
+        if (!is_null(Auth::user()) && Auth::user()->isCraftsman()) {
+            $ticket->craftsman_id = Auth::user()->id;
+            $ticket->status_id = 2;
             $ticket->save();
             return redirect()->back();
         }
         return view("ticket", ["ticket" => $ticket]);
     }
+
     public function generateTicketToken(Ticket $ticket)
     {
         if (Auth::user()->cannot("createToken", $ticket))
             return response("401", 401);
         $ticket->token = str_random(60);
         $ticket->save();
-        return redirect(route("ticket",$ticket->id));
+        return redirect(route("ticket", $ticket->id));
     }
 
     public function showCreate(Request $request)
@@ -77,8 +77,24 @@ class TicketController extends Controller
         return redirect(route("condominium", $request->get("condominium")));
     }
 
-    public function addToCraftsman(Request $request){
-        $token= $request->get("link");
+    public function addToCraftsman(Request $request)
+    {
+        $token = $request->get("link");
         return redirect($token);
+    }
+
+    public function update(Request $request, Ticket $ticket)
+    {
+        $request->validate([
+            "title" => "required",
+            'desc' => "required",
+        ]);
+        $ticket->title = $request->get("title");
+        $ticket->desc = $request->get("desc");
+        if (!is_null($request->get("status")))
+            $ticket->status_id = $request->get("status");
+        $ticket->save();
+        return redirect(route("ticket", $ticket->id))->with('success', "saved");
+
     }
 }
