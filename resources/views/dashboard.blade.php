@@ -1,6 +1,7 @@
 @extends("layouts.dashMaster")
 
 @section("content")
+
     @if(is_countable($condominia)&&count($condominia)>0)
         <div class="row">
         @foreach($condominia as $condominium)

@@ -37,6 +37,9 @@ class SettingController extends Controller
         $set->first_name = $request->get("first_name");
         $set->last_name = $request->get("last_name");
         $set->desc = $request->get("desc");
+        $set->firm_name = $request->get("firm_name");
+        $set->phone = $request->get("phone");
+        $set->address = $request->get("address");
 
         if ($request->hasFile("profile_image")) {
             $uuid = Str::uuid()->toString();

@@ -22,7 +22,11 @@
                             class="material-icons">note_add</i></a></li>
             @endcan
         @endif
-
+        @if(\Illuminate\Support\Facades\Auth::user()->isCraftsman())
+                <li><a href="#addTicketModal"
+                       class="btn-floating blue lighten-1 modal-trigger"><i
+                            class="material-icons">note_add</i></a></li>
+        @endif
         <li><a href="{{route("support")}}" class="btn-floating blue lighten-1"><i class="material-icons">help</i></a>
         </li>
 

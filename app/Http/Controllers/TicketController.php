@@ -23,6 +23,13 @@ class TicketController extends Controller
     public function showBytoken(Request $request)
     {
         $ticket = Ticket::where("token","=",$request->route("token"))->get()->first();
+        if(!is_null(Auth::user())&&Auth::user()->isCraftsman())
+        {
+            $ticket->craftsman_id=Auth::user()->id;
+            $ticket->status_id=2;
+            $ticket->save();
+            return redirect()->back();
+        }
         return view("ticket", ["ticket" => $ticket]);
     }
     public function generateTicketToken(Ticket $ticket)
@@ -31,7 +38,7 @@ class TicketController extends Controller
             return response("401", 401);
         $ticket->token = str_random(60);
         $ticket->save();
-        return view("ticket", ["ticket" => $ticket]);
+        return redirect(route("ticket",$ticket->id));
     }
 
     public function showCreate(Request $request)
@@ -65,6 +72,10 @@ class TicketController extends Controller
         $ticket->save();
 
         return redirect(route("condominium", $request->get("condominium")));
+    }
 
+    public function addToCraftsman(Request $request){
+        $token= $request->get("link");
+        return redirect($token);
     }
 }

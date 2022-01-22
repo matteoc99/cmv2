@@ -33,10 +33,10 @@ class TicketPolicy
     {
 
         $administrates = $user->administrates()->where("id","=",$ticket->condominium_id)->get();
-        //todo craftsman view
         return (($user->hasFamily()&&$user->family_id==$ticket->family_id) ||
          ($user->hasFamily()&&$user->family()->condominium_id==$ticket->condominium_id) ||
-        (!is_null($administrates->first())))
+        (!is_null($administrates->first()))||
+            ($user->isCraftsman()&&$user->id ==$ticket->craftsman_id))
             ? Response::allow()
             : Response::deny('You are not allowed to view this Condominium');
     }

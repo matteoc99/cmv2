@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,7 +28,8 @@ class DashboardController extends Controller
     }
     public function showTickets(Request $request)
     {
-        return view("condominium",["families"=>null,"tickets"=>null]); //TODO add tickets of craftsman
+        $tickets= Ticket::where("craftsman_id","=",Auth::user()->id)->get();
+        return view("condominium",["families"=>null,"tickets"=>$tickets]);
 
     }
 }
