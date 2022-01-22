@@ -52,8 +52,8 @@
                             </div>
                             <div class="input-field col s6 m6 l6">
                                 <p class="margin right-align medium-small">
-                                    @if (Route::has('password.request'))
-                                        <a class="" href="{{ route('password.request') }}">
+                                    @if (Route::has('passwordForgotten'))
+                                        <a class="" href="{{ route('passwordForgotten') }}">
                                             @lang('auth.passwordForgotten')
                                         </a>
                                     @endif

@@ -19,6 +19,13 @@ Route::get("login", function () {
     return view('login');
 })->name("login");
 Route::post("login", "App\\Http\\Controllers\\AuthController@login");
+Route::get("passwordForgotten", function () {
+    return view('passwordForgotten');
+})->name("passwordForgotten");
+Route::post("resetPassword", "App\\Http\\Controllers\\PasswordResetController@resetPassword")->name("resetPasswordPost");
+Route::get("resetPassword/{token}", "App\\Http\\Controllers\\PasswordResetController@showReset")->name("resetPassword");
+Route::post("reset", "App\\Http\\Controllers\\PasswordResetController@reset")->name("reset");
+
 Route::get("register", function () {
     return view('register');
 })->name("register");
