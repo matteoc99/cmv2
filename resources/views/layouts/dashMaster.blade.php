@@ -23,8 +23,8 @@
 <body>
 @include('components.dashNav')
 <main>
-    @yield("content")
     @include("components.fab")
+    @yield("content")
 </main>
 </body>
 </html>

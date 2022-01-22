@@ -35,10 +35,8 @@ class PasswordResetController extends Controller
 
     public function showReset(Request $request)
     {
-        return view("passwordReset");
+        return view("auth/passwordReset");
     }
-
-
 
     public function resetPassword(Request $request)
     {

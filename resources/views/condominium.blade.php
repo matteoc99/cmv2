@@ -34,6 +34,9 @@
 
             </ul>
         </div>
+    @else
+        @include("components.fabDiscovery")
     @endif
+
 
 @endsection

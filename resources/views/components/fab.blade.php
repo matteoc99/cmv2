@@ -1,7 +1,8 @@
-<div class="fixed-action-btn">
-    <a class="btn-floating btn-large blue">
+<div class="fixed-action-btn" id="menucontainer">
+    <a id="menu" class="btn-floating btn-large blue">
         <i class="large material-icons">add</i>
     </a>
+
     <ul>
         @if(Request::route()->getName()=="condominium")
             @can("create",\App\Models\Family::class)

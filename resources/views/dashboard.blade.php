@@ -7,5 +7,7 @@
                 @include("components.condominiumBox",["condominium", $condominium])
         @endforeach
         </div>
+    @else
+        @include("components.fabDiscovery")
     @endif
 @endsection
