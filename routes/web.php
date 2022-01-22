@@ -34,6 +34,10 @@ Route::get("logout", "App\\Http\\Controllers\\AuthController@logout")->name("log
 Route::get('/privacy', 'FrontendController@privacy')->name('privacy');
 Route::get('/terms', 'FrontendController@terms')->name('terms');
 Route::get('/language/{locale}', 'App\\Http\\Controllers\\FrontendController@language')->name('language');
+
+Route::get('/ticket/token/{token}', 'App\\Http\\Controllers\\TicketController@showBytoken')->name('ticketByToken');
+
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get("/changePassword", function () {
         return view('changePassword');
@@ -53,6 +57,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/condominium/{condominium}/createTicket', "App\\Http\\Controllers\\TicketController@showCreate")->name("createTicket");
         Route::post('/createTicket', 'App\\Http\\Controllers\\TicketController@create')->name('createTicketPost');
         Route::get('/ticket/{ticket}', 'App\\Http\\Controllers\\TicketController@show')->name('ticket');
+        Route::get('/ticket/generateToken/{ticket}', 'App\\Http\\Controllers\\TicketController@generateTicketToken')->name('generateTicketToken');
 
 
 

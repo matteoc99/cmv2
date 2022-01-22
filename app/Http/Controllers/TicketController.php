@@ -20,6 +20,20 @@ class TicketController extends Controller
         return view("ticket", ["ticket" => $ticket]);
     }
 
+    public function showBytoken(Request $request)
+    {
+        $ticket = Ticket::where("token","=",$request->route("token"))->get()->first();
+        return view("ticket", ["ticket" => $ticket]);
+    }
+    public function generateTicketToken(Ticket $ticket)
+    {
+        if (Auth::user()->cannot("createToken", $ticket))
+            return response("401", 401);
+        $ticket->token = str_random(60);
+        $ticket->save();
+        return view("ticket", ["ticket" => $ticket]);
+    }
+
     public function showCreate(Request $request)
     {
         if (Auth::user()->cannot("create", Ticket::class))

@@ -53,7 +53,12 @@ class TicketPolicy
             ? Response::allow()
             : Response::deny('You do not an User');
     }
-
+    public function createToken(User $user,Ticket $ticket)
+    {
+        return $user->isAdmin()
+            ? Response::allow()
+            : Response::deny('You do not an User');
+    }
     /**
      * Determine whether the user can update the model.
      *
