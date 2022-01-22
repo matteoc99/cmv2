@@ -46,7 +46,7 @@
                             <label>Urcency</label>
                         </div>
                         <div class="input-field col s12">
-                            <select name="tags">
+                            <select name="tag">
                                 @foreach($tags as $tag)
                                     <option value="{{$tag->id}}">{{$tag->nameEn}}</option>
                                 @endforeach

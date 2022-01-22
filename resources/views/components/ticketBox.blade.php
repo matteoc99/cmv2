@@ -3,6 +3,11 @@
         <div class="card-content white-text">
             <span class="card-title">{{$ticket->title}}</span>
             <p>{{$ticket->desc}}</p>
+            <p>{{$ticket->urgency()->name()}}</p>
+            @if($ticket->hasStatus())
+                <p>{{$ticket->status()->name()}}</p>
+            @endif
+            <p>{{$ticket->tag()->name()}}</p>
         </div>
         @can("view",$ticket)
             <div class="card-action">
