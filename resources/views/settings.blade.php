@@ -16,7 +16,7 @@
                             </div>
                             <div class="input-field col s8" style="align-self: flex-end">
                                 <button  type="button" class="btn waves-effect waves-light blue darken-4" onclick="document.getElementById('profile_image').click()">Change Profile Picture</button>
-                                <input type='file' name="profile_image" id="profile_image" style="display:none">
+                                <input type='file' name="profile_image" id="profile_image" style="display:none" onchange="document.getElementById('submit').click()">
                             </div>
                             @foreach($errors->get("profile_image") as $error)
                                 <span class="invalid-feedback" role="alert">
@@ -52,7 +52,7 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12 m6 offset-m3">
-                                <button type="submit"
+                                <button type="submit" id="submit"
                                         class="btn waves-effect waves-light blue darken-4 col s12"> Update
                                 </button>
                             </div>
