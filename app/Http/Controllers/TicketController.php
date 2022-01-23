@@ -84,6 +84,15 @@ class TicketController extends Controller
                 );
             }
         }
+        $families = $ticket->condominium()->families();
+        foreach ($families as $fam){
+            $user =$fam->user();
+            if ($user->id !=Auth::user()->id && $user->setting()->recive_ticket_created_notification) {
+                $user->notify(
+                    new TicketCreatedNotification($ticket->family(), $ticket, $ticket->condominium())
+                );
+            }
+        }
 
         return redirect(route("condominium", $request->get("condominium")));
     }
