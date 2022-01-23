@@ -5,10 +5,10 @@
 
         @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
             <h3><a href="{{route("dashboard")}}"><i
-                        class="material-icons small blue-text darken-4">arrow_back</i></a>{{$condominium->name}}</h3>
+                        class="material-icons small blue-text darken-4">arrow_back</i></a><i class="material-icons small">home</i>{{$condominium->name}}</h3>
         @else
             @if(!is_null($condominium))
-                <h3>{{$condominium->name}}</h3>
+                <h3><i class="material-icons small">home</i>{{$condominium->name}}</h3>
             @endif
         @endif
         @if((\Illuminate\Support\Facades\Auth::user()->isAdmin()&&is_countable($families)&&count($families)>0)||is_countable($tickets)&&count($tickets)>0)
@@ -48,7 +48,7 @@
                                 }
                             }
                         @endphp
-                        @if(is_countable($ticketsByStatus)&&count($ticketsByStatus)>1)
+                        @if(is_countable($ticketsByStatus)&&count($ticketsByStatus)>=1)
                             <li class="{{$openFirst?"active":""}}">
                                 @php
                                     $openFirst=false;
