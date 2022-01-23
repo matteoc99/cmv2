@@ -15,6 +15,7 @@ class CondominiumController extends Controller
         if(Auth::user()->cannot("view",$condominium))
             return response("401",401);
         return view("condominium",[
+            "condominium"=>$condominium,
             "families"=>$condominium->families()->get(),
             "tickets"=>Ticket::where("condominium_id","=",$condominium->id)->get()
         ]);

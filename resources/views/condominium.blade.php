@@ -1,13 +1,24 @@
 @extends("layouts.dashMaster ")
 
 @section("content")
-    @if(is_countable($families)&&count($families)>0||is_countable($tickets)&&count($tickets)>0)
-        <div class="container">
+    <div class="container">
+
+        @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
+            <h3><a href="{{route("dashboard")}}"><i
+                        class="material-icons small blue-text darken-4">arrow_back</i></a>{{$condominium->name}}</h3>
+        @else
+            @if(!is_null($condominium))
+                <h3>{{$condominium->name}}</h3>
+            @endif
+        @endif
+        @if((\Illuminate\Support\Facades\Auth::user()->isAdmin()&&is_countable($families)&&count($families)>0)||is_countable($tickets)&&count($tickets)>0)
             <ul class="collapsible">
                 @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
                     @if(is_countable($families)&&count($families)>0)
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">person</i>Tenants</div>
+                            <div class="collapsible-header"><i class="material-icons">person</i>Tenants
+                                <span class="badge">{{count($families)}}</span>
+                            </div>
                             <div class="collapsible-body">
                                 <div class="row">
                                     @foreach($families as $family)
@@ -18,30 +29,42 @@
                         </li>
                     @endif
                 @endif
+                @php
+                    $openFirst=true;
+                @endphp
                 @if(is_countable($tickets)&&count($tickets)>0)
                     @foreach(\App\Models\Status::all() as $status)
-                        <li>
-                            <div class="collapsible-header"><i class="material-icons">insert_drive_file</i>Tickets
-                                : {{$status->name()}}</div>
-                            <div class="collapsible-body">
-                                <div class="row">
-                                    @foreach($tickets as $ticket)
-                                        @if($ticket->status_id==$status->id)
-                                            @include("components.ticketBox",["ticket", $ticket])
-                                        @endif
-                                    @endforeach
+                        @php
+                            $ticketsByStatus=$tickets->where("status_id","=",$status->id)
+                        @endphp
+                        @if(is_countable($ticketsByStatus)&&count($ticketsByStatus)>1)
+                            <li class="{{$openFirst?"active":""}}">
+                                @php
+                                    $openFirst=false;
+                                @endphp
+                                <div class="collapsible-header"><i class="material-icons">insert_drive_file</i>Tickets
+                                    : {{$status->name()}}
+                                    <span class="badge">{{count($ticketsByStatus)}}</span>
                                 </div>
-                            </div>
-                        </li>
+                                <div class="collapsible-body">
+                                    <div class="row">
+                                        @foreach($tickets as $ticket)
+                                            @if($ticket->status_id==$status->id)
+                                                @include("components.ticketBox",["ticket", $ticket])
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </li>
+                        @endif
+
                     @endforeach
                 @endif
-
-
             </ul>
-        </div>
-    @else
-        @include("components.fabDiscovery")
-    @endif
+        @else
+            @include("components.fabDiscovery")
+        @endif
+    </div>
 
 
 @endsection

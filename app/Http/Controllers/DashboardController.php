@@ -29,7 +29,7 @@ class DashboardController extends Controller
     public function showTickets(Request $request)
     {
         $tickets= Ticket::where("craftsman_id","=",Auth::user()->id)->get();
-        return view("condominium",["families"=>null,"tickets"=>$tickets]);
+        return view("condominium",["condominium"=>null,"families"=>null,"tickets"=>$tickets]);
 
     }
 }
