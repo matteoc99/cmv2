@@ -32,7 +32,7 @@ class SettingController extends Controller
         $set = Auth::user()->setting();
         $set->recive_ticket_created_notification = $request->get("ticket_notification")=="on";
         $set->save();
-        return redirect()->back()->with('success',"saved");
+        return redirect()->back()->with('success',"notification");
     }
 
     public function update(Request $request){
@@ -70,6 +70,6 @@ class SettingController extends Controller
         }
         $set->save();
 
-        return redirect()->back()->with('success',"saved");
+        return redirect()->back()->with('success',"profile");
     }
 }
