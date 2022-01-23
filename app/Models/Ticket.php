@@ -39,5 +39,8 @@ class Ticket extends Model
     {
         return $this->belongsTo(Family::class)->get()->first();
     }
-
+    public function condominium()
+    {
+        return $this->belongsTo(Condominium::class)->get()->first();
+    }
 }

@@ -71,3 +71,10 @@ a.anchor {
     max-height: 100%;
     width: 100%;
 }
+.indicator{
+    background-color: #0D47A1 !important;
+}
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+    background-color: rgba(14, 52, 213, 0.1) !important;
+    outline: none;
+}

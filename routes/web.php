@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/profile/{user}', 'App\\Http\\Controllers\\UserController@show')->name("profile");
         Route::get('/settings', 'App\\Http\\Controllers\\SettingController@show')->name("settings");
         Route::post('/updateSettings', 'App\\Http\\Controllers\\SettingController@update')->name("updateSettings");
+        Route::post('/updateNotificationSettings', 'App\\Http\\Controllers\\SettingController@updateNotification')->name("updateNotificationSettings");
         Route::get('/createCondominium', 'App\\Http\\Controllers\\CondominiumController@showCreate')->name("createCondominium");
         Route::post('/createCondominium', 'App\\Http\\Controllers\\CondominiumController@create')->name('createCondominiumPost');
         Route::get('/condominium/{condominium}', 'App\\Http\\Controllers\\CondominiumController@show')->name("condominium");

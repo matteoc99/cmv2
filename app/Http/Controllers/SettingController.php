@@ -28,6 +28,13 @@ class SettingController extends Controller
     }
 
 
+    public function updateNotification(Request $request){
+        $set = Auth::user()->setting();
+        $set->recive_ticket_created_notification = $request->get("ticket_notification")=="on";
+        $set->save();
+        return redirect()->back()->with('success',"saved");
+    }
+
     public function update(Request $request){
 
         $request->validate([
@@ -53,7 +60,6 @@ class SettingController extends Controller
             // TODO delete old img?
             If($set->hasPicture()) {
                 $old = $set->picture();
-
                 try{
                     unlink(public_path('uploads/' . $old->uuid . "." . $old->mime_type));
                 }catch (\Exception $ignored){

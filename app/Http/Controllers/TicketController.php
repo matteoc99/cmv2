@@ -7,6 +7,8 @@ use App\Models\Tag;
 use App\Models\Ticket;
 use App\Models\Urgency;
 use App\Models\User;
+use App\Notifications\PasswordResetRequest;
+use App\Notifications\TicketCreatedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -70,9 +72,18 @@ class TicketController extends Controller
         $ticket->title = $request->get("title");
         $ticket->desc = $request->get("desc");
         if (Auth::user()->hasFamily()) {
-            $ticket->family_id == Auth::user()->family_id;
+            $ticket->family_id = Auth::user()->family_id;
         }
         $ticket->save();
+
+        if (!Auth::user()->isAdmin()) {
+            $admin = User::where("id", "=", $ticket->condominium()->admin_id)->get()->first();
+            if ($admin->setting()->recive_ticket_created_notification) {
+                $admin->notify(
+                    new TicketCreatedNotification($ticket->family(), $ticket, $ticket->condominium())
+                );
+            }
+        }
 
         return redirect(route("condominium", $request->get("condominium")));
     }
