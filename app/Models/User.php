@@ -72,4 +72,11 @@ class User extends Authenticatable
     public function hasFamily(){
         return !is_null($this->family_id);
     }
+
+    public function seenTickets()
+    {
+        return $this->belongsToMany(Ticket::class,"user_ticket")
+            ->using(UserTickets::class)->withPivot("seen");
+    }
+
 }

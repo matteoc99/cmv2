@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Ticket extends Model
 {
@@ -42,5 +43,10 @@ class Ticket extends Model
     public function condominium()
     {
         return $this->belongsTo(Condominium::class)->get()->first();
+    }
+
+    public function isNew()
+    {
+        return is_null(Auth::user()->seenTickets()->where("ticket_id","=",$this->id)->get()->first());
     }
 }

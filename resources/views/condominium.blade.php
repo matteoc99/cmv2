@@ -35,7 +35,18 @@
                 @if(is_countable($tickets)&&count($tickets)>0)
                     @foreach(\App\Models\Status::all() as $status)
                         @php
-                            $ticketsByStatus=$tickets->where("status_id","=",$status->id)
+                            $ticketsByStatus=$tickets->where("status_id","=",$status->id);
+                            $anyNew=false;
+                            foreach ($tickets as $ticket){
+                                if($ticket->isNew()){
+                                    $anyNew=true;
+                                    $userticket = new \App\Models\UserTickets();
+                                    $userticket->user_id=\Illuminate\Support\Facades\Auth::user()->id;
+                                    $userticket->ticket_id=$ticket->id;
+                                    $userticket->seen = true;
+                                    $userticket->save();
+                                }
+                            }
                         @endphp
                         @if(is_countable($ticketsByStatus)&&count($ticketsByStatus)>1)
                             <li class="{{$openFirst?"active":""}}">
@@ -44,7 +55,7 @@
                                 @endphp
                                 <div class="collapsible-header"><i class="material-icons">insert_drive_file</i>Tickets
                                     : {{$status->name()}}
-                                    <span class="badge">{{count($ticketsByStatus)}}</span>
+                                    <span class="{{$anyNew?"new blue darken-4" : ""}} badge">{{count($ticketsByStatus)}}</span>
                                 </div>
                                 <div class="collapsible-body">
                                     <div class="row">
