@@ -75,6 +75,12 @@ class TicketController extends Controller
             $ticket->family_id = Auth::user()->family_id;
         }
         $ticket->save();
+        //make ticket seen by current user
+        $userticket = new \App\Models\UserTickets();
+        $userticket->user_id=\Illuminate\Support\Facades\Auth::user()->id;
+        $userticket->ticket_id=$ticket->id;
+        $userticket->seen = true;
+        $userticket->save();
 
         if (!Auth::user()->isAdmin()) {
             $admin = User::where("id", "=", $ticket->condominium()->admin_id)->get()->first();
