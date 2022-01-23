@@ -80,16 +80,16 @@ class TicketController extends Controller
             $admin = User::where("id", "=", $ticket->condominium()->admin_id)->get()->first();
             if ($admin->setting()->recive_ticket_created_notification) {
                 $admin->notify(
-                    new TicketCreatedNotification($ticket->family(), $ticket, $ticket->condominium())
+                    new TicketCreatedNotification(Auth::user()->name(), $ticket, $ticket->condominium())
                 );
             }
         }
-        $families = $ticket->condominium()->families();
+        $families = $ticket->condominium()->families()->get();
         foreach ($families as $fam){
             $user =$fam->user();
             if ($user->id !=Auth::user()->id && $user->setting()->recive_ticket_created_notification) {
                 $user->notify(
-                    new TicketCreatedNotification($ticket->family(), $ticket, $ticket->condominium())
+                    new TicketCreatedNotification(Auth::user()->name(), $ticket, $ticket->condominium())
                 );
             }
         }

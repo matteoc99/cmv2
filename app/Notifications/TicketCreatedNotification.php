@@ -11,7 +11,7 @@ class TicketCreatedNotification extends Notification
 {
     use Queueable;
 
-    protected $family;
+    protected $author;
     protected $ticket;
     protected $condominium;
 
@@ -20,9 +20,9 @@ class TicketCreatedNotification extends Notification
      *
      * @return void
      */
-    public function __construct($family,$ticket,$condominium)
+    public function __construct($author,$ticket,$condominium)
     {
-        $this->family = $family;
+        $this->author = $author;
         $this->ticket = $ticket;
         $this->condominium = $condominium;
     }
@@ -49,7 +49,7 @@ class TicketCreatedNotification extends Notification
         $url = route("login");
 
         return (new MailMessage)
-            ->line('A new Ticket has been created by '. $this->family->name)
+            ->line('A new Ticket has been created by '. $this->author)
             ->line('Condominium: '. $this->condominium->name)
             ->line($this->ticket->title)
             ->line($this->ticket->desc)

@@ -42,6 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function name(){
+        return $this->name;
+    }
     public function administrates(){
         return $this->hasMany('App\Models\Condominium',"admin_id","id");
     }
@@ -49,6 +52,12 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Family')->get()->first();
     }
     public function setting(){
+        if(is_null($this->setting_id)){
+            $set = new Setting();
+            $set->save();
+            $this->setting_id=$set->id;
+            $this->save();
+        }
         return $this->belongsTo('App\Models\Setting')->get()->first();
     }
     public function isUser(){

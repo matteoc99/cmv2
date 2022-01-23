@@ -11,11 +11,11 @@ class Family extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class)->get();
+        return $this->hasOne(User::class)->get()->first();
     }
     public function condominium()
     {
-        return $this->hasOne(User::class)->get();
+        return $this->hasOne(User::class)->get()->first();
     }
     public function tickets()
     {
