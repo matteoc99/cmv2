@@ -16,6 +16,7 @@
                         @endif
                         <p>Status: {{$ticket->status()->name()}}</p>
                         <p>Urgency: {{$ticket->urgency()->name()}}</p>
+                        <p>Work type: {{$ticket->tag()->name()}}</p>
                     </div>
                     @can("createToken",$ticket)
                         @if(is_null($ticket->token))
@@ -70,6 +71,27 @@
                             <label>Status</label>
                         </div>
                     </div>
+                    @else
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select name="urgency">
+                                    @foreach(\App\Models\Urgency::all() as $urgency)
+                                        <option value="{{$urgency->id}}" {{$ticket->urgency_id==$urgency->id?"selected":""}}>{{$urgency->name()}}</option>
+                                    @endforeach
+                                </select>
+                                <label>Urgency</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select name="tag">
+                                    @foreach(\App\Models\Tag::all() as $tag)
+                                        <option value="{{$tag->id}}" {{$ticket->tag_id==$tag->id?"selected":""}}>{{$tag->name()}}</option>
+                                    @endforeach
+                                </select>
+                                <label>Work Type</label>
+                            </div>
+                        </div>
                     @endif
                     <div class="row">
                         <div class="input-field col s12 m6 offset-m3">

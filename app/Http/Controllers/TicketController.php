@@ -109,10 +109,16 @@ class TicketController extends Controller
             "title" => "required",
             'desc' => "required",
         ]);
-        $ticket->title = $request->get("title");
-        $ticket->desc = $request->get("desc");
+        if (!is_null($request->get("title")))
+            $ticket->title = $request->get("title");
+        if (!is_null($request->get("desc")))
+            $ticket->desc = $request->get("desc");
         if (!is_null($request->get("status")))
             $ticket->status_id = $request->get("status");
+        if (!is_null($request->get("tag")))
+            $ticket->tag_id = $request->get("tag");
+        if (!is_null($request->get("urgency")))
+            $ticket->urgency_id = $request->get("urgency");
         $ticket->save();
         return redirect(route("ticket", $ticket->id))->with('success', "saved");
 
