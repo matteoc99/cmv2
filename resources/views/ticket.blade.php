@@ -136,6 +136,12 @@
                             </div>
                         </form>
                     </div>
+                    <script>
+                        $(document).ready(function (){
+                            $(".message-container").css('height', window.innerHeight -500 + 'px');
+                            $(".message-container").scrollTop($(".message-container")[0].scrollHeight);
+                        });
+                    </script>
                 </div>
             @else
                 <div class="col s12 m12 l6 xl6 card chat-container">
