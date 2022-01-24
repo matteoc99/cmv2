@@ -45,6 +45,10 @@ class Ticket extends Model
         return $this->belongsTo(Condominium::class)->get()->first();
     }
 
+    public function chat()
+    {
+        return $this->hasOne(Chat::class)->get()->first();
+    }
     public function isNew()
     {
         return is_null(Auth::user()->seenTickets()->where("ticket_id","=",$this->id)->get()->first());
