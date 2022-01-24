@@ -47,6 +47,14 @@ class Ticket extends Model
 
     public function chat()
     {
+        if(is_null($this->chat_id))
+        {
+            $chat = new Chat();
+            $chat->ticket_id=$this->id;
+            $chat->save();
+            $this->chat_id = $chat->id;
+            $this->save();
+        }
         return $this->hasOne(Chat::class)->get()->first();
     }
     public function isNew()

@@ -65,8 +65,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/ticket/generateToken/{ticket}', 'App\\Http\\Controllers\\TicketController@generateTicketToken')->name('generateTicketToken');
 
 
-        Route::post('api/messages', 'App\\Http\\Controllers\\MessagesController@index');
-        Route::post('api/messages/send', 'App\\Http\\Controllers\\MessagesController@store');
+        Route::post('/messages/{chat}', 'App\\Http\\Controllers\\MessageController@store')->name("sendMessage");
 
 
         Route::post('/support', function () {

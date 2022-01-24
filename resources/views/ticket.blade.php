@@ -111,11 +111,10 @@
             </div>
             <div class="col s12 m12 l6 xl6 card chat-container">
                 <h3 class="center">Chat</h3>
-                <div class=" row message-container">
 
-                </div>
-                <div class="row">
-                    <form method="POST" action="{{ route('updateTicketPost',$ticket->id) }}">
+                @livewire("chat",["chat"=>$ticket->chat()])
+                <div>
+                    <form method="POST" action="{{ route('sendMessage',$ticket->chat()->id) }}">
                         @csrf
                         <div class="input-field col s8">
                             <input class="validate" id="message" type="text" name="message">

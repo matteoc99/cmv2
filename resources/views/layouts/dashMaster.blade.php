@@ -24,6 +24,7 @@
             crossorigin=""></script>
     <script src="{{asset("js/main.js")}}"></script>
     <script src="{{asset("js/chat.js")}}"></script>
+    @livewireStyles
 
 </head>
 <body>
@@ -36,5 +37,7 @@
         @include("components.addTicketModal")
     @endif
 </main>
+@livewireScripts
+
 </body>
 </html>

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\MessageSent;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,12 +18,14 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        $message = Message::create([
-            'sender_id'   => Auth::user()->id,
-            'chat_id'   => $request->input('chat_id'),
-            'message'     => $request->input('message'),
-        ]);
 
-        return $message->fresh();
+        $chat_id = (int)$request->route('chat');
+
+        $message = new Message();
+        $message->sender_id = Auth::user()->id;
+        $message->chat_id =$chat_id;
+        $message->message =$request->get("message");
+        $message->save();
+        return redirect()->back();
     }
 }
