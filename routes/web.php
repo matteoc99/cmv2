@@ -35,8 +35,8 @@ Route::get('/privacy', 'FrontendController@privacy')->name('privacy');
 Route::get('/terms', 'FrontendController@terms')->name('terms');
 Route::get('/language/{locale}', 'App\\Http\\Controllers\\FrontendController@language')->name('language');
 
-Route::get('/ticket/token/{token}', 'App\\Http\\Controllers\\TicketController@showBytoken')->name('ticketByToken');
 
+Route::get('/ticket/token/{token}', 'App\\Http\\Controllers\\TicketController@showBytoken')->name('ticketByToken');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get("/changePassword", function () {
@@ -63,6 +63,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/addToCraftsman', 'App\\Http\\Controllers\\TicketController@addToCraftsman')->name('addToCraftsman');
         Route::get('/ticket/{ticket}', 'App\\Http\\Controllers\\TicketController@show')->name('ticket');
         Route::get('/ticket/generateToken/{ticket}', 'App\\Http\\Controllers\\TicketController@generateTicketToken')->name('generateTicketToken');
+
 
 
         Route::post('/messages/{chat}', 'App\\Http\\Controllers\\MessageController@store')->name("sendMessage");

@@ -30,12 +30,16 @@
 <body>
 @include('components.dashNav')
 <main>
-    @include("components.fab")
+    @auth
+        @include("components.fab")
+    @endauth
     @yield("content")
+    @auth
 
-    @if(\Illuminate\Support\Facades\Auth::user()->isCraftsman())
-        @include("components.addTicketModal")
-    @endif
+        @if(\Illuminate\Support\Facades\Auth::user()->isCraftsman())
+            @include("components.addTicketModal")
+        @endif
+    @endauth
 </main>
 @livewireScripts
 

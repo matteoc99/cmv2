@@ -5,7 +5,13 @@
     <li><a href="{{route("dashboard")}}">Dashboard</a></li>
     @include("components.langSelect")
     <li><a href="{{route("settings")}}">Settings</a></li>
+    @auth
     <li><a href="{{route("logout")}}">Logout</a></li>
+    @endauth
+    @guest
+        <li><a href="{{route("login")}}">Login</a></li>
+        <li><a href="{{route("register")}}">Register</a></li>
+    @endguest
 </ul>
 <div class="navbar-fixed">
     <nav class="blue darken-4" role="navigation">
@@ -18,7 +24,13 @@
                 <li><a href="{{route("dashboard")}}">Dashboard</a></li>
                 <li><a href="{{route("settings")}}">Settings</a></li>
                 @include("components.langSelect")
-                <li><a href="{{route("logout")}}">Logout</a></li>
+                @auth
+                    <li><a href="{{route("logout")}}">Logout</a></li>
+                @endauth
+                @guest
+                    <li><a href="{{route("login")}}">Login</a></li>
+                    <li><a href="{{route("register")}}">Register</a></li>
+                @endguest
             </ul>
 
             <a href="#!" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
