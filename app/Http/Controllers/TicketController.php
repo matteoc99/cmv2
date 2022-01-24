@@ -117,28 +117,39 @@ class TicketController extends Controller
             'desc' => "required",
         ]);
         $whatChanged = Auth::user()->name() . " changed ";
+        $somethingChanged = false;
 
         if (!is_null($request->get("title")))
-            if ($ticket->title != $request->get("title"))
-                $whatChanged = $whatChanged . " Title to: ";
+            if ($ticket->title != $request->get("title")) {
+                $whatChanged = $whatChanged . " Title to: " . $request->get("title");
+                $somethingChanged = true;
+            }
         if (!is_null($request->get("desc")))
-            if ($ticket->desc != $request->get("desc"))
+            if ($ticket->desc != $request->get("desc")) {
                 $whatChanged = $whatChanged . " Description to: " . $request->get("desc");
+                $somethingChanged = true;
+            }
         if (!is_null($request->get("status")))
-            if ($ticket->status_id != $request->get("status"))
+            if ($ticket->status_id != $request->get("status")) {
                 $whatChanged = $whatChanged . " Status to: " . Status::where("id", "=", $request->get("status"))->get()->first()->name();
+                $somethingChanged = true;
+            }
         if (!is_null($request->get("tag")))
-            if ($ticket->tag_id != $request->get("tag"))
+            if ($ticket->tag_id != $request->get("tag")) {
                 $whatChanged = $whatChanged . " Tag to: " . Tag::where("id", "=", $request->get("tag"))->get()->first()->name();
+                $somethingChanged = true;
+            }
         if (!is_null($request->get("urgency")))
-            if ($ticket->urgency_id != $request->get("urgency"))
+            if ($ticket->urgency_id != $request->get("urgency")) {
                 $whatChanged = $whatChanged . " Urgency to: " . Urgency::where("id", "=", $request->get("urgency"))->get()->first()->name();
-
-        $message = new Message();
-        $message->chat_id = $ticket->chat()->id;
-        $message->message = $whatChanged;
-        $message->save();
-
+                $somethingChanged = true;
+            }
+        if($somethingChanged){
+            $message = new Message();
+            $message->chat_id = $ticket->chat()->id;
+            $message->message = $whatChanged;
+            $message->save();
+        }
         if (!is_null($request->get("title")))
             $ticket->title = $request->get("title");
         if (!is_null($request->get("desc")))
