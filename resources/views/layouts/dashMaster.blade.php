@@ -39,6 +39,7 @@
         @if(\Illuminate\Support\Facades\Auth::user()->isCraftsman())
             @include("components.addTicketModal")
         @endif
+
     @endauth
 </main>
 @livewireScripts

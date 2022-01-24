@@ -6,6 +6,7 @@ use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class TicketPolicy
 {
@@ -55,7 +56,15 @@ class TicketPolicy
     }
     public function createToken(User $user,Ticket $ticket)
     {
-        return $user->isAdmin()
+        $condominia =Auth::user()->administrates()->where("id","=",$ticket->condominium_id)->get();
+        return Auth::user()->isAdmin()&&is_countable($condominia)&count($condominia)>=1
+            ? Response::allow()
+            : Response::deny('You do not an User');
+    }
+    public function addCraftsman(User $user,Ticket $ticket)
+    {
+        $condominia =Auth::user()->administrates()->where("id","=",$ticket->condominium_id)->get();
+        return Auth::user()->isAdmin()&&is_countable($condominia)&count($condominia)>=1
             ? Response::allow()
             : Response::deny('You do not an User');
     }

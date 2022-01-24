@@ -84,5 +84,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Tag::class,"user_tag")
             ->using(UserTag::class);
     }
+    public function hasTag($tag){
+        $tags = $this->userTags()->where("id","=",$tag)->get();
+        return is_countable($tags)&&count($tags)>=1;
+    }
 
 }

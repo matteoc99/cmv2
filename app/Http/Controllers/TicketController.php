@@ -109,6 +109,15 @@ class TicketController extends Controller
         $token = $request->get("link");
         return redirect($token);
     }
+   public function addCraftsmanToTicket(Ticket $ticket,User $user)
+    {
+        if (Auth::user()->cannot("addCraftsman", $ticket))
+            return response("401", 401);
+        $ticket->craftsman_id=$user->id;
+        $ticket->status_id=2;
+        $ticket->save();
+        return redirect()->back()->with('success', "saved");;
+    }
 
     public function update(Request $request, Ticket $ticket)
     {

@@ -3,7 +3,11 @@
 @section("content")
 
     <div class="container">
-
+        @auth
+            <h3><a href="{{route("condominium",$ticket->condominium()->id)}}"><i
+                        class="material-icons small blue-text darken-4">arrow_back</i></a><i
+                    class="material-icons small">domain</i>{{$ticket->condominium()->name}} : {{$ticket->title}}</h3>
+        @endauth
         <div class="row">
             <div class="col s12 m12 l6 xl6">
                 <div class="card ">
@@ -19,18 +23,19 @@
                         @endif
                     </div>
                     @can("createToken",$ticket)
-                        @if(is_null($ticket->token))
-                            <div class="card-action">
+                        <div class="card-action">
+                            @if(is_null($ticket->token))
                                 <a class="btn waves-effect waves-light blue darken-4"
                                    href="{{route("generateTicketToken",$ticket->id)}}">Generate Access Link</a>
-                            </div>
-                        @else
-                            <div class="card-action">
+                            @else
                                 <p style="overflow-wrap: break-word;"> {{route("ticketByToken",$ticket->token)}}</p>
                                 <a class="btn waves-effect waves-light blue darken-4"
                                    href="{{route("generateTicketToken",$ticket->id)}}">Generate new Access Link</a>
-                            </div>
-                        @endif
+                            @endif
+                            <a href="#addCraftsmanModal"
+                               class="modal-trigger btn waves-effect waves-light blue darken-4"><i
+                                    class="material-icons">contacts</i></a>
+                        </div>
                     @endcan
                 </div>
                 @if(!is_null(\Illuminate\Support\Facades\Auth::user()))
@@ -143,5 +148,8 @@
                 @include("components.successToast")
             @endif
         </div>
+        @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
+            @include("components.addCraftsmanModal")
+        @endif
     </div>
 @endsection
