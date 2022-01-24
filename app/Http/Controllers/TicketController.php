@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Models\Status;
 use App\Models\Tag;
 use App\Models\Ticket;
@@ -77,8 +78,8 @@ class TicketController extends Controller
         $ticket->save();
         //make ticket seen by current user
         $userticket = new \App\Models\UserTickets();
-        $userticket->user_id=\Illuminate\Support\Facades\Auth::user()->id;
-        $userticket->ticket_id=$ticket->id;
+        $userticket->user_id = \Illuminate\Support\Facades\Auth::user()->id;
+        $userticket->ticket_id = $ticket->id;
         $userticket->seen = true;
         $userticket->save();
 
@@ -91,9 +92,9 @@ class TicketController extends Controller
             }
         }
         $families = $ticket->condominium()->families()->get();
-        foreach ($families as $fam){
-            $user =$fam->user();
-            if ($user->id !=Auth::user()->id && $user->setting()->recive_ticket_created_notification) {
+        foreach ($families as $fam) {
+            $user = $fam->user();
+            if ($user->id != Auth::user()->id && $user->setting()->recive_ticket_created_notification) {
                 $user->notify(
                     new TicketCreatedNotification(Auth::user()->name(), $ticket, $ticket->condominium())
                 );
@@ -115,6 +116,29 @@ class TicketController extends Controller
             "title" => "required",
             'desc' => "required",
         ]);
+        $whatChanged = Auth::user()->name() . " changed ";
+
+        if (!is_null($request->get("title")))
+            if ($ticket->title != $request->get("title"))
+                $whatChanged = $whatChanged . " Title to: ";
+        if (!is_null($request->get("desc")))
+            if ($ticket->desc != $request->get("desc"))
+                $whatChanged = $whatChanged . " Description to: " . $request->get("desc");
+        if (!is_null($request->get("status")))
+            if ($ticket->status_id != $request->get("status"))
+                $whatChanged = $whatChanged . " Status to: " . Status::where("id", "=", $request->get("status"))->get()->first()->name();
+        if (!is_null($request->get("tag")))
+            if ($ticket->tag_id != $request->get("tag"))
+                $whatChanged = $whatChanged . " Tag to: " . Tag::where("id", "=", $request->get("tag"))->get()->first()->name();
+        if (!is_null($request->get("urgency")))
+            if ($ticket->urgency_id != $request->get("urgency"))
+                $whatChanged = $whatChanged . " Urgency to: " . Urgency::where("id", "=", $request->get("urgency"))->get()->first()->name();
+
+        $message = new Message();
+        $message->chat_id = $ticket->chat()->id;
+        $message->message = $whatChanged;
+        $message->save();
+
         if (!is_null($request->get("title")))
             $ticket->title = $request->get("title");
         if (!is_null($request->get("desc")))
@@ -125,6 +149,7 @@ class TicketController extends Controller
             $ticket->tag_id = $request->get("tag");
         if (!is_null($request->get("urgency")))
             $ticket->urgency_id = $request->get("urgency");
+
         $ticket->save();
         return redirect(route("ticket", $ticket->id))->with('success', "saved");
 
