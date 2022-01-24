@@ -67,6 +67,12 @@ class SettingController extends Controller
                 $userTag->save();
             }
 
+        if (!is_null($request->get("lat"))&&!is_null($request->get("lng"))){
+            $set->lat=$request->get("lat");
+            $set->lng=$request->get("lng");
+        }
+
+
         if ($request->hasFile("profile_image")) {
             $uuid = Str::uuid()->toString();
             $ext = $request->profile_image->extension();
