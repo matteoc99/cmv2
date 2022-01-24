@@ -148,7 +148,7 @@
                 @include("components.successToast")
             @endif
         </div>
-        @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
+        @if(!is_null(\Illuminate\Support\Facades\Auth::user())&&\Illuminate\Support\Facades\Auth::user()->isAdmin())
             @include("components.addCraftsmanModal")
         @endif
     </div>
