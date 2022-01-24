@@ -79,4 +79,10 @@ class User extends Authenticatable
             ->using(UserTickets::class)->withPivot("seen");
     }
 
+    public function userTags()
+    {
+        return $this->belongsToMany(Tag::class,"user_tag")
+            ->using(UserTag::class);
+    }
+
 }

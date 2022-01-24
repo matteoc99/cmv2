@@ -18,29 +18,41 @@
                                onchange="document.getElementById('submit').click()">
                     </div>
                     @foreach($errors->get("profile_image") as $error)
-                    <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback" role="alert">
                                             <strong>{{$error}}</strong>
                                         </span>
-                    <br>
+                        <br>
                     @endforeach
                 </div>
                 @if(\Illuminate\Support\Facades\Auth::user()->isCraftsman())
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input class="validate" id="firm_name" type="text" name="firm_name"
-                               value="{{$setting->firm_name}}">
-                        <label for="firm_name" data-error="wrong"
-                               data-success="right"> Firm Name</label>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input class="validate" id="firm_name" type="text" name="firm_name"
+                                   value="{{$setting->firm_name}}">
+                            <label for="firm_name" data-error="wrong"
+                                   data-success="right"> Firm Name</label>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input class="validate" id="phone" type="text" name="phone"
-                               value="{{$setting->phone}}">
-                        <label for="phone" data-error="wrong"
-                               data-success="right"> Phone</label>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input class="validate" id="phone" type="text" name="phone"
+                                   value="{{$setting->phone}}">
+                            <label for="phone" data-error="wrong"
+                                   data-success="right"> Phone</label>
+                        </div>
                     </div>
-                </div>
+                    <div class="input-field col s12">
+                        <select name="tags[]" multiple>
+                            @foreach(\App\Models\Tag::all() as $tag)
+                                @php
+                                    $selected =(is_countable(\Illuminate\Support\Facades\Auth::user()->userTags()->where("id","=",$tag->id)->get())
+                                    &&count(\Illuminate\Support\Facades\Auth::user()->userTags()->where("id","=",$tag->id)->get())>=1 )
+                                @endphp
+                                <option value="{{$tag->id}}" {{$selected?"selected":""}}>{{$tag->name()}}</option>
+                            @endforeach
+                        </select>
+                        <label>Tags</label>
+                    </div>
                 @endif
                 <div class="row">
                     <div class="input-field col s12">
@@ -68,14 +80,14 @@
                     </div>
                 </div>
                 @if(\Illuminate\Support\Facades\Auth::user()->isCraftsman()||\Illuminate\Support\Facades\Auth::user()->isAdmin())
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input class="validate" id="address" type="text" name="address"
-                               value="{{$setting->address}}">
-                        <label for="address" data-error="wrong"
-                               data-success="right"> Address</label>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input class="validate" id="address" type="text" name="address"
+                                   value="{{$setting->address}}">
+                            <label for="address" data-error="wrong"
+                                   data-success="right"> Address</label>
+                        </div>
                     </div>
-                </div>
                 @endif
 
                 <div class="row">
