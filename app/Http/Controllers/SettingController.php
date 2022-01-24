@@ -55,16 +55,17 @@ class SettingController extends Controller
         $set->phone = $request->get("phone");
         $set->address = $request->get("address");
 
-        foreach (Auth::user()->userTags()->get() as $userTag){
-           UserTag::where("tag_id","=",$userTag->id)->where("user_id","=",Auth::user()->id)->delete();
+        foreach (Auth::user()->userTags()->get() as $userTag) {
+            UserTag::where("tag_id", "=", $userTag->id)->where("user_id", "=", Auth::user()->id)->delete();
         }
 
-        foreach ($request->get("tags") as $tag){
-            $userTag = new UserTag();
-            $userTag->user_id = Auth::user()->id;
-            $userTag->tag_id = $tag;
-            $userTag->save();
-        }
+        if (!is_null($request->get("tags")))
+            foreach ($request->get("tags") as $tag) {
+                $userTag = new UserTag();
+                $userTag->user_id = Auth::user()->id;
+                $userTag->tag_id = $tag;
+                $userTag->save();
+            }
 
         if ($request->hasFile("profile_image")) {
             $uuid = Str::uuid()->toString();
