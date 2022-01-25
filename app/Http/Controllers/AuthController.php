@@ -79,7 +79,6 @@ class AuthController extends Controller
         if(strlen($token)>5){
             $ticket = Ticket::where("token","=",$token)->get()->first();
             $ticket->addCraftsman(Auth::user());
-            return redirect("dashboard");
         }
 
         return redirect("dashboard");

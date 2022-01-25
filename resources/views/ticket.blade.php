@@ -5,7 +5,7 @@
     <div class="container">
         @auth
             <h3><a href="{{route("condominium",$ticket->condominium()->id)}}"><i
-                        class="material-icons small blue-text darken-4">arrow_back</i></a><i
+                        class="material-icons small blue-text text-darken-4">arrow_back</i></a><i
                     class="material-icons small">domain</i>{{$ticket->condominium()->name}} : {{$ticket->title}}</h3>
         @endauth
         <div class="row">
@@ -18,8 +18,8 @@
                         <p>Urgency: {{$ticket->urgency()->name()}}</p>
                         <p>Work type: {{$ticket->tag()->name()}}</p>
                         @if(!is_null($ticket->craftsman_id))
-                            <a class="btn waves-effect waves-light blue darken-4"
-                               href="{{route("profile",$ticket->craftsman_id)}}">Craftsman Profile</a>
+                            <a class=" modal-trigger btn waves-effect waves-light blue darken-4"
+                               href="#profileModal">Craftsman Profile</a>
                         @endif
                     </div>
                     @can("createToken",$ticket)
@@ -141,8 +141,8 @@
                         </form>
                     </div>
                     <script>
-                        $(document).ready(function (){
-                            $(".message-container").css('height', window.innerHeight -500 + 'px');
+                        $(document).ready(function () {
+                            $(".message-container").css('height', window.innerHeight - 500 + 'px');
                             $(".message-container").scrollTop($(".message-container")[0].scrollHeight);
                         });
                     </script>
@@ -160,6 +160,9 @@
         </div>
         @if(!is_null(\Illuminate\Support\Facades\Auth::user())&&\Illuminate\Support\Facades\Auth::user()->isAdmin())
             @include("components.addCraftsmanModal")
+        @endif
+        @if(!is_null(\Illuminate\Support\Facades\Auth::user())&&!is_null($ticket->craftsman_id))
+            @include("components.profileModal",["user"=>\App\Models\User::where("id","=",$ticket->craftsman_id)->get()->first()])
         @endif
     </div>
 @endsection

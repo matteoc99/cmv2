@@ -57,7 +57,7 @@ class TicketPolicy
     public function createToken(User $user,Ticket $ticket)
     {
         $condominia =Auth::user()->administrates()->where("id","=",$ticket->condominium_id)->get();
-        return Auth::user()->isAdmin()&&is_countable($condominia)&count($condominia)>=1
+        return Auth::user()->isAdmin()&&is_countable($condominia)&count($condominia)>=1&&is_null($ticket->craftsman_id)
             ? Response::allow()
             : Response::deny('You do not an User');
     }

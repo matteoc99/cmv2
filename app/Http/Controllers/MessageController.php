@@ -18,7 +18,6 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-
         $chat_id = (int)$request->route('chat');
 
         $message = new Message();

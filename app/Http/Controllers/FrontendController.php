@@ -12,7 +12,6 @@ class FrontendController extends Controller
             return redirect()->back();
     }
     public function showLanding(Request $request){
-
         if(!is_null(Auth::user())){
             return (new DashboardController)->show($request);
         }
