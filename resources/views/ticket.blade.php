@@ -149,7 +149,7 @@
                 </div>
             @else
                 <div class="col s12 m12 l6 xl6 card chat-container">
-                    @include("auth.components.registerForm",["selected"=>3])
+                    @include("auth.components.registerForm",["selected"=>3,"token"=> Request::route("token")])
                 </div>
             @endif
         </div>

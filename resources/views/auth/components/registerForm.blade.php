@@ -1,7 +1,8 @@
 <div class="card-header center"><h4> @lang('auth.register') </h4></div>
 <div class="card-body">
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register' ) }}">
         @csrf
+        <input id="token" type="hidden" name="token" value="{{ $token ?? 'Na' }}">
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">account_circle</i>

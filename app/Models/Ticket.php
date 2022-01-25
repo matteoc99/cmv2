@@ -61,4 +61,10 @@ class Ticket extends Model
     {
         return is_null(Auth::user()->seenTickets()->where("ticket_id","=",$this->id)->get()->first());
     }
+
+    public function addCraftsman($craftsman){
+        $this->craftsman_id= $craftsman->id;
+        $this->save();
+    }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PasswordReset;
+use App\Models\Ticket;
 use App\Models\User;
 use App\Notifications\PasswordResetRequest;
 use App\Notifications\PasswordResetSuccess;
@@ -40,11 +41,16 @@ class AuthController extends Controller
        return redirect("/");
    }
 
+    public function registerWithToken(Request $request, $token){
+
+    }
     public function register(Request $request){
+
+
 
         $request->validate([
             "name" => "required",
-            'email' => "required|email",
+            'email' => "required|email|unique:users",
             'password' => 'min:6|required|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'min:6',
             "role" => "required",
@@ -53,9 +59,9 @@ class AuthController extends Controller
 
         $details = $request->only(["email","password"]);
 
-        $emailInUse = User::where("email","like",$request->get("email"))->get();
+        $emailInUse = User::where("email","like",$request->get("email"))->get()->first();
 
-        if($emailInUse->get("items") != null){
+        if(!is_null($emailInUse)){
             return Redirect::back()->withErrors(['errors' => ["email","Email already in unse"]]);
         }
 
@@ -68,6 +74,13 @@ class AuthController extends Controller
         $user->save();
 
         Auth::attempt($details);
+
+        $token =$request->get("token");
+        if(strlen($token)>5){
+            $ticket = Ticket::where("token","=",$token)->get()->first();
+            $ticket->addCraftsman(Auth::user());
+            return redirect("dashboard");
+        }
 
         return redirect("dashboard");
     }
