@@ -45,7 +45,6 @@
                 <input id="password-confirm" type="password" name="password_confirmation" required>
                 <label for="password-confirm">@lang('auth.passwordConf') </label>
                 <a class="toggle-password blue-text text-darken-4" onclick="togglePassword('password-confirm')"><i class="material-icons">remove_red_eye</i></a>
-
             </div>
             <div class="col">
                 @foreach($errors->get("password") as $error)

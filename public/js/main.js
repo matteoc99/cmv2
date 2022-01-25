@@ -17,11 +17,15 @@ $(document).ready(function () {
     });
 });
 
-function togglePassword(id){
+function togglePassword(id) {
     var input = document.getElementById(id);
     if (input.type === "password") {
         input.type = "text";
     } else {
         input.type = "password";
     }
+}
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text);
 }

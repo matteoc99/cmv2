@@ -31,6 +31,10 @@
                                 <p style="overflow-wrap: break-word;"> {{route("ticketByToken",$ticket->token)}}</p>
                                 <a class="btn waves-effect waves-light blue darken-4"
                                    href="{{route("generateTicketToken",$ticket->id)}}">Generate new Access Link</a>
+                                <a class="btn waves-effect waves-light blue darken-4"
+                                   href="#" onclick="copyToClipboard('{{route("ticketByToken",$ticket->token)}}')">
+                                    <i class="material-icons">content_copy</i>
+                                </a>
                             @endif
                             <a href="#addCraftsmanModal"
                                class="modal-trigger btn waves-effect waves-light blue darken-4"><i
