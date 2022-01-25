@@ -5,9 +5,7 @@
         <p> no Messages yet</p>
     @endforelse
     <script>
-        $(document).ready(function () {
             $(".message-container").css('height', window.innerHeight - 500 + 'px');
-        });
     </script>
 </div>
 

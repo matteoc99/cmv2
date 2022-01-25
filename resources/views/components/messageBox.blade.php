@@ -5,6 +5,15 @@
             <div class="card" style="padding: 15px">
                 <h5>{{\App\Models\User::where("id","=",$message->sender_id)->get()->first()->name()}}</h5>
                 <p style=" overflow-wrap: break-word;">{{$message->message}}</p>
+                @if($message->hasFile())
+                    @if($message->hasImage())
+                        <a href="{{$message->getFile()}}">
+                            <img class="profile-pic " src="{{$message->getFile()}}">
+                        </a>
+                    @else
+                        <a href="{{$message->getFile()}}"><i class="material-icons">file_download</i></a>
+                    @endif
+                @endif
                 <p class="small">{{$message->created_at}}</p>
             </div>
         </div>
@@ -24,7 +33,6 @@
         <!-- other messages-->
         <div class="row">
             <div class="col s8 ">
-                <!-- my message-->
                 <div class="card" style="padding: 15px">
                     <h5>{{\App\Models\User::where("id","=",$message->sender_id)->get()->first()->name()}}</h5>
                     <p style=" overflow-wrap: break-word;">{{$message->message}}</p>

@@ -12,4 +12,23 @@ class Message extends Model
         'sender_id',
         'message',
     ];
+
+    public function getFile(){
+        $file = "";
+        if($this->hasFile()){
+            $file = asset("uploads/".$this->uuid.".".$this->mime_type);
+        }
+        return $file;
+    }
+
+    public function hasImage()
+    {
+       return $this->hasFile()&&in_array($this->mime_type,["jpg","png","jpeg"]);
+    }
+    public function hasFile()
+    {
+        return !is_null($this->uuid)&&strlen($this->uuid)>1;
+    }
+
+
 }

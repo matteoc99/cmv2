@@ -110,7 +110,7 @@
                         @endif
                         <div class="row">
                             <div class="input-field col s12 m6 offset-m3">
-                                <button type="submit" id="submit"
+                                <button type="submit" id="submitForm"
                                         class="btn waves-effect waves-light blue darken-4 col s12"> Update
                                 </button>
                             </div>
@@ -125,18 +125,27 @@
 
                     @livewire("chat",["chat"=>$ticket->chat()])
                     <div>
-                        <form method="POST" action="{{ route('sendMessage',$ticket->chat()->id) }}">
+                        <form method="POST" action="{{ route('sendMessage',$ticket->chat()->id) }}" enctype="multipart/form-data">
                             @csrf
-                            <div class="input-field col s8">
-                                <input class="validate" id="message" type="text" name="message">
-                                <label for="message" data-error="wrong"
-                                       data-success="right"> Chat Message</label>
-                            </div>
-                            <div class="input-field col s4">
-                                <button type="submit" id="submit"
-                                        class="btn waves-effect waves-light blue darken-4 col s12"><i
-                                        class="material-icons">send</i>
-                                </button>
+                            <div class="row" style="display: flex;align-items: center">
+                                <div class="input-field col s2">
+                                    <button type="button" class="btn waves-effect waves-light blue darken-4"
+                                            onclick="document.getElementById('file').click()"><i id="upload_icon"
+                                            class="material-icons">file_upload</i></button>
+                                    <input type='file' name="file" id="file" style="display:none"
+                                           onchange="document.getElementById('upload_icon').innerHTML='check'">
+                                </div>
+                                <div class="input-field col s7">
+                                    <input class="validate" id="message" type="text" name="message">
+                                    <label for="message" data-error="wrong"
+                                           data-success="right"> Chat Message</label>
+                                </div>
+                                <div class="input-field col s3">
+                                    <button type="submit" id="submit"
+                                            class="btn waves-effect waves-light blue darken-4 col s12"><i
+                                            class="material-icons">send</i>
+                                    </button>
+                                </div>
                             </div>
                         </form>
                     </div>

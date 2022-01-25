@@ -113,8 +113,7 @@ class TicketController extends Controller
     {
         if (Auth::user()->cannot("addCraftsman", $ticket))
             return response("401", 401);
-        $ticket->craftsman_id=$user->id;
-        $ticket->status_id=2;
+        $ticket->addCraftsman();
         $ticket->save();
         return redirect()->back()->with('success', "saved");;
     }

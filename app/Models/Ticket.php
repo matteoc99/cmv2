@@ -63,8 +63,11 @@ class Ticket extends Model
     }
 
     public function addCraftsman($craftsman){
-        $this->craftsman_id= $craftsman->id;
-        $this->save();
+        if(!HasCraftsman){
+            $this->craftsman_id= $craftsman->id;
+            $this->status_id=2;
+            $this->save();
+        }
     }
 
 }
