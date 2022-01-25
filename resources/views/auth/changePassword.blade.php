@@ -14,6 +14,7 @@
                                 <i class="material-icons prefix">lock_outline</i>
                                 <input id="password" type="password" name="password" required>
                                 <label for="password">@lang('auth.newPassword') </label>
+                                <a class="toggle-password blue-text text-darken-4" onclick="togglePassword('password')"><i class="material-icons">remove_red_eye</i></a>
                             </div>
                         </div>
                         <div class="row">
@@ -21,6 +22,7 @@
                                 <i class="material-icons prefix">lock_outline</i>
                                 <input id="password_confirmation" type="password" name="password_confirmation" required>
                                 <label for="password_confirmation">@lang('auth.newPasswordConfirm') </label>
+                                <a class="toggle-password blue-text text-darken-4" onclick="togglePassword('password_confirmation')"><i class="material-icons">remove_red_eye</i></a>
                             </div>
                             <div class="col">
                                 @foreach($errors->get("password") as $error)

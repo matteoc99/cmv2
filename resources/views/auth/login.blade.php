@@ -21,6 +21,7 @@
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">lock_outline</i>
                                 <input id="password" type="password" name="password" required>
+                                <a class="toggle-password blue-text text-darken-4" onclick="togglePassword('password')"><i class="material-icons">remove_red_eye</i></a>
                                 <label for="password">@lang('auth.password') </label>
                             </div>
                             @if (session('credError'))
@@ -48,7 +49,8 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s6 m6 l6">
-                                <p class="margin medium-small"><a href="{{route('register')}}">@lang('auth.registerCall') </a></p>
+                                <p class="margin medium-small"><a
+                                        href="{{route('register')}}">@lang('auth.registerCall') </a></p>
                             </div>
                             <div class="input-field col s6 m6 l6">
                                 <p class="margin right-align medium-small">

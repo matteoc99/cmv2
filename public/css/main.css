@@ -78,3 +78,12 @@ a.anchor {
     background-color: rgba(14, 52, 213, 0.1) !important;
     outline: none;
 }
+
+.toggle-password {
+    position: absolute;
+    top: 20%;
+    right: 6%;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
