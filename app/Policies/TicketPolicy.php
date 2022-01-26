@@ -61,6 +61,11 @@ class TicketPolicy
             ? Response::allow()
             : Response::deny('You do not an User');
     }
+    public function changeContractType(User $user,Ticket $ticket){
+        return Auth::user()->isAdmin()
+            ? Response::allow()
+            : Response::deny('You do not an User');
+    }
     public function addCraftsman(User $user,Ticket $ticket)
     {
         $condominia =Auth::user()->administrates()->where("id","=",$ticket->condominium_id)->get();

@@ -36,7 +36,31 @@
                                 <br>
                             @endif
                         </div>
-
+                        @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
+                            <div class="input-field col s12">
+                                <select name="contractType" id="contractType" onchange="
+                                console.log($('#contractType').val())
+                                if($('#contractType').val()==2){
+                                    $('#price-container').show()
+                                }else{$('#price-container').hide()}">
+                                    @foreach($contractTypes as $contractType)
+                                        <option value="{{$contractType->id}}">{{$contractType->name()}}</option>
+                                    @endforeach
+                                </select>
+                                <label>Contract Type</label>
+                            </div>
+                            <div class="input-field col s12" id="price-container" style="display: none">
+                                <input class="validate" id="price" type="text" name="price">
+                                <label for="price" data-error="wrong"
+                                       data-success="right"> Price</label>
+                            </div>
+                            @if($errors->get("price"))
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>The Price is missing </strong>
+                                        </span>
+                                <br>
+                            @endif
+                        @endif
                         <div class="input-field col s12">
                             <select name="urgency">
                                 @foreach($urgencies as $urgency)

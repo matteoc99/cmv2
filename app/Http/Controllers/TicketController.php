@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContractType;
 use App\Models\Message;
 use App\Models\Status;
 use App\Models\Tag;
@@ -53,6 +54,7 @@ class TicketController extends Controller
             return response("401", 401);
         return view("createTicket", [
             "urgencies" => Urgency::all(),
+            "contractTypes" => ContractType::all(),
             "tags" => Tag::all(),
         ]);
     }
@@ -66,6 +68,11 @@ class TicketController extends Controller
             'desc' => "required",
         ]);
         $ticket = new Ticket();
+        if (!is_null($request->get("contractType")))
+            $ticket->contract_type_id = $request->get("contractType");
+        if (!is_null($request->get("price")))
+            $ticket->price = str_replace(",",".",$request->get("price"));
+
         $ticket->urgency_id = $request->get("urgency");
         $ticket->tag_id = $request->get("tag");
         $ticket->status_id = 1;
@@ -109,7 +116,8 @@ class TicketController extends Controller
         $token = $request->get("link");
         return redirect($token);
     }
-   public function addCraftsmanToTicket(Ticket $ticket,User $user)
+
+    public function addCraftsmanToTicket(Ticket $ticket, User $user)
     {
         if (Auth::user()->cannot("addCraftsman", $ticket))
             return response("401", 401);
@@ -152,7 +160,7 @@ class TicketController extends Controller
                 $whatChanged = $whatChanged . " Urgency to: " . Urgency::where("id", "=", $request->get("urgency"))->get()->first()->name();
                 $somethingChanged = true;
             }
-        if($somethingChanged){
+        if ($somethingChanged) {
             $message = new Message();
             $message->chat_id = $ticket->chat()->id;
             $message->message = $whatChanged;

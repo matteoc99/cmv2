@@ -71,7 +71,19 @@
                                 <br>
                             @endif
                         </div>
-
+                        @can("changeContractType",$ticket)
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <select name="urgency">
+                                        @foreach(\App\Models\ContractType::all() as $contractType)
+                                            <option
+                                                value="{{$contractType->id}}" {{$ticket->contract_type_id==$contractType->id?"selected":""}}>{{$contractType->name()}}</option>
+                                        @endforeach
+                                    </select>
+                                    <label>Contract Type</label>
+                                </div>
+                            </div>
+                        @endcan
                         @if(\Illuminate\Support\Facades\Auth::user()->isCraftsman())
                             <div class="row">
                                 <div class="input-field col s12">
@@ -114,7 +126,6 @@
                                         class="btn waves-effect waves-light blue darken-4 col s12"> Update
                                 </button>
                             </div>
-
                         </div>
                     </form>
                 @endif

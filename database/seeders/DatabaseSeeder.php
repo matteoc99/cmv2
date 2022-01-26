@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ContractType;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StatusSeeder::class);
         $this->call(TagSeeder::class);
         $this->call(UrgencySeeder::class);
+        $this->call(ContractTypeSeeder::class);
 
     }
 }
