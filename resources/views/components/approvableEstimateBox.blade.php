@@ -2,6 +2,7 @@
     <div class="card" style="padding: 25px">
         <div class="row">
             <div class="col s12 m10">
+                <h4>{{\App\Models\User::where("id","=",$estimate->user_id)->get()->first()->name()}}</h4>
                 <span>{{$estimate->desc}}</span><br>
                 <span>Price: {{$estimate->price}}</span><br>
                 <span>Estimated Completition: {{$estimate->estimated_completition}}</span>

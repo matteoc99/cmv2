@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Estimate;
 use App\Models\Ticket;
+use App\Models\User;
+use App\Notifications\EstimateApprovedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,6 +20,10 @@ class EstimateController extends Controller
         $ticket->status_id=3;
         if($estimate->user_id !== $ticket->craftsman_id)
             $ticket->craftsman_id=$estimate->user_id;
+
+        User::where("id","=",$estimate->user_id)->get()->first()->notify(
+            new EstimateApprovedNotification($estimate)
+        );
         $ticket->save();
         $estimate->save();
         return redirect()->back();
