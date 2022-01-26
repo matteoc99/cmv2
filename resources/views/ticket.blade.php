@@ -47,6 +47,12 @@
                                     class="material-icons">contacts</i></a>
                         </div>
                     @endcan
+                    @can("createEstimate",$ticket)
+                        <div class="card-action">
+                            <a href="#createEstimateModal"
+                               class="modal-trigger btn waves-effect waves-light blue darken-4">Create Estimate</a>
+                        </div>
+                    @endcan
                 </div>
                 @if(!is_null(\Illuminate\Support\Facades\Auth::user()))
                     <form method="POST" action="{{ route('updateTicketPost',$ticket->id) }}">
@@ -201,5 +207,8 @@
         @if(!is_null(\Illuminate\Support\Facades\Auth::user())&&!is_null($ticket->craftsman_id))
             @include("components.profileModal",["user"=>\App\Models\User::where("id","=",$ticket->craftsman_id)->get()->first()])
         @endif
+        @can("createEstimate",$ticket)
+            @include("components.createEstimateModal",["ticket"=>$ticket])
+        @endcan
     </div>
 @endsection

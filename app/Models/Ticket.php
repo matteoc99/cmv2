@@ -35,7 +35,7 @@ class Ticket extends Model
         return $this->belongsTo(Tag::class)->get()->first();
     }
 
-    public function HasCraftsman()
+    public function hasCraftsman()
     {
         return !is_null($this->craftsman_id);
     }
@@ -84,7 +84,7 @@ class Ticket extends Model
 
     public function addCraftsman($craftsman)
     {
-        if (!HasCraftsman) {
+        if (!$this->hasCraftsman()) {
             $this->craftsman_id = $craftsman->id;
             $this->status_id = 2;
             $this->save();

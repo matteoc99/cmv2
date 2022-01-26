@@ -54,6 +54,11 @@ class TicketPolicy
             ? Response::allow()
             : Response::deny('You do not an User');
     }
+    public function createEstimate(User $user,Ticket $ticket){
+        return Auth::user()->isCraftsman()&&$ticket->contractType()->id===3
+            ? Response::allow()
+            : Response::deny('You do not an User');
+    }
     public function createToken(User $user,Ticket $ticket)
     {
         $condominia =Auth::user()->administrates()->where("id","=",$ticket->condominium_id)->get();

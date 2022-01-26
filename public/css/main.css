@@ -87,3 +87,8 @@ a.anchor {
     background-color: transparent;
     cursor: pointer;
 }
+
+.datepicker-date-display { background-color: #0D47A1 !important; }
+.datepicker-table td.is-selected{ background-color:#0D47A1 !important; }
+.datepicker-table td.is-today{ color: #0D47A1 !important; }
+.datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done { color: #0D47A1 !important; }

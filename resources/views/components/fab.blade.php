@@ -27,7 +27,7 @@
                        class="btn-floating blue  darken-4 modal-trigger"><i
                             class="material-icons">note_add</i></a></li>
         @endif
-        <li><a href="{{route("support")}}" class="btn-floating blue  darken-4"><i class="material-icons">help</i></a>
+        <li><a href="mailto:matteo.cosi@live.it" class="btn-floating blue  darken-4"><i class="material-icons">help</i></a>
         </li>
 
     </ul>

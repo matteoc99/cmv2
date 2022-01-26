@@ -69,6 +69,8 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::post('/messages/{chat}', 'App\\Http\\Controllers\\MessageController@store')->name("sendMessage");
 
+        Route::post('/createEstimate', 'App\\Http\\Controllers\\EstimateController@create')->name("createEstimate");
+
 
         Route::post('/support', function () {
             return view('support');
