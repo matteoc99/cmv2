@@ -54,6 +54,12 @@ class TicketPolicy
             ? Response::allow()
             : Response::deny('You do not an User');
     }
+    public function approveEstimates(User $user,Ticket $ticket){
+        $condominia =Auth::user()->administrates()->where("id","=",$ticket->condominium_id)->get();
+        return Auth::user()->isAdmin()&&$ticket->contractType()->id===3
+            ? Response::allow()
+            : Response::deny('You do not an User');
+    }
     public function createEstimate(User $user,Ticket $ticket){
         return Auth::user()->isCraftsman()&&$ticket->contractType()->id===3
             ? Response::allow()
@@ -62,7 +68,7 @@ class TicketPolicy
     public function createToken(User $user,Ticket $ticket)
     {
         $condominia =Auth::user()->administrates()->where("id","=",$ticket->condominium_id)->get();
-        return Auth::user()->isAdmin()&&is_countable($condominia)&count($condominia)>=1&&is_null($ticket->craftsman_id)
+        return Auth::user()->isAdmin()&&is_countable($condominia)&&count($condominia)>=1&&is_null($ticket->craftsman_id)
             ? Response::allow()
             : Response::deny('You do not an User');
     }
@@ -74,7 +80,7 @@ class TicketPolicy
     public function addCraftsman(User $user,Ticket $ticket)
     {
         $condominia =Auth::user()->administrates()->where("id","=",$ticket->condominium_id)->get();
-        return Auth::user()->isAdmin()&&is_countable($condominia)&count($condominia)>=1
+        return Auth::user()->isAdmin()&&is_countable($condominia)&&count($condominia)>=1
             ? Response::allow()
             : Response::deny('You do not an User');
     }

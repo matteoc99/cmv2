@@ -70,6 +70,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/messages/{chat}', 'App\\Http\\Controllers\\MessageController@store')->name("sendMessage");
 
         Route::post('/createEstimate', 'App\\Http\\Controllers\\EstimateController@create')->name("createEstimate");
+        Route::get('/approveEstimate/{estimate}', 'App\\Http\\Controllers\\EstimateController@approve')->name("approveEstimate");
 
 
         Route::post('/support', function () {

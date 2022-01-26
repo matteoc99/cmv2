@@ -51,12 +51,35 @@
                         <div class="card-action">
                             @if(!is_null($ticket->estimateByUserId(\Illuminate\Support\Facades\Auth::user()->id)))
                                 @include("components.estimateBox",["estimate"=>$ticket->estimateByUserId(\Illuminate\Support\Facades\Auth::user()->id)])
+                                @if($ticket->hasApprovedEstimate())
+                                    @if($ticket->approvedEstimate()->user_id===\Illuminate\Support\Facades\Auth::user()->id)
+                                        <p class="blue-text text-darken-4">Your Estimate has been Approved</p>
+                                    @else
+                                        <p class="blue-text text-darken-4">Your Estimate has been Declined</p>
+                                    @endif
+                                @endif
                             @else
                                 <a href="#createEstimateModal"
                                    class="modal-trigger btn waves-effect waves-light blue darken-4">Create Estimate</a>
                             @endif
                         </div>
                     @endcan
+                    @if($ticket->hasApprovedEstimate())
+                        <div class="card-action">
+                            @include("components.estimateBox",["estimate"=>$ticket->approvedEstimate()])
+                        </div>
+                    @else
+                        @can("approveEstimates",$ticket)
+
+                        @if(is_countable($ticket->estimates()->get())&&count($ticket->estimates()->get())>0)
+                                <div class="card-action">
+                                    <a href="#approveEstimatesModal"
+                                       class="modal-trigger btn waves-effect waves-light blue darken-4">Approve
+                                        Estimates</a>
+                                </div>
+                            @endif
+                        @endcan
+                    @endif
                 </div>
                 @if(!is_null(\Illuminate\Support\Facades\Auth::user()))
                     @if(!\Illuminate\Support\Facades\Auth::user()->isCraftsman())
@@ -216,6 +239,9 @@
         @endif
         @can("createEstimate",$ticket)
             @include("components.createEstimateModal",["ticket"=>$ticket])
+        @endcan
+        @can("approveEstimates",$ticket)
+            @include("components.approveEstimatesModal",["estimates"=>$ticket->estimates()->get()])
         @endcan
     </div>
 @endsection

@@ -36,6 +36,15 @@ class Ticket extends Model
     {
         return $this->hasMany(Estimate::class);
     }
+    public function hasApprovedEstimate()
+    {
+        return !is_null($this->approvedEstimate());
+    }
+
+    public function approvedEstimate()
+    {
+        return $this->estimates()->where("approved","=",true)->get()->first();
+    }
     public function tag()
     {
         return $this->belongsTo(Tag::class)->get()->first();
@@ -96,5 +105,6 @@ class Ticket extends Model
             $this->save();
         }
     }
+
 
 }
