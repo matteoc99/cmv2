@@ -25,6 +25,11 @@ function togglePassword(id) {
         input.type = "password";
     }
 }
+function togglePriceContainer(){
+    if($('#contractType').val()==2){
+        $('#price-container').show()
+    }else{$('#price-container').hide()}
+}
 
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text);

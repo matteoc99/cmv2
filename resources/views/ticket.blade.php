@@ -17,6 +17,12 @@
                         <p>Status: {{$ticket->status()->name()}}</p>
                         <p>Urgency: {{$ticket->urgency()->name()}}</p>
                         <p>Work type: {{$ticket->tag()->name()}}</p>
+                        @if(!is_null($ticket->contract_type_id))
+                            <p>Contract type: {{$ticket->contractType()->name()}}</p>
+                        @endif
+                        @if(!is_null($ticket->price()))
+                            <p>Price: {{$ticket->price()}}</p>
+                        @endif
                         @if(!is_null($ticket->craftsman_id))
                             <a class=" modal-trigger btn waves-effect waves-light blue darken-4"
                                href="#profileModal">Craftsman Profile</a>
@@ -74,13 +80,22 @@
                         @can("changeContractType",$ticket)
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <select name="urgency">
+                                    <select name="contractType" id="contractType" onchange="togglePriceContainer()">
                                         @foreach(\App\Models\ContractType::all() as $contractType)
                                             <option
                                                 value="{{$contractType->id}}" {{$ticket->contract_type_id==$contractType->id?"selected":""}}>{{$contractType->name()}}</option>
                                         @endforeach
                                     </select>
                                     <label>Contract Type</label>
+                                </div>
+                            </div>
+                            <div class="row"
+                                 id="price-container" {!!  $ticket->contract_type_id !== 2 ? 'style="display:none"':"" !!}>
+                                <div class="input-field col s12">
+                                    <input class="validate" id="price" type="text" name="price"
+                                           value="{{$ticket->price()}}">
+                                    <label for="price" data-error="wrong"
+                                           data-success="right"> Price</label>
                                 </div>
                             </div>
                         @endcan
@@ -136,13 +151,15 @@
 
                     @livewire("chat",["chat"=>$ticket->chat()])
                     <div>
-                        <form method="POST" action="{{ route('sendMessage',$ticket->chat()->id) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('sendMessage',$ticket->chat()->id) }}"
+                              enctype="multipart/form-data">
                             @csrf
                             <div class="row" style="display: flex;align-items: center">
                                 <div class="input-field col s2">
                                     <button type="button" class="btn waves-effect waves-light blue darken-4"
                                             onclick="document.getElementById('file').click()"><i id="upload_icon"
-                                            class="material-icons">file_upload</i></button>
+                                                                                                 class="material-icons">file_upload</i>
+                                    </button>
                                     <input type='file' name="file" id="file" style="display:none"
                                            onchange="document.getElementById('upload_icon').innerHTML='check'">
                                 </div>

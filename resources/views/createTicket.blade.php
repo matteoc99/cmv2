@@ -38,11 +38,7 @@
                         </div>
                         @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
                             <div class="input-field col s12">
-                                <select name="contractType" id="contractType" onchange="
-                                console.log($('#contractType').val())
-                                if($('#contractType').val()==2){
-                                    $('#price-container').show()
-                                }else{$('#price-container').hide()}">
+                                <select name="contractType" id="contractType" onchange="togglePriceContainer()">
                                     @foreach($contractTypes as $contractType)
                                         <option value="{{$contractType->id}}">{{$contractType->name()}}</option>
                                     @endforeach

@@ -121,9 +121,9 @@ class TicketController extends Controller
     {
         if (Auth::user()->cannot("addCraftsman", $ticket))
             return response("401", 401);
-        $ticket->addCraftsman();
+        $ticket->addCraftsman($user);
         $ticket->save();
-        return redirect()->back()->with('success', "saved");;
+        return redirect()->back()->with('success', "saved");
     }
 
     public function update(Request $request, Ticket $ticket)
@@ -160,12 +160,27 @@ class TicketController extends Controller
                 $whatChanged = $whatChanged . " Urgency to: " . Urgency::where("id", "=", $request->get("urgency"))->get()->first()->name();
                 $somethingChanged = true;
             }
+        if (!is_null($request->get("contractType")))
+            if ($ticket->contract_type_id != $request->get("contractType")) {
+                $whatChanged = $whatChanged . "Contract Type to: " . ContractType::where("id", "=", $request->get("contractType"))->get()->first()->name();
+                $somethingChanged = true;
+            }
+        if (!is_null($request->get("price"))&&strlen($request->get("price"))>0)
+            if ($ticket->price != $request->get("desc")) {
+                $whatChanged = $whatChanged . " Price to: " . $request->get("price");
+                $somethingChanged = true;
+            }
+
         if ($somethingChanged) {
             $message = new Message();
             $message->chat_id = $ticket->chat()->id;
             $message->message = $whatChanged;
             $message->save();
         }
+        if (!is_null($request->get("contractType")))
+            $ticket->contract_type_id = $request->get("contractType");
+        if (!is_null($request->get("price")))
+            $ticket->price = str_replace(",",".",$request->get("price"));
         if (!is_null($request->get("title")))
             $ticket->title = $request->get("title");
         if (!is_null($request->get("desc")))
