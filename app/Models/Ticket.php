@@ -29,7 +29,13 @@ class Ticket extends Model
     {
         return $this->belongsTo(ContractType::class)->get()->first();
     }
-
+    public function estimateByUserId($userId){
+        return $this->estimates()->where("user_id","=",$userId)->get()->first();
+    }
+    public function estimates()
+    {
+        return $this->hasMany(Estimate::class);
+    }
     public function tag()
     {
         return $this->belongsTo(Tag::class)->get()->first();

@@ -49,106 +49,113 @@
                     @endcan
                     @can("createEstimate",$ticket)
                         <div class="card-action">
-                            <a href="#createEstimateModal"
-                               class="modal-trigger btn waves-effect waves-light blue darken-4">Create Estimate</a>
+                            @if(!is_null($ticket->estimateByUserId(\Illuminate\Support\Facades\Auth::user()->id)))
+                                @include("components.estimateBox",["estimate"=>$ticket->estimateByUserId(\Illuminate\Support\Facades\Auth::user()->id)])
+                            @else
+                                <a href="#createEstimateModal"
+                                   class="modal-trigger btn waves-effect waves-light blue darken-4">Create Estimate</a>
+                            @endif
                         </div>
                     @endcan
                 </div>
                 @if(!is_null(\Illuminate\Support\Facades\Auth::user()))
-                    <form method="POST" action="{{ route('updateTicketPost',$ticket->id) }}">
-                        @csrf
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input class="validate" id="title" type="text" name="title" value="{{$ticket->title}}">
-                                <label for="title" data-error="wrong"
-                                       data-success="right"> Title </label>
-                            </div>
-                            @if($errors->get("title"))
-                                <span class="invalid-feedback" role="alert">
+                    @if(!\Illuminate\Support\Facades\Auth::user()->isCraftsman())
+                        <form method="POST" action="{{ route('updateTicketPost',$ticket->id) }}">
+                            @csrf
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input class="validate" id="title" type="text" name="title"
+                                           value="{{$ticket->title}}">
+                                    <label for="title" data-error="wrong"
+                                           data-success="right"> Title </label>
+                                </div>
+                                @if($errors->get("title"))
+                                    <span class="invalid-feedback" role="alert">
                                    <strong>The Title is missing </strong>
                                </span>
-                                <br>
-                            @endif
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input class="validate" id="desc" type="text" name="desc" value="{{$ticket->desc}}">
-                                <label for="desc" data-error="wrong"
-                                       data-success="right"> Description</label>
+                                    <br>
+                                @endif
                             </div>
-                            @if($errors->get("desc"))
-                                <span class="invalid-feedback" role="alert">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input class="validate" id="desc" type="text" name="desc" value="{{$ticket->desc}}">
+                                    <label for="desc" data-error="wrong"
+                                           data-success="right"> Description</label>
+                                </div>
+                                @if($errors->get("desc"))
+                                    <span class="invalid-feedback" role="alert">
                                    <strong>The Description is missing </strong>
                                </span>
-                                <br>
-                            @endif
-                        </div>
-                        @can("changeContractType",$ticket)
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <select name="contractType" id="contractType" onchange="togglePriceContainer()">
-                                        @foreach(\App\Models\ContractType::all() as $contractType)
-                                            <option
-                                                value="{{$contractType->id}}" {{$ticket->contract_type_id==$contractType->id?"selected":""}}>{{$contractType->name()}}</option>
-                                        @endforeach
-                                    </select>
-                                    <label>Contract Type</label>
-                                </div>
+                                    <br>
+                                @endif
                             </div>
-                            <div class="row"
-                                 id="price-container" {!!  $ticket->contract_type_id !== 2 ? 'style="display:none"':"" !!}>
-                                <div class="input-field col s12">
-                                    <input class="validate" id="price" type="text" name="price"
-                                           value="{{$ticket->price()}}">
-                                    <label for="price" data-error="wrong"
-                                           data-success="right"> Price</label>
+                            @can("changeContractType",$ticket)
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <select name="contractType" id="contractType" onchange="togglePriceContainer()">
+                                            @foreach(\App\Models\ContractType::all() as $contractType)
+                                                <option
+                                                    value="{{$contractType->id}}" {{$ticket->contract_type_id==$contractType->id?"selected":""}}>{{$contractType->name()}}</option>
+                                            @endforeach
+                                        </select>
+                                        <label>Contract Type</label>
+                                    </div>
                                 </div>
-                            </div>
-                        @endcan
-                        @if(\Illuminate\Support\Facades\Auth::user()->isCraftsman())
-                            <div class="row">
+                                <div class="row"
+                                     id="price-container" {!!  $ticket->contract_type_id !== 2 ? 'style="display:none"':"" !!}>
+                                    <div class="input-field col s12">
+                                        <input class="validate" id="price" type="text" name="price"
+                                               value="{{$ticket->price()}}">
+                                        <label for="price" data-error="wrong"
+                                               data-success="right"> Price</label>
+                                    </div>
+                                </div>
+                            @endcan
+                            @if(\Illuminate\Support\Facades\Auth::user()->isCraftsman())
+                            <!-- <div class="row">
                                 <div class="input-field col s12">
                                     <select name="status">
                                         @foreach(\App\Models\Status::all() as $status)
-                                            <option
-                                                value="{{$status->id}}" {{$ticket->status_id==$status->id?"selected":""}}>{{$status->name()}}</option>
+                                <option
+                                    value="{{$status->id}}" {{$ticket->status_id==$status->id?"selected":""}}>{{$status->name()}}</option>
                                         @endforeach
-                                    </select>
-                                    <label>Status</label>
-                                </div>
+                                </select>
+                                <label>Status</label>
                             </div>
-                        @else
+                        </div-->
+                            @else
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <select name="urgency">
+                                            @foreach(\App\Models\Urgency::all() as $urgency)
+                                                <option
+                                                    value="{{$urgency->id}}" {{$ticket->urgency_id==$urgency->id?"selected":""}}>{{$urgency->name()}}</option>
+                                            @endforeach
+                                        </select>
+                                        <label>Urgency</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <select name="tag">
+                                            @foreach(\App\Models\Tag::all() as $tag)
+                                                <option
+                                                    value="{{$tag->id}}" {{$ticket->tag_id==$tag->id?"selected":""}}>{{$tag->name()}}</option>
+                                            @endforeach
+                                        </select>
+                                        <label>Work Type</label>
+                                    </div>
+                                </div>
+                            @endif
                             <div class="row">
-                                <div class="input-field col s12">
-                                    <select name="urgency">
-                                        @foreach(\App\Models\Urgency::all() as $urgency)
-                                            <option
-                                                value="{{$urgency->id}}" {{$ticket->urgency_id==$urgency->id?"selected":""}}>{{$urgency->name()}}</option>
-                                        @endforeach
-                                    </select>
-                                    <label>Urgency</label>
+                                <div class="input-field col s12 m6 offset-m3">
+                                    <button type="submit" id="submitForm"
+                                            class="btn waves-effect waves-light blue darken-4 col s12"> Update
+                                    </button>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <select name="tag">
-                                        @foreach(\App\Models\Tag::all() as $tag)
-                                            <option
-                                                value="{{$tag->id}}" {{$ticket->tag_id==$tag->id?"selected":""}}>{{$tag->name()}}</option>
-                                        @endforeach
-                                    </select>
-                                    <label>Work Type</label>
-                                </div>
-                            </div>
-                        @endif
-                        <div class="row">
-                            <div class="input-field col s12 m6 offset-m3">
-                                <button type="submit" id="submitForm"
-                                        class="btn waves-effect waves-light blue darken-4 col s12"> Update
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    @endif
                 @endif
             </div>
             @if(!is_null(\Illuminate\Support\Facades\Auth::user()))

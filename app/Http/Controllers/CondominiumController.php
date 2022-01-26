@@ -13,7 +13,7 @@ class CondominiumController extends Controller
     public function show(Condominium $condominium)
     {
         if(Auth::user()->cannot("view",$condominium))
-            return response("401",401);
+            return redirect(route("dashboard"));
         return view("condominium",[
             "condominium"=>$condominium,
             "families"=>$condominium->families()->get(),
