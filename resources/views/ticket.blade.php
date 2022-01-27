@@ -181,7 +181,7 @@
                     @endif
                 @endif
             </div>
-            @if(!is_null(\Illuminate\Support\Facades\Auth::user()))
+            @can("chat",$ticket)
                 <div class="col s12 m12 l6 xl6 card chat-container">
                     <h3 class="center">Chat</h3>
 
@@ -220,7 +220,8 @@
                         });
                     </script>
                 </div>
-            @else
+            @endcan
+            @if(is_null(\Illuminate\Support\Facades\Auth::user()))
                 <div class="col s12 m12 l6 xl6 card chat-container">
                     @include("auth.components.registerForm",["selected"=>3,"token"=> Request::route("token")])
                 </div>

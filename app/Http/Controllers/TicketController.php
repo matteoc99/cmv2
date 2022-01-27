@@ -18,12 +18,10 @@ class TicketController extends Controller
 {
     public function show(Ticket $ticket)
     {
-
         if (Auth::user()->cannot("view", $ticket))
-            return response("401", 401);
+            return response("Your access to this Ticket has been revoked", 401);
         return view("ticket", ["ticket" => $ticket]);
     }
-
     public function showBytoken(Request $request)
     {
         $ticket = Ticket::where("token", "=", $request->route("token"))->get()->first();

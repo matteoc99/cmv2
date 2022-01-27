@@ -51,6 +51,12 @@ class CondominiumPolicy
             ? Response::allow()
             : Response::deny('You do not an Administrator');
     }
+    public function edit(User $user,Condominium $condominium)
+    {
+        return $user->isAdmin() && $user->id===$condominium->admin_id
+            ? Response::allow()
+            : Response::deny('You do not an Administrator');
+    }
 
     /**
      * Determine whether the user can update the model.

@@ -20,10 +20,12 @@ class EstimateController extends Controller
         $ticket->status_id=3;
         if($estimate->user_id !== $ticket->craftsman_id)
             $ticket->craftsman_id=$estimate->user_id;
-
-        User::where("id","=",$estimate->user_id)->get()->first()->notify(
-            new EstimateApprovedNotification($estimate)
-        );
+        $craftsman = User::where("id","=",$estimate->user_id)->get()->first();
+        if($craftsman->setting()->revice_approved_estimate_notification) {
+            $craftsman->notify(
+                new EstimateApprovedNotification($estimate)
+            );
+        }
         $ticket->save();
         $estimate->save();
         return redirect()->back();

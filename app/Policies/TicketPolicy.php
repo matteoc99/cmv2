@@ -30,14 +30,22 @@ class TicketPolicy
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Auth\Access\Response|bool
      */
+    public function chat(User $user, Ticket $ticket){
+        $administrates = $user->administrates()->where("id","=",$ticket->condominium_id)->get();
+        return (($user->hasFamily()&&$user->family_id==$ticket->family_id) ||
+            ($user->hasFamily()&&$user->family()->condominium_id==$ticket->condominium_id) ||
+            (!is_null($administrates->first()))||
+            ($user->isCraftsman()&&$user->id ==$ticket->craftsman_id))
+            ? Response::allow()
+            : Response::deny('You are not allowed to view this Condominium');
+    }
     public function view(User $user, Ticket $ticket)
     {
-
         $administrates = $user->administrates()->where("id","=",$ticket->condominium_id)->get();
         return (($user->hasFamily()&&$user->family_id==$ticket->family_id) ||
          ($user->hasFamily()&&$user->family()->condominium_id==$ticket->condominium_id) ||
         (!is_null($administrates->first()))||
-            ($user->isCraftsman()&&$user->id ==$ticket->craftsman_id))
+            ($user->isCraftsman()&&$ticket->contract_type_id===3 &&$ticket->status_id<3 ))
             ? Response::allow()
             : Response::deny('You are not allowed to view this Condominium');
     }

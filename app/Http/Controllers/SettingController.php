@@ -36,6 +36,10 @@ class SettingController extends Controller
     {
         $set = Auth::user()->setting();
         $set->recive_ticket_created_notification = $request->get("ticket_notification") == "on";
+        if (!is_null($request->get("estimate_notification")))
+            $set->revice_approved_estimate_notification = $request->get("estimate_notification") == "on";
+        else
+            $set->revice_approved_estimate_notification=false;
         $set->save();
         return redirect()->back()->with('success', "notification");
     }

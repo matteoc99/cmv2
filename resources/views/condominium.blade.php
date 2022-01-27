@@ -5,7 +5,8 @@
 
         @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
             <h3><a href="{{route("dashboard")}}"><i
-                        class="material-icons small blue-text text-darken-4">arrow_back</i></a><i class="material-icons small">domain</i>{{$condominium->name}}</h3>
+                        class="material-icons small blue-text text-darken-4">arrow_back</i></a><i
+                    class="material-icons small">domain</i>{{$condominium->name}}</h3>
         @else
             @if(!is_null($condominium))
                 <h3><i class="material-icons small">domain</i>{{$condominium->name}}</h3>
@@ -55,7 +56,8 @@
                                 @endphp
                                 <div class="collapsible-header"><i class="material-icons">insert_drive_file</i>Tickets
                                     : {{$status->name()}}
-                                    <span class="{{$anyNew?"new blue darken-4" : ""}} badge">{{count($ticketsByStatus)}}</span>
+                                    <span
+                                        class="{{$anyNew?"new blue darken-4" : ""}} badge">{{count($ticketsByStatus)}}</span>
                                 </div>
                                 <div class="collapsible-body">
                                     <div class="row">
@@ -74,6 +76,10 @@
             </ul>
         @else
             @include("components.fabDiscovery")
+        @endif
+
+        @if(\Illuminate\Support\Facades\Auth::user()->isCraftsman())
+            @include("components.ticketMap")
         @endif
     </div>
 

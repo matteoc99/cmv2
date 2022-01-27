@@ -1,5 +1,9 @@
 $(document).ready(function () {
+
     M.AutoInit();
+
+    var elems = document.querySelectorAll('.datepicker');
+    M.Datepicker.init(elems, {"format":"yyyy/mm/dd"});
 
     $('.fixed-action-btn').click(function () {
         var instance = M.FloatingActionButton.getInstance(document.querySelectorAll('.fixed-action-btn')[0]);
