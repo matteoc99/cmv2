@@ -15,4 +15,7 @@ class Setting extends Model
     public function picture(){
         return $this->belongsTo('App\Models\Picture',"profile_picture_id","id")->get()->first();
     }
+    public function plan(){
+        return $this->belongsTo(Plan::class)->get()->first();
+    }
 }

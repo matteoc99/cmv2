@@ -6,10 +6,17 @@
         <div class="row">
             <div class="col s12 m12 l8 xl6 card offset-l2 offset-xl3">
                 <ul class="tabs">
-                    <li class="tab col s6"><a href="#profile"
+                    <li class="tab col s4"><a href="#profile"
                                               class="blue-text darken-4 {{session()->has('success')&&session()->get('success')=="profile"?"active":""}}">Profile</a>
                     </li>
-                    <li class="tab col s6"><a href="#notification" class="blue-text darken-4 {{session()->has('success')&&session()->get('success')=="notification"?"active":""}}">Notifications</a></li>
+                    <li class="tab col s4"><a href="#notification"
+                                              class="blue-text darken-4 {{session()->has('success')&&session()->get('success')=="notification"?"active":""}}">Notifications</a>
+                    </li>
+                    @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
+                        <li class="tab col s4"><a href="#subscription"
+                                                  class="blue-text darken-4 {{session()->has('success')&&session()->get('success')=="subscription"?"active":""}}">Subscription</a>
+                        </li>
+                    @endif
                 </ul>
             </div>
             <div id="profile" class="col s12">
@@ -17,6 +24,9 @@
             </div>
             <div id="notification" class="col s12">
                 @include("components.notificationSettingBox",["setting"=>$setting])
+            </div>
+            <div id="subscription" class="col s12">
+                @include("components.subscriptionSettingsBox")
             </div>
         </div>
 

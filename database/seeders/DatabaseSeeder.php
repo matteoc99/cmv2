@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TagSeeder::class);
         $this->call(UrgencySeeder::class);
         $this->call(ContractTypeSeeder::class);
+        $this->call(PlanSeeder::class);
 
     }
 }
