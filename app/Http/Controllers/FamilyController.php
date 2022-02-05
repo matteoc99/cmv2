@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Condominium;
 use App\Models\Family;
 use App\Models\User;
 use App\Notifications\InviteUserNotification;
@@ -13,11 +14,11 @@ use Illuminate\Support\Facades\Validator;
 class FamilyController extends Controller
 {
 
-    public function showCreate(Request $request)
+    public function showCreate(Request $request,Condominium $condominium)
     {
         if(Auth::user()->cannot("create",Family::class))
             return response("401",401);
-        return view("createFamily");
+        return view("createFamily",["condominium"=>$condominium]);
     }
 
     public function create(Request $request)
@@ -29,10 +30,12 @@ class FamilyController extends Controller
             'email' => "required|unique:users",
         ]);
 
+        $condominiumId = json_decode($request->get("condominium"))->id;
+
         $fam = new Family();
         $fam->name=$request->get("name");
         $fam->count=$request->get("count");
-        $fam->condominium_id=$request->get("condominium");
+        $fam->condominium_id=$condominiumId;
 
         $fam->save();
 
@@ -52,7 +55,7 @@ class FamilyController extends Controller
             new InviteUserNotification($pass,$user->email)
         );
 
-        return redirect(route("condominium",$request->get("condominium")));
+        return redirect(route("condominium",$condominiumId));
 
     }
 }

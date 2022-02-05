@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Condominium;
 use App\Models\ContractType;
 use App\Models\Message;
 use App\Models\Status;
@@ -46,11 +47,12 @@ class TicketController extends Controller
         return redirect(route("ticket", $ticket->id));
     }
 
-    public function showCreate(Request $request)
+    public function showCreate(Request $request,Condominium $condominium)
     {
         if (Auth::user()->cannot("create", Ticket::class))
             return response("401", 401);
         return view("createTicket", [
+            "condominium" => $condominium,
             "urgencies" => Urgency::all(),
             "contractTypes" => ContractType::all(),
             "tags" => Tag::all(),
@@ -65,6 +67,8 @@ class TicketController extends Controller
             "title" => "required",
             'desc' => "required",
         ]);
+        $condominiumId = json_decode($request->get("condominium"))->id;
+
         $ticket = new Ticket();
         if (!is_null($request->get("contractType")))
             $ticket->contract_type_id = $request->get("contractType");
@@ -74,7 +78,7 @@ class TicketController extends Controller
         $ticket->urgency_id = $request->get("urgency");
         $ticket->tag_id = $request->get("tag");
         $ticket->status_id = 1;
-        $ticket->condominium_id = $request->get("condominium");
+        $ticket->condominium_id = $condominiumId;
         $ticket->title = $request->get("title");
         $ticket->desc = $request->get("desc");
         if (Auth::user()->hasFamily()) {
@@ -106,7 +110,7 @@ class TicketController extends Controller
             }
         }
 
-        return redirect(route("condominium", $request->get("condominium")));
+        return redirect(route("condominium",$condominiumId));
     }
 
     public function addToCraftsman(Request $request)

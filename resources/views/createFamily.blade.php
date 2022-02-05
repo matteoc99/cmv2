@@ -3,6 +3,9 @@
 
 @section("content")
     <div class="container">
+        <h3><a href="{{route("condominium",$condominium->id)}}"><i
+                    class="material-icons small blue-text text-darken-4">arrow_back</i></a><i
+                class="material-icons small">domain</i>{{$condominium->name}}</h3>
         <div class="row">
             <div class="col s12 m8 l6 xl4 card offset-l3 offset-m2 offset-xl4">
                 <div class="card-header center"><h4>Header</h4></div>
