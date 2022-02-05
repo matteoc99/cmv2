@@ -46,11 +46,11 @@ class User extends Authenticatable
     public function name()
     {
         $name = $this->name;
-        if (!is_null($this->setting()->firm_name)&& strlen($this->setting()->firm_name)>0)
+        if (!is_null($this->setting()->firm_name) && strlen($this->setting()->firm_name) > 0)
             $name = $this->setting()->firm_name;
-        if (!is_null($this->setting()->first_name)&& strlen($this->setting()->first_name)>0) {
+        if (!is_null($this->setting()->first_name) && strlen($this->setting()->first_name) > 0) {
             $name = $this->setting()->first_name;
-            if (!is_null($this->setting()->last_name) && strlen($this->setting()->last_name)>0)
+            if (!is_null($this->setting()->last_name) && strlen($this->setting()->last_name) > 0)
                 $name = $name . " " . $this->setting()->last_name;
         }
         return $name;
@@ -115,31 +115,34 @@ class User extends Authenticatable
         return is_countable($tags) && count($tags) >= 1;
     }
 
-    public function profilePicture(){
-        $set=$this->setting();
-        $img =asset("uploads/default.jpg");
-        if($set->hasPicture()){
-            $img = asset("uploads/".$set->picture()->uuid.".".$set->picture()->mime_type);
+    public function profilePicture()
+    {
+        $set = $this->setting();
+        $img = asset("uploads/default.jpg");
+        if ($set->hasPicture()) {
+            $img = asset("uploads/" . $set->picture()->uuid . "." . $set->picture()->mime_type);
         }
         return $img;
     }
 
     public function subscription()
     {
-        $subscription=$this->hasOne(Subscription::class)->get()->first();
-        if(is_null($subscription)){
+        $subscription = $this->hasOne(Subscription::class)->get()->first();
+        if (is_null($subscription)) {
             $subscription = new Subscription();
-            $plan = Plan::where("id","=",1)->get()->first();
-            $subscription->user_id= Auth::user()->id;
-            $subscription->plan_id= $plan->id;
-            $subscription->active_until= now();
+            $plan = Plan::where("id", "=", 1)->get()->first();
+            $subscription->user_id = Auth::user()->id;
+            $subscription->plan_id = $plan->id;
+            $subscription->active_until = now();
             $subscription->save();
         }
         return $subscription;
     }
 
-    public function hasActiveSubscription()
+    public function checkSubscription()
     {
-        return optional($this->subscription())->isActive() ?? false;
+        if (!$this->subscription()->isActive()) {
+            $this->subscription()->delete();
+        }
     }
 }

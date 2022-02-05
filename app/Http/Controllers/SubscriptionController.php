@@ -40,10 +40,7 @@ class SubscriptionController extends Controller
         $paymentPlatform = $this->paymentPlatformResolver->resolveService(Auth::user()->subscription()->platform_id);
         $paymentPlatform->handleCancellation(Auth::user()->subscription()->subscription_id);
         Auth::user()->subscription()->delete();
-        return redirect()->route("settings")->with("success", ["Your Subscription has been cancelled"]);
-    }
-    public function manualCancel(Request $request){
-        return dd($request);
+        return redirect()->route("settings")->with("success", ["Your Subscription has been cancelled"])->with("tab","subscription");
     }
 
     public function approved(Request $request,Plan $plan)
@@ -61,12 +58,15 @@ class SubscriptionController extends Controller
                 $subscription->platform_id = session()->get("platform");
                 $subscription->subscription_id=$request->get("subscription_id");
                 $subscription->save();
-                return redirect()->route("settings")->with("success", ["thanks, {$user->name}. You are now Subscribed"]);
+                return redirect()->route("settings")->with("success", ["Thanks, {$user->name}. You are now Subscribed"])->with("tab","subscription");
             }
         }
         return redirect()->route("subscribe.show",$plan->id)->withErrors("We can not verify your subscription");
     }
 
+    public function redirectToSubscribe(){
+        return redirect()->route("settings")->with("tab","subscription");
+    }
     public function declined(Plan $plan)
     {
         return redirect()->route("subscribe.show",$plan->id)->withErrors("The Process was cancelled");

@@ -86,7 +86,6 @@ Route::group(['middleware' => ['auth']], function () {
 
 
         Route::get('/subscribe/cancel/', [App\Http\Controllers\SubscriptionController::class, 'cancel'])->name('subscribe.cancel');
-        Route::get('/subscribe/manualcancel/', [App\Http\Controllers\SubscriptionController::class, 'manualCancel'])->name('subscribe.manualCancel');
         Route::get('/subscribe/declined/{plan}/', [App\Http\Controllers\SubscriptionController::class, 'declined'])->name('subscribe.declined');
         Route::get('/subscribe/approved/{plan}/', [App\Http\Controllers\SubscriptionController::class, 'approved'])->name('subscribe.approved');
         Route::post('/subscribe/{plan}/', [App\Http\Controllers\SubscriptionController::class, 'subscribe'])->name('subscribe');

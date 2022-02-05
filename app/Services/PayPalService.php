@@ -69,6 +69,12 @@ class PayPalService
             "reason"=>"not satisfied"
         ], [], true);
     }
+    public function isActiveSubscription($subscriptionId){
+        $response =$this->makeRequest("GET", "/v1/billing/subscriptions/{$subscriptionId}", [], [], [], true);
+        $subscriptionStatus = $response->status;
+        return $subscriptionStatus === "ACTIVE";
+    }
+
     public function createSubscription($plan,$name,$email){
 
         return $this->makeRequest("POST", "v1/billing/subscriptions", [], [

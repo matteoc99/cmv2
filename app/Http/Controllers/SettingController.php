@@ -41,7 +41,7 @@ class SettingController extends Controller
         else
             $set->revice_approved_estimate_notification=false;
         $set->save();
-        return redirect()->back()->with('success', "notification");
+        return redirect()->back()->with('tab', "notification");
     }
 
     public function update(Request $request)
@@ -99,6 +99,6 @@ class SettingController extends Controller
         }
         $set->save();
 
-        return redirect()->back()->with('success', "profile");
+        return redirect()->back()->with('tab', "profile");
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Resolvers\PaymentPlatformResolver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,6 +18,8 @@ class Subscription extends Model
         'active_until' => 'date',
     ];
 
+
+
     public function plan(){
         return $this->belongsTo(Plan::class)->get()->first();
     }
@@ -25,6 +28,10 @@ class Subscription extends Model
     }
 
     public function isActive(){
-        return $this->active_until->gt(now());
+        if(is_null($this->platform_id))
+            return true;
+        $paymentPlatformResolver= new PaymentPlatformResolver();
+        $paymentPlatform = $paymentPlatformResolver->resolveService($this->platform_id);
+        return $paymentPlatform->isActiveSubscription($this->subscription_id);
     }
 }
