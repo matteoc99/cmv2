@@ -1,6 +1,5 @@
 <div class="row">
     <div id="map" style="height: 500px"></div>
-
 </div>
 
 <script>
@@ -27,7 +26,7 @@
         }).addTo(map);
         var markers = L.markerClusterGroup();
 
-        @foreach(\App\Models\Ticket::where("status_id","<",3)->where("contract_type_id","=",3)->get() as $ticket)
+        @foreach(\App\Models\Ticket::where("status_id","<",3)->where("contract_type_id","=",3)->where("craftsman_id","!=",\Illuminate\Support\Facades\Auth::user()->id)->get() as $ticket)
         @php
             $condominium = $ticket->condominium();
             $lat= $condominium->lat;

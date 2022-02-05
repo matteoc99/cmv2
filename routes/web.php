@@ -70,6 +70,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/ticket/{ticket}', 'App\\Http\\Controllers\\TicketController@show')->name('ticket');
         Route::get('/ticket/generateToken/{ticket}', 'App\\Http\\Controllers\\TicketController@generateTicketToken')->name('generateTicketToken');
         Route::get('/ticket/addCraftsman/{ticket}/{user}', 'App\\Http\\Controllers\\TicketController@addCraftsmanToTicket')->name('addCraftsmanToTicket');
+        Route::get('/ticket/complete/{ticket}', 'App\\Http\\Controllers\\TicketController@complete')->name('ticket.complete');
 
 
 

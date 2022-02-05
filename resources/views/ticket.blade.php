@@ -50,13 +50,15 @@
                     @can("createEstimate",$ticket)
                         <div class="card-action">
                             @if(!is_null($ticket->estimateByUserId(\Illuminate\Support\Facades\Auth::user()->id)))
-                                @include("components.estimateBox",["estimate"=>$ticket->estimateByUserId(\Illuminate\Support\Facades\Auth::user()->id)])
                                 @if($ticket->hasApprovedEstimate())
                                     @if($ticket->approvedEstimate()->user_id===\Illuminate\Support\Facades\Auth::user()->id)
                                         <p class="blue-text text-darken-4">Your Estimate has been Approved</p>
                                     @else
                                         <p class="blue-text text-darken-4">Your Estimate has been Declined</p>
                                     @endif
+                                @else
+                                    @include("components.estimateBox",["estimate"=>$ticket->estimateByUserId(\Illuminate\Support\Facades\Auth::user()->id)])
+                                    <p class="blue-text text-darken-4">Pending approval</p>
                                 @endif
                             @else
                                 <a href="#createEstimateModal"
@@ -64,14 +66,21 @@
                             @endif
                         </div>
                     @endcan
+                    @can("completeTicket",$ticket)
+                        <div class="card-action">
+                            <a href="{{route("ticket.complete",$ticket->id)}}"
+                               class="modal-trigger btn waves-effect waves-light blue darken-4">Mark as Completed</a>
+                        </div>
+                    @endcan
                     @if($ticket->hasApprovedEstimate())
                         <div class="card-action">
                             @include("components.estimateBox",["estimate"=>$ticket->approvedEstimate()])
                         </div>
+
                     @else
                         @can("approveEstimates",$ticket)
 
-                        @if(is_countable($ticket->estimates()->get())&&count($ticket->estimates()->get())>0)
+                            @if(is_countable($ticket->estimates()->get())&&count($ticket->estimates()->get())>0)
                                 <div class="card-action">
                                     <a href="#approveEstimatesModal"
                                        class="modal-trigger btn waves-effect waves-light blue darken-4">Approve

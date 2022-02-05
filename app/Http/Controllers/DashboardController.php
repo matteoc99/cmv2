@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subscription;
 use App\Models\Ticket;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,8 +15,10 @@ class DashboardController extends Controller
             return $this->showCondominiums($request);
         }else if($this->isCraftsman()){
             return $this->showTickets($request);
-        }else{
+        }else if($this->isUser()){
             return $this->showCondominium($request);
+        }else{
+            return $this->showAdminPanel($request);
         }
     }
     public function showCondominiums(Request $request)
@@ -30,6 +34,15 @@ class DashboardController extends Controller
     {
         $tickets= Ticket::where("craftsman_id","=",Auth::user()->id)->get();
         return view("condominium",["condominium"=>null,"families"=>null,"tickets"=>$tickets]);
-
     }
+    public function showAdminPanel(Request $request)
+    {
+        return view("adminpanel.dashboard",[
+            "user"=>User::where("role_id","=",1),
+            "admins"=>User::where("role_id","=",2),
+            "craftsman"=>User::where("role_id","=",3),
+            "subscriptions"=>Subscription::all(),
+        ]);
+    }
+
 }

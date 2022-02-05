@@ -26,4 +26,8 @@ class Controller extends BaseController
     {
         return Auth::user()->role_id == 1;
     }
+    public function isMaster()
+    {
+        return Auth::user()->role_id == 4;
+    }
 }

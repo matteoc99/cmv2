@@ -23,6 +23,7 @@ class TicketController extends Controller
             return response("Your access to this Ticket has been revoked", 401);
         return view("ticket", ["ticket" => $ticket]);
     }
+
     public function showBytoken(Request $request)
     {
         $ticket = Ticket::where("token", "=", $request->route("token"))->get()->first();
@@ -47,7 +48,7 @@ class TicketController extends Controller
         return redirect(route("ticket", $ticket->id));
     }
 
-    public function showCreate(Request $request,Condominium $condominium)
+    public function showCreate(Request $request, Condominium $condominium)
     {
         if (Auth::user()->cannot("create", Ticket::class))
             return response("401", 401);
@@ -73,11 +74,12 @@ class TicketController extends Controller
         if (!is_null($request->get("contractType")))
             $ticket->contract_type_id = $request->get("contractType");
         if (!is_null($request->get("price")))
-            $ticket->price = str_replace(",",".",$request->get("price"));
+            $ticket->price = str_replace(",", ".", $request->get("price"));
 
         $ticket->urgency_id = $request->get("urgency");
         $ticket->tag_id = $request->get("tag");
         $ticket->status_id = 1;
+        $ticket->user_id = Auth::user()->id;
         $ticket->condominium_id = $condominiumId;
         $ticket->title = $request->get("title");
         $ticket->desc = $request->get("desc");
@@ -110,13 +112,22 @@ class TicketController extends Controller
             }
         }
 
-        return redirect(route("condominium",$condominiumId));
+        return redirect(route("condominium", $condominiumId));
     }
 
     public function addToCraftsman(Request $request)
     {
         $token = $request->get("link");
         return redirect($token);
+    }
+
+    public function complete(Ticket $ticket)
+    {
+        if (Auth::user()->cannot("completeTicket", $ticket))
+            return response("401", 401);
+        $ticket->status_id = 4;
+        $ticket->save();
+        return redirect(route("condominium", $ticket->condominium_id));
     }
 
     public function addCraftsmanToTicket(Ticket $ticket, User $user)
@@ -167,7 +178,7 @@ class TicketController extends Controller
                 $whatChanged = $whatChanged . "Contract Type to: " . ContractType::where("id", "=", $request->get("contractType"))->get()->first()->name();
                 $somethingChanged = true;
             }
-        if (!is_null($request->get("price"))&&strlen($request->get("price"))>0)
+        if (!is_null($request->get("price")) && strlen($request->get("price")) > 0)
             if ($ticket->price != $request->get("desc")) {
                 $whatChanged = $whatChanged . " Price to: " . $request->get("price");
                 $somethingChanged = true;
@@ -182,7 +193,7 @@ class TicketController extends Controller
         if (!is_null($request->get("contractType")))
             $ticket->contract_type_id = $request->get("contractType");
         if (!is_null($request->get("price")))
-            $ticket->price = str_replace(",",".",$request->get("price"));
+            $ticket->price = str_replace(",", ".", $request->get("price"));
         if (!is_null($request->get("title")))
             $ticket->title = $request->get("title");
         if (!is_null($request->get("desc")))

@@ -45,7 +45,7 @@ class TicketPolicy
         return (($user->hasFamily()&&$user->family_id==$ticket->family_id) ||
          ($user->hasFamily()&&$user->family()->condominium_id==$ticket->condominium_id) ||
         (!is_null($administrates->first()))||
-            ($user->isCraftsman()&&$ticket->contract_type_id===3 &&$ticket->status_id<3 ))
+            ($user->isCraftsman()&&($ticket->contract_type_id===3 &&$ticket->status_id<3)||$ticket->craftsman_id ==$user->id))
             ? Response::allow()
             : Response::deny();
     }
@@ -83,6 +83,11 @@ class TicketPolicy
     }
     public function changeContractType(User $user,Ticket $ticket){
         return Auth::user()->isAdmin()
+            ? Response::allow()
+            : Response::deny();
+    }
+    public function completeTicket(User $user,Ticket $ticket){
+        return $ticket->status_id<4&&Auth::user()->id == $ticket->user_id
             ? Response::allow()
             : Response::deny();
     }

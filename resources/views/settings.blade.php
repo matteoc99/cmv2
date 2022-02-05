@@ -25,9 +25,11 @@
             <div id="notification" class="col s12">
                 @include("components.notificationSettingBox",["setting"=>$setting])
             </div>
-            <div id="subscription" class="col s12">
-                @include("components.subscriptionSettingsBox")
-            </div>
+            @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
+                <div id="subscription" class="col s12">
+                    @include("components.subscriptionSettingsBox")
+                </div>
+            @endif
         </div>
 
         <div class="row">
