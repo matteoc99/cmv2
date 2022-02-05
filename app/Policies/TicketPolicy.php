@@ -58,7 +58,8 @@ class TicketPolicy
      */
     public function create(User $user)
     {
-        return $user->isUser() ||  $user->isAdmin()
+
+        return $user->isUser() || $user->isAdmin()
             ? Response::allow()
             : Response::deny();
     }

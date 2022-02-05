@@ -13,9 +13,11 @@
                         @csrf
                         <input type="hidden" name="platform" id="platform">
                         @foreach($platforms as $platform)
-                            <a onclick="setPlatform('{{$platform->id}}')">
-                                <img class="img-thumbnail" src="{{asset($platform->image)}}">
-                            </a>
+                            <div class="center">
+                                <a onclick="setPlatform('{{$platform->id}}')">
+                                    <img class="img-thumbnail" src="{{asset($platform->image)}}" style=" cursor: pointer">
+                                </a>
+                            </div>
                         @endforeach
                     </form>
                 </div>
