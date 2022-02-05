@@ -61,6 +61,16 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Condominium', "admin_id", "id");
     }
 
+    public function administratesFamilies()
+    {
+        $condominia = $this->administrates()->get();
+        $families = collect([]);
+        foreach ($condominia as $condominium) {
+            $families = $families->merge($condominium->families()->get());
+        }
+        return $families;
+    }
+
     public function family()
     {
         return $this->hasOne('App\Models\Family')->get()->first();

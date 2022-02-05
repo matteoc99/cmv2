@@ -90,7 +90,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/subscribe/approved/{plan}/', [App\Http\Controllers\SubscriptionController::class, 'approved'])->name('subscribe.approved');
         Route::post('/subscribe/{plan}/', [App\Http\Controllers\SubscriptionController::class, 'subscribe'])->name('subscribe');
         Route::get('/subscribe/{plan}/', [App\Http\Controllers\SubscriptionController::class, 'show'])->name('subscribe.show');
+        Route::get('/subscribe/redirect/', [App\Http\Controllers\SubscriptionController::class, 'redirectToSubscribe'])->name('subscribe.redirect');
 
+
+
+
+
+
+      //  Route::get('/test', 'App\\Http\\Controllers\\FrontendController@test')->name("test");
 
 
     });

@@ -45,9 +45,13 @@ class FamilyPolicy
      */
     public function create(User $user)
     {
-        return $user->isAdmin()
-            ? Response::allow()
-            : Response::deny('You do not an Administrator');
+        if ($user->isAdmin()) {
+            $families = $user->administratesFamilies();
+            $maxuser = $user->subscription()->plan()->max_user;
+            if(!(is_countable($families)&&count($families)>=$maxuser))
+                return Response::allow();
+        }
+        return Response::deny();
     }
 
     /**

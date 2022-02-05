@@ -37,7 +37,7 @@ class TicketPolicy
             (!is_null($administrates->first()))||
             ($user->isCraftsman()&&$user->id ==$ticket->craftsman_id))
             ? Response::allow()
-            : Response::deny('You are not allowed to view this Condominium');
+            : Response::deny();
     }
     public function view(User $user, Ticket $ticket)
     {
@@ -47,7 +47,7 @@ class TicketPolicy
         (!is_null($administrates->first()))||
             ($user->isCraftsman()&&$ticket->contract_type_id===3 &&$ticket->status_id<3 ))
             ? Response::allow()
-            : Response::deny('You are not allowed to view this Condominium');
+            : Response::deny();
     }
 
     /**
@@ -60,37 +60,37 @@ class TicketPolicy
     {
         return $user->isUser() ||  $user->isAdmin()
             ? Response::allow()
-            : Response::deny('You do not an User');
+            : Response::deny();
     }
     public function approveEstimates(User $user,Ticket $ticket){
         $condominia =Auth::user()->administrates()->where("id","=",$ticket->condominium_id)->get();
         return Auth::user()->isAdmin()&&$ticket->contractType()->id===3
             ? Response::allow()
-            : Response::deny('You do not an User');
+            : Response::deny();
     }
     public function createEstimate(User $user,Ticket $ticket){
         return Auth::user()->isCraftsman()&&$ticket->contractType()->id===3
             ? Response::allow()
-            : Response::deny('You do not an User');
+            : Response::deny();
     }
     public function createToken(User $user,Ticket $ticket)
     {
         $condominia =Auth::user()->administrates()->where("id","=",$ticket->condominium_id)->get();
         return Auth::user()->isAdmin()&&is_countable($condominia)&&count($condominia)>=1&&is_null($ticket->craftsman_id)
             ? Response::allow()
-            : Response::deny('You do not an User');
+            : Response::deny();
     }
     public function changeContractType(User $user,Ticket $ticket){
         return Auth::user()->isAdmin()
             ? Response::allow()
-            : Response::deny('You do not an User');
+            : Response::deny();
     }
     public function addCraftsman(User $user,Ticket $ticket)
     {
         $condominia =Auth::user()->administrates()->where("id","=",$ticket->condominium_id)->get();
         return Auth::user()->isAdmin()&&is_countable($condominia)&&count($condominia)>=1
             ? Response::allow()
-            : Response::deny('You do not an User');
+            : Response::deny();
     }
     /**
      * Determine whether the user can update the model.
@@ -108,7 +108,7 @@ class TicketPolicy
         ($user->isAdmin()&&$con->admin_id == $user->id) ||
         ($user->isCraftsman()&&$con->craftsman_id == $user->id)
             ? Response::allow()
-            : Response::deny('You do not an Administrator');
+            : Response::deny();
     }
 
     /**

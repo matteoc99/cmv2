@@ -17,4 +17,8 @@ class FrontendController extends Controller
         }
         return view("landing");
     }
+
+    public function test(Request $request){
+        return Auth::user()->administratesFamilies();
+    }
 }

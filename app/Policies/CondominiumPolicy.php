@@ -19,7 +19,7 @@ class CondominiumPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->isAdmin()||$user->isUser()
+        return $user->isAdmin() || $user->isUser()
             ? Response::allow()
             : Response::deny('You are not allowed to view this Condominium');
     }
@@ -33,8 +33,8 @@ class CondominiumPolicy
      */
     public function view(User $user, Condominium $condominium)
     {
-        return count($user->administrates()->where("id","=",$condominium->id)->get())==1
-            || ($user->hasFamily() && $user->family()->condominium_id===$condominium->id)
+        return count($user->administrates()->where("id", "=", $condominium->id)->get()) == 1
+        || ($user->hasFamily() && $user->family()->condominium_id === $condominium->id)
             ? Response::allow()
             : Response::deny('You are not allowed to view this Condominium');
     }
@@ -47,13 +47,18 @@ class CondominiumPolicy
      */
     public function create(User $user)
     {
-        return $user->isAdmin()
-            ? Response::allow()
-            : Response::deny('You do not an Administrator');
+        if ($user->isAdmin()) {
+            $condominia = $user->administrates()->get();
+            $maxcondominia = $user->subscription()->plan()->max_con;
+            if(!(is_countable($condominia)&&count($condominia)>=$maxcondominia))
+                return Response::allow();
+        }
+        return Response::deny();
     }
-    public function edit(User $user,Condominium $condominium)
+
+    public function edit(User $user, Condominium $condominium)
     {
-        return $user->isAdmin() && $user->id===$condominium->admin_id
+        return $user->isAdmin() && $user->id === $condominium->admin_id
             ? Response::allow()
             : Response::deny('You do not an Administrator');
     }
