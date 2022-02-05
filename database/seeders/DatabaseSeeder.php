@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\ContractType;
+use App\Models\PaymentPlatform;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UrgencySeeder::class);
         $this->call(ContractTypeSeeder::class);
         $this->call(PlanSeeder::class);
+        $this->call(PaymentPlatformSeeder::class);
 
     }
 }

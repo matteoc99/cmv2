@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -121,5 +122,24 @@ class User extends Authenticatable
             $img = asset("uploads/".$set->picture()->uuid.".".$set->picture()->mime_type);
         }
         return $img;
+    }
+
+    public function subscription()
+    {
+        $subscription=$this->hasOne(Subscription::class)->get()->first();
+        if(is_null($subscription)){
+            $subscription = new Subscription();
+            $plan = Plan::where("id","=",1)->get()->first();
+            $subscription->user_id= Auth::user()->id;
+            $subscription->plan_id= $plan->id;
+            $subscription->active_until= now();
+            $subscription->save();
+        }
+        return $subscription;
+    }
+
+    public function hasActiveSubscription()
+    {
+        return optional($this->subscription())->isActive() ?? false;
     }
 }

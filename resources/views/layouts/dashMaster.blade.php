@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
           crossorigin=""/>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css"/>
 
     <script
         src="https://code.jquery.com/jquery-2.2.4.min.js"
@@ -39,6 +39,27 @@
     @auth
         @include("components.fab")
     @endauth
+    <div class="container">
+
+        @if (isset($errors)&&$errors->any())
+            <div class="card red-text center" role="alert">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        @if (session()->has("success"))
+            <div class="card green-text center" role="alert">
+                <ul>
+                    @foreach(session()->get("success") as $message)
+                        <li>{{$message}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
     @yield("content")
     @auth
 

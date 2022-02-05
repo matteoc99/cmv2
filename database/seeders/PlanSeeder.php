@@ -14,6 +14,7 @@ class PlanSeeder extends Seeder
      */
     public function run()
     {
+
         DB::table('plans')->insert([
             'name' => "Free",
             'price' => 0,

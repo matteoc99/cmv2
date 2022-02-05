@@ -27,6 +27,18 @@
                     class="collection-item tooltipped">Chat<i
                         class="material-icons right">info_outline</i></li>
             @endif
+
         </ul>
+        @auth
+            @if($plan->price > 0 && Request::route()->getName() !== "subscribe.show" )
+                @if(\Illuminate\Support\Facades\Auth::user()->subscription()->plan_id == $plan->id)
+                    <a class="btn waves-effect waves-light blue darken-4 col s12"
+                       href="{{route("subscribe.cancel")}}">Cancel</a>
+                @else
+                    <a class="btn waves-effect waves-light blue darken-4 col s12"
+                       href="{{route("subscribe.show",$plan->id)}}">Select</a>
+                @endif
+            @endif
+        @endauth
     </div>
 </div>

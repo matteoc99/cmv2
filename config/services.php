@@ -29,5 +29,23 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'paypal' =>[
+        "base_uri"=>env("PAYPAL_BASE_URI"),
+        "client_id"=>env("PAYPAL_CLIENT_ID"),
+        "client_secret"=>env("PAYPAL_CLIENT_SECRET"),
+        "class"=> \App\Services\PayPalService::class,
+        "plans"=> [
+            'Basic'=>env("PAYPAL_BASIC_PLAN"),
+            'Professional'=>env("PAYPAL_PROFESSIONAL_PLAN"),
+            'Business'=>env("PAYPAL_BUSINESS_PLAN"),
+            'Start'=>env("PAYPAL_START_PLAN")
+        ],
+    ],
+    'stripe' =>[
+        "base_uri"=>env("STRIPE_BASE_URI"),
+        "key"=>env("STRIPE_KEY"),
+        "secret"=>env("STRIPE_SECRET"),
+        "class"=> \App\Services\StripeService::class,
+    ],
 
 ];

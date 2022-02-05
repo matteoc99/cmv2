@@ -99,7 +99,7 @@
 <div class="divider"></div>
 <div class="container">
     <div class="row center">
-        <h4 class="main-blue">Start now for Free and Upgrade your plan based an your needs</h4>
+        <h4 class="main-blue">Start now for Free and Upgrade your plan based on your needs</h4>
     </div>
     <div class="row center">
         <a href="{{route("register")}}"

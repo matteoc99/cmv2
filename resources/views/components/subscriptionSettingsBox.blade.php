@@ -3,7 +3,7 @@
         <div class="card-header center"><h4>Subscription Settings</h4></div>
         <div class="card-body">
             <h5 class="center">Current Plan</h5>
-            @include("components.planBox",["plan"=>\Illuminate\Support\Facades\Auth::user()->setting()->plan()])
+            @include("components.planBox",["plan"=>\Illuminate\Support\Facades\Auth::user()->subscription()->plan()])
             <h5 class="center">Change Plan</h5>
             @include("components.pricing")
         </div>
