@@ -91,6 +91,7 @@ class TicketPolicy
             ? Response::allow()
             : Response::deny();
     }
+
     public function addCraftsman(User $user,Ticket $ticket)
     {
         $condominia =Auth::user()->administrates()->where("id","=",$ticket->condominium_id)->get();

@@ -3,6 +3,7 @@
 @section("content")
 
     <div class="container">
+        @include("components.session_messages")
         <div class="row">
             <div class="col s12 m12 l8 xl6 card offset-l2 offset-xl3">
                 <ul class="tabs">
