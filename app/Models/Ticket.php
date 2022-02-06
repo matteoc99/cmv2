@@ -106,5 +106,19 @@ class Ticket extends Model
         }
     }
 
+    public function unreadChatMessages(){
+        $messages = $this->chat()->messages()->get();
+        $userMessages = Auth::user()->seenMessages()->get();
+
+        $unread = collect([]);
+        foreach ($messages as $message)
+        {
+            if(count($userMessages->where("pivot.message_id","=",$message->id))==0){
+                $unread = $unread->merge([$message]);
+            }
+        }
+        return $unread;
+    }
+
 
 }

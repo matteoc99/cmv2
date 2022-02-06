@@ -11,6 +11,6 @@ class Chat extends Model
 
     public function messages()
     {
-        return $this->hasMany(Chat::class)->get()->first();
+        return $this->hasMany(Message::class);
     }
 }

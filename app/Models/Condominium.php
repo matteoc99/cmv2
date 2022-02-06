@@ -15,4 +15,8 @@ class Condominium extends Model
     {
         return $this->hasMany(Family::class);
     }
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Message extends Model
 {
@@ -28,6 +29,11 @@ class Message extends Model
     public function hasFile()
     {
         return !is_null($this->uuid)&&strlen($this->uuid)>1;
+    }
+
+    public function isNew()
+    {
+        return is_null(Auth::user()->seenMessages()->where("message_id", "=", $this->id)->get()->first());
     }
 
 

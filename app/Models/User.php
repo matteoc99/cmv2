@@ -112,7 +112,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Ticket::class, "user_ticket")
             ->using(UserTickets::class)->withPivot("seen");
     }
-
+    public function seenMessages()
+    {
+        return $this->belongsToMany(Message::class, "user_message")
+            ->using(UserMessage::class)->withPivot("read");
+    }
     public function userTags()
     {
         return $this->belongsToMany(Tag::class, "user_tag")

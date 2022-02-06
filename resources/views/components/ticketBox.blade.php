@@ -8,6 +8,7 @@
                 <p>{{$ticket->status()->name()}}</p>
             @endif
             <p>{{$ticket->tag()->name()}}</p>
+            <p>New Messages: {{count($ticket->unreadChatMessages())}}</p>
         </div>
         @can("view",$ticket)
             <div class="card-action">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,6 +20,6 @@ class FrontendController extends Controller
     }
 
     public function test(Request $request){
-        return Auth::user()->administratesFamilies();
+        return Ticket::where("id","=",3)->get()->first()->unreadChatMessages();
     }
 }

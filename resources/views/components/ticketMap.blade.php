@@ -1,9 +1,15 @@
+@php
+    $tickets = \App\Models\Ticket::where("status_id","<",3)->where("contract_type_id","=",3)->get();
+    $tickets = $tickets->where("craftsman_id","!=",\Illuminate\Support\Facades\Auth::user()->id)
+@endphp
 <div class="row">
-    <div id="map" style="height: 500px"></div>
+    @if(is_countable($tickets)&& count($tickets)>0)
+        <div id="map" style="height: 500px"></div>
+    @endif
 </div>
 
 <script>
-    function onMarkerClick(id){
+    function onMarkerClick(id) {
         alert(id);
     }
 
@@ -26,7 +32,7 @@
         }).addTo(map);
         var markers = L.markerClusterGroup();
 
-        @foreach(\App\Models\Ticket::where("status_id","<",3)->where("contract_type_id","=",3)->where("craftsman_id","!=",\Illuminate\Support\Facades\Auth::user()->id)->get() as $ticket)
+        @foreach($tickets as $ticket)
         @php
             $condominium = $ticket->condominium();
             $lat= $condominium->lat;
