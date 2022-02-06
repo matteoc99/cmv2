@@ -43,8 +43,7 @@
                                 </a>
                             @endif
                             <a href="#addCraftsmanModal"
-                               class="modal-trigger btn waves-effect waves-light blue darken-4"><i
-                                    class="material-icons">contacts</i></a>
+                               class="modal-trigger btn waves-effect waves-light blue darken-4">Add A Craftsman</a>
                         </div>
                     @endcan
                     @can("createEstimate",$ticket)
