@@ -1,9 +1,9 @@
 $(document).ready(function () {
 
     M.AutoInit();
-
+    M.updateTextFields();
     var elems = document.querySelectorAll('.datepicker');
-    M.Datepicker.init(elems, {"format":"yyyy/mm/dd"});
+    M.Datepicker.init(elems, {"format": "yyyy/mm/dd"});
 
     $('.fixed-action-btn').click(function () {
         var instance = M.FloatingActionButton.getInstance(document.querySelectorAll('.fixed-action-btn')[0]);
@@ -29,12 +29,23 @@ function togglePassword(id) {
         input.type = "password";
     }
 }
-function togglePriceContainer(){
-    if($('#contractType').val()==2){
+
+function togglePriceContainer() {
+    if ($('#contractType').val() == 2) {
         $('#price-container').show()
-    }else{$('#price-container').hide()}
+    } else {
+        $('#price-container').hide()
+    }
 }
 
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text);
 }
+
+$(window).load(function(){
+    $('input:-webkit-autofill').each(function(){
+        if ($(this).val().length !== "") {
+            $(this).siblings('label, i').addClass('active');
+        }
+    });
+});

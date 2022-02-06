@@ -21,4 +21,8 @@ class Family extends Model
     {
         return $this->hasMany(Ticket::class);
     }
+
+    public function getIsUserDeletedAttribute(){
+        return $this->user()->deleted;
+    }
 }

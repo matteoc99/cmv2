@@ -62,6 +62,9 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/condominium/{condominium}/createFamily', "App\\Http\\Controllers\\FamilyController@showCreate")->name("createFamily");
         Route::post('/createFamily', 'App\\Http\\Controllers\\FamilyController@create')->name('createFamilyPost');
+        Route::get('/condominium/{condominium}/editFamily/{family}', "App\\Http\\Controllers\\FamilyController@showEdit")->name("editFamily");
+        Route::post('/editFamily/{family}', 'App\\Http\\Controllers\\FamilyController@update')->name('editFamilyPost');
+        Route::post('/deleteFamily/{family}', 'App\\Http\\Controllers\\FamilyController@delete')->name('deleteFamily');
 
         Route::get('/condominium/{condominium}/createTicket', "App\\Http\\Controllers\\TicketController@showCreate")->name("createTicket");
         Route::post('/createTicket', 'App\\Http\\Controllers\\TicketController@create')->name('createTicketPost');

@@ -23,7 +23,7 @@
                             <div class="collapsible-body">
                                 <div class="row">
                                     @foreach($families as $family)
-                                        @include("components.familyBox",["family", $family])
+                                        @include("components.familyBox",["family"=>$family,"condominium"=>$condominium])
                                     @endforeach
                                 </div>
                             </div>

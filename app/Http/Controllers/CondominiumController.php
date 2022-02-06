@@ -16,7 +16,7 @@ class CondominiumController extends Controller
             return redirect(route("dashboard"));
         return view("condominium",[
             "condominium"=>$condominium,
-            "families"=>$condominium->families()->get(),
+            "families"=>$condominium->families()->get()->where("is_user_deleted","=",false),
             "tickets"=>Ticket::where("condominium_id","=",$condominium->id)->get()
         ]);
     }

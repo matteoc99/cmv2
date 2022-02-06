@@ -29,7 +29,10 @@
 @include('components.footer')
 
 <script>
+    $(document).ready(function () {
         M.updateTextFields();
+    });
+    M.updateTextFields();
 </script>
 </body>
 </html>

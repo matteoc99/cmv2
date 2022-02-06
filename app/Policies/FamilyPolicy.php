@@ -63,7 +63,9 @@ class FamilyPolicy
      */
     public function update(User $user, Family $family)
     {
-        //
+        return !is_null($user->administrates()->where("id","=",$family->condominium_id)->get()->first())
+            ? Response::allow()
+            : Response::deny();
     }
 
     /**
@@ -75,7 +77,9 @@ class FamilyPolicy
      */
     public function delete(User $user, Family $family)
     {
-        //
+        return !is_null($user->administrates()->where("id","=",$family->condominium_id)->get()->first())
+            ? Response::allow()
+            : Response::deny();
     }
 
     /**

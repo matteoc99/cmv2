@@ -155,4 +155,9 @@ class User extends Authenticatable
             $this->subscription()->delete();
         }
     }
+    public function markAsDeleted()
+    {
+        $this->deleted = true;
+        $this->save();
+    }
 }
