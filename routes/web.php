@@ -74,6 +74,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/ticket/generateToken/{ticket}', 'App\\Http\\Controllers\\TicketController@generateTicketToken')->name('generateTicketToken');
         Route::get('/ticket/addCraftsman/{ticket}/{user}', 'App\\Http\\Controllers\\TicketController@addCraftsmanToTicket')->name('addCraftsmanToTicket');
         Route::get('/ticket/complete/{ticket}', 'App\\Http\\Controllers\\TicketController@complete')->name('ticket.complete');
+        Route::get('/ticket/ticketMarkAsInProgress/{ticket}', 'App\\Http\\Controllers\\TicketController@markAsInProgress')->name('ticketMarkAsInProgress');
 
 
 

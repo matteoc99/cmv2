@@ -66,6 +66,12 @@
                             @endif
                         </div>
                     @endcan
+                    @can("markAsInProgress",$ticket)
+                        <div class="card-action">
+                            <a class="btn waves-effect waves-light blue darken-4"
+                               href="{{route("ticketMarkAsInProgress",$ticket->id)}}">Start Working on this Ticket</a>
+                        </div>
+                    @endcan
                     @can("completeTicket",$ticket)
                         <div class="card-action">
                             <a href="{{route("ticket.complete",$ticket->id)}}"

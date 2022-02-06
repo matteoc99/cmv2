@@ -139,6 +139,15 @@ class TicketController extends Controller
         return redirect()->back()->with('success', "saved");
     }
 
+    public function markAsInProgress(Request $request, Ticket $ticket)
+    {
+        if (Auth::user()->cannot("markAsInProgress", $ticket))
+            return response("401", 401);
+        $ticket->status_id = 3;
+        $ticket->save();
+        return redirect(route("ticket", $ticket->id));
+    }
+
     public function update(Request $request, Ticket $ticket)
     {
         $request->validate([
