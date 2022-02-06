@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Condominium extends Model
 {
@@ -19,4 +20,19 @@ class Condominium extends Model
     {
         return $this->hasMany(Ticket::class);
     }
+
+    public function unreadTickets(){
+        $tickets = $this->tickets()->get();
+        $userTickets = Auth::user()->seenTickets()->get();
+
+        $unread = collect([]);
+        foreach ($tickets as $ticket)
+        {
+            if(count($userTickets->where("pivot.ticket_id","=",$ticket->id))==0){
+                $unread = $unread->merge([$ticket]);
+            }
+        }
+        return $unread;
+    }
+
 }

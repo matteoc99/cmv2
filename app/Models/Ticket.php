@@ -27,7 +27,14 @@ class Ticket extends Model
 
     public function contractType()
     {
-        return $this->belongsTo(ContractType::class)->get()->first();
+        $contracttype=$this->belongsTo(ContractType::class)->get()->first();
+        if(is_null($contracttype)){
+            $this->contract_type_id=1;
+            $this->save();
+            return $this->contractType();
+        }
+
+        return $contracttype;
     }
     public function estimateByUserId($userId){
         return $this->estimates()->where("user_id","=",$userId)->get()->first();
@@ -94,7 +101,7 @@ class Ticket extends Model
 
     public function price()
     {
-        return $this->contractType()->id === 2 ? $this->price : null;
+        return !is_null($this->contractType())&&$this->contractType()->id === 2 ? $this->price : null;
     }
 
     public function addCraftsman($craftsman)
