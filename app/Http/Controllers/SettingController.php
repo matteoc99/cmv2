@@ -49,7 +49,7 @@ class SettingController extends Controller
 
 
         $request->validate([
-            'profile_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'profile_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:6000',
         ]);
         $set = Auth::user()->setting();
         $set->first_name = $request->get("first_name");
