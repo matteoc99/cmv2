@@ -15,7 +15,7 @@
                                value="{{Request::route('condominium')}}">
                         <div class="row">
                             <div class="input-field col s12">
-                                <input class="validate" id="title" type="text" name="title">
+                                <input class="validate" id="title" type="text" name="title" value="{{old("title")}}">
                                 <label for="title" data-error="wrong"
                                        data-success="right"> Title </label>
                             </div>
@@ -28,7 +28,7 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input class="validate" id="desc" type="text" name="desc">
+                                <input class="validate" id="desc" type="text" name="desc" value="{{old("desc")}}">
                                 <label for="desc" data-error="wrong"
                                        data-success="right"> Description</label>
                             </div>
@@ -43,13 +43,13 @@
                             <div class="input-field col s12">
                                 <select name="contractType" id="contractType" onchange="togglePriceContainer()">
                                     @foreach($contractTypes as $contractType)
-                                        <option value="{{$contractType->id}}">{{$contractType->name()}}</option>
+                                        <option value="{{$contractType->id}}" {{old("contractType")==$contractType->id?"selected":""}}>{{$contractType->name()}}</option>
                                     @endforeach
                                 </select>
                                 <label>Contract Type</label>
                             </div>
                             <div class="input-field col s12" id="price-container" style="display: none">
-                                <input class="validate" id="price" type="text" name="price">
+                                <input class="validate" id="price" type="text" name="price" value="{{old("price")}}">
                                 <label for="price" data-error="wrong"
                                        data-success="right"> Price</label>
                             </div>
@@ -63,7 +63,7 @@
                         <div class="input-field col s12">
                             <select name="urgency">
                                 @foreach($urgencies as $urgency)
-                                    <option value="{{$urgency->id}}">{{$urgency->name()}}</option>
+                                    <option value="{{$urgency->id}}" {{old("urgency")==$urgency->id?"selected":""}} >{{$urgency->name()}}</option>
                                 @endforeach
                             </select>
                             <label>Urcency</label>
@@ -71,7 +71,7 @@
                         <div class="input-field col s12">
                             <select name="tag">
                                 @foreach($tags as $tag)
-                                    <option value="{{$tag->id}}">{{$tag->name()}}</option>
+                                    <option value="{{$tag->id}}" {{old("tag")==$tag->id?"selected":""}}>{{$tag->name()}}</option>
                                 @endforeach
                             </select>
                             <label>Tag</label>

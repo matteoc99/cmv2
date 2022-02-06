@@ -87,7 +87,7 @@ class TicketPolicy
             : Response::deny();
     }
     public function completeTicket(User $user,Ticket $ticket){
-        return $ticket->status_id<4&&Auth::user()->id == $ticket->user_id
+        return $ticket->status_id==3&&Auth::user()->id == $ticket->user_id
             ? Response::allow()
             : Response::deny();
     }

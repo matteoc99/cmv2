@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">people</i>
-                                <input class="validate" id="name" type="text" name="name">
+                                <input class="validate" id="name" type="text" name="name" value="{{old("name")}}">
                                 <label for="name" data-error="wrong"
                                        data-success="right"> Name </label>
                             </div>
@@ -30,7 +30,7 @@
                         <div class="row">
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">email</i>
-                                <input class="validate" id="email" type="email" name="email">
+                                <input class="validate" id="email" type="email" name="email" value="{{old("email")}}">
                                 <label for="email" data-error="wrong"
                                        data-success="right"> E-Mail </label>
                             </div>
@@ -44,7 +44,7 @@
                         <div class="row">
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">child_friendlya</i>
-                                <input class="validate" id="count" type="number" name="count" min="0">
+                                <input class="validate" id="count" type="number" name="count" min="0" value="{{old("count")}}">
                                 <label for="count" data-error="wrong"
                                        data-success="right"> Family Size </label>
                             </div>

@@ -27,5 +27,9 @@
     @yield("content")
 </main>
 @include('components.footer')
+
+<script>
+        M.updateTextFields();
+</script>
 </body>
 </html>
