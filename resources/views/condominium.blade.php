@@ -7,6 +7,7 @@
             <h3><a href="{{route("dashboard")}}"><i
                         class="material-icons small blue-text text-darken-4">arrow_back</i></a><i
                     class="material-icons small">domain</i>{{$condominium->name}}</h3>
+            <a class="btn waves-effect waves-light blue darken-4 col s12 m6 l3" href="{{route("exportToExcel",$condominium->id)}}">Export To Excel</a>
         @else
             @if(!is_null($condominium))
                 <h3><i class="material-icons small">domain</i>{{$condominium->name}}</h3>

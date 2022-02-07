@@ -2,7 +2,6 @@
 
 @section("content")
     <div class="container">
-
         @if(is_countable($condominia)&&count($condominia)>0)
             <div class="row">
                 @foreach($condominia as $condominium)

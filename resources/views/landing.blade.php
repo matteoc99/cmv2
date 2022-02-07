@@ -93,7 +93,7 @@
 
     <div class="section">
         <h3 class="center light-green-text">Pricing</h3>
-        @include("components.pricing")
+        @include("components.pricing",["size"=>" s12 m6 l3"])
     </div>
 </div>
 <div class="divider"></div>

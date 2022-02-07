@@ -5,7 +5,7 @@
             <h5 class="center">Current Plan</h5>
             @include("components.planBox",["plan"=>\Illuminate\Support\Facades\Auth::user()->subscription()->plan()])
             <h5 class="center">Change Plan</h5>
-            @include("components.pricing")
+            @include("components.pricing",["size"=>" s12 m6 l6"])
         </div>
     </div>
 </div>

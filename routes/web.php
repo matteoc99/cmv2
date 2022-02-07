@@ -99,6 +99,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 
+        Route::get('/export/excel/{condominium}', [App\Http\Controllers\ExportController::class, 'exportToExcel'])->name('exportToExcel');
 
 
 

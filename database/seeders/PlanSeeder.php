@@ -19,7 +19,7 @@ class PlanSeeder extends Seeder
             'name' => "Free",
             'price' => 0,
             'max_con' => 1,
-            'max_user' => 15,
+            'max_user' => 20,
             'max_ticket' => 40,
             'can_chat' => false,
         ]);
@@ -27,15 +27,15 @@ class PlanSeeder extends Seeder
             'name' => "Basic",
             'price' => 9,
             'max_con' => 2,
-            'max_user' => 45,
+            'max_user' => 100,
             'max_ticket' => 9999999,
             'can_chat' => false,
         ]);
         DB::table('plans')->insert([
             'name' => "Professional",
             'price' => 19,
-            'max_con' => 5,
-            'max_user' => 60,
+            'max_con' => 10,
+            'max_user' => 1500,
             'max_ticket' => 9999999,
             'can_chat' => true,
         ]);
