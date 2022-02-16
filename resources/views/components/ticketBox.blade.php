@@ -5,7 +5,7 @@
             <p>{{$ticket->desc}}</p>
             <p>{{$ticket->urgency()->name()}}</p>
             @if($ticket->hasStatus())
-                <p>{{$ticket->status()->name()}}</p>
+                <p>{{$ticket->status()->get()->first()->name()}}</p>
             @endif
             <p>{{$ticket->tag()->name()}}</p>
             <p>New Messages: {{count($ticket->unreadChatMessages())}}</p>

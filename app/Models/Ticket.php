@@ -10,6 +10,7 @@ class Ticket extends Model
 {
     use HasFactory;
 
+
     public function urgency()
     {
         return $this->belongsTo(Urgency::class)->get()->first();
@@ -22,12 +23,12 @@ class Ticket extends Model
 
     public function status()
     {
-        return $this->belongsTo(Status::class)->get()->first();
+        return $this->belongsTo(Status::class);
     }
 
     public function contractType()
     {
-        $contracttype=$this->belongsTo(ContractType::class)->get()->first();
+        $contracttype=$this->belongsTo(ContractType::class);
         if(is_null($contracttype)){
             $this->contract_type_id=1;
             $this->save();
@@ -101,7 +102,7 @@ class Ticket extends Model
 
     public function price()
     {
-        return !is_null($this->contractType())&&$this->contractType()->id === 2 ? $this->price : null;
+        return !is_null($this->contractType()->get()->first())&&$this->contractType()->get()->first()->id === 2 ? $this->price : null;
     }
 
     public function addCraftsman($craftsman)

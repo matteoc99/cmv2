@@ -69,7 +69,7 @@ class TicketPolicy
     public function approveEstimates(User $user, Ticket $ticket)
     {
         $condominia = Auth::user()->administrates()->where("id", "=", $ticket->condominium_id)->get();
-        return Auth::user()->isAdmin() && $ticket->contractType()->id === 3
+        return Auth::user()->isAdmin() && $ticket->contractType()->get()->first()->id === 3
             ? Response::allow()
             : Response::deny();
     }
@@ -79,14 +79,14 @@ class TicketPolicy
         return Auth::user()->isCraftsman()
         && $ticket->status_id === 2
         && $ticket->craftsman_id === Auth::user()->id
-        && $ticket->contractType()->id !== 3
+        && $ticket->contractType()->get()->first()->id !== 3
             ? Response::allow()
             : Response::deny();
     }
 
     public function createEstimate(User $user, Ticket $ticket)
     {
-        return Auth::user()->isCraftsman() && $ticket->contractType()->id === 3
+        return Auth::user()->isCraftsman() && $ticket->contractType()->get()->first()->id === 3
             ? Response::allow()
             : Response::deny();
     }

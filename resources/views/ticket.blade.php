@@ -14,11 +14,11 @@
                     <div class="card-content ">
                         <span class="card-title">{{$ticket->title}}</span>
                         <p>{{$ticket->desc}}</p>
-                        <p>Status: {{$ticket->status()->name()}}</p>
+                        <p>Status: {{$ticket->status()->get()->first()->name()}}</p>
                         <p>Urgency: {{$ticket->urgency()->name()}}</p>
                         <p>Work type: {{$ticket->tag()->name()}}</p>
                         @if(!is_null($ticket->contract_type_id))
-                            <p>Contract type: {{$ticket->contractType()->name()}}</p>
+                            <p>Contract type: {{$ticket->contractType()->get()->first()->name()}}</p>
                         @endif
                         @if(!is_null($ticket->price()))
                             <p>Price: {{$ticket->price()}}</p>
