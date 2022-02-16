@@ -36,7 +36,6 @@ class ExportController extends Controller
             array_push($data, $row);
         }
 
-        return $data;
         $fileName = "{$condominium->name}_ticket_" . date('Ymd') . ".xlsx";
 
         header("Content-Disposition: attachment; filename=\"$fileName\"");
