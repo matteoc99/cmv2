@@ -1,4 +1,4 @@
-<div class="col s12 m6 l4 xl3">
+<div class="col s12 m6 l4 xl3 condominium-box" data-search="{{$condominium->name}}">
     <div class="card blue darken-4">
         <div class="card-content white-text">
             <span class="card-title">{{$condominium->name}}</span>

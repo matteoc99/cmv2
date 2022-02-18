@@ -26,7 +26,12 @@ class TicketController extends Controller
 
     public function showBytoken(Request $request)
     {
+
         $ticket = Ticket::where("token", "=", $request->route("token"))->get()->first();
+
+        if(!is_null(Auth::user()) && !Auth::user()->isCraftsman())
+            return redirect(route("ticket", $ticket->id));
+
         if (is_null($ticket))
             return response("", 404);
 
