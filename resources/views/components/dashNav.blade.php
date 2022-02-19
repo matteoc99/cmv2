@@ -6,7 +6,12 @@
     @include("components.langSelect")
     <li><a href="{{route("settings")}}">Settings</a></li>
     @auth
-    <li><a href="{{route("logout")}}">Logout</a></li>
+        <ul id="userDrop" class="dropdown-content">
+            <li><a href="{{route("settings")}}" class="light-green-text">Profile</a></li>
+            <li><a href="{{route("logout")}}" class="light-green-text">Logout</a></li>
+        </ul>
+        <li><a class="dropdown-trigger" href="#!" data-target="userDrop">{{\Illuminate\Support\Facades\Auth::user()->name()}}<i
+                    class="material-icons right">arrow_drop_down</i></a>
     @endauth
     @guest
         <li><a href="{{route("login")}}">Login</a></li>
@@ -25,7 +30,12 @@
                 <li><a href="{{route("settings")}}">Settings</a></li>
                 @include("components.langSelect")
                 @auth
-                    <li><a href="{{route("logout")}}">Logout</a></li>
+                    <ul id="userDrop" class="dropdown-content">
+                        <li><a href="{{route("settings")}}" class="light-green-text">Profile</a></li>
+                        <li><a href="{{route("logout")}}" class="light-green-text">Logout</a></li>
+                    </ul>
+                    <li><a class="dropdown-trigger" href="#!" data-target="userDrop">{{\Illuminate\Support\Facades\Auth::user()->name()}}<i
+                                class="material-icons right">arrow_drop_down</i></a>
                 @endauth
                 @guest
                     <li><a href="{{route("login")}}">Login</a></li>
