@@ -9,7 +9,7 @@
             $unreadMessages=$unreadMessages+count($ticket->unreadChatMessages());
         }
     @endphp
-    @if($unreadMessages >= 0)
+    @if($unreadMessages > 0)
         <span>New Messages: {{$unreadMessages}}</span>
     @endif
     <span class="right">
