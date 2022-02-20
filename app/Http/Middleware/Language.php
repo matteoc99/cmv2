@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @property Request request
@@ -30,6 +31,9 @@ class Language
     public function handle($request, Closure $next)
     {
         $locale = $request->getPreferredLanguage(self::LOCALES);
+        if(!is_null(Auth::user())){
+            $locale = Auth::user()->setting()->language;
+        }
         if(is_null(session('my_locale'))&&in_array($locale,self::LOCALES))
             session(['my_locale' => $locale]);
         $this->app->setLocale(session('my_locale', config('app.locale')));

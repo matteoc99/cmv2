@@ -105,7 +105,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 
-      Route::get('/test', 'App\\Http\\Controllers\\FrontendController@test')->name("test");
+     // Route::get('/test', 'App\\Http\\Controllers\\FrontendController@test')->name("test");
 
 
     });
