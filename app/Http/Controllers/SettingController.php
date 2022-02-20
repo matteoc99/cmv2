@@ -101,4 +101,18 @@ class SettingController extends Controller
 
         return redirect()->back()->with('tab', "profile");
     }
+
+    public function setListView(Request $request){
+        $set = Auth::user()->setting();
+        $set->condominium_box_view=false;
+        $set->save();
+        return redirect()->back();
+    }
+
+    public function setBoxView(Request $request){
+        $set = Auth::user()->setting();
+        $set->condominium_box_view=true;
+        $set->save();
+        return redirect()->back();
+    }
 }

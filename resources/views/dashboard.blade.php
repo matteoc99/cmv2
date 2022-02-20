@@ -11,11 +11,31 @@
                     <input id="search" type="text" class="validate">
                     <label for="search">Search</label>
                 </div>
+                <div class="input-field col s12 m6 l4 xl3 ">
+                    @if(\Illuminate\Support\Facades\Auth::user()->setting()->condominium_box_view)
+                        <a class="waves-effect waves-light btn blue darken-4" href="{{route("setListView")}}">
+                            <i class="material-icons ">list</i>
+                        </a>
+                    @else
+                        <a class="waves-effect waves-light btn blue darken-4" href="{{route("setBoxView")}}">
+                            <i class="material-icons ">check_box_outline_blank</i>
+                        </a>
+                    @endif
+                </div>
+
             </div>
             <div class="row">
-                @foreach($condominia as $condominium)
-                    @include("components.condominiumBox",["condominium", $condominium])
-                @endforeach
+                @if(\Illuminate\Support\Facades\Auth::user()->setting()->condominium_box_view)
+                    @foreach($condominia as $condominium)
+                        @include("components.condominiumBox",["condominium", $condominium])
+                    @endforeach
+                @else
+                    <ul class="collection">
+                        @foreach($condominia as $condominium)
+                            @include("components.condominiumListItem",["condominium", $condominium])
+                        @endforeach
+                    </ul>
+                @endif
             </div>
         @else
             @include("components.fabDiscovery")
@@ -26,9 +46,9 @@
             document.getElementById("search").addEventListener('input', (event) => {
                 val = event.target.value;
                 $(".condominium-box").each(function (i, obj) {
-                    if ($(obj).data("search").toLowerCase().search(val.toLowerCase())>=0) {
+                    if ($(obj).data("search").toLowerCase().search(val.toLowerCase()) >= 0) {
                         $(obj).show();
-                    }else{
+                    } else {
                         $(obj).hide();
                     }
                 });
