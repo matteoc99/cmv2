@@ -1,4 +1,4 @@
-<div class="col s6 m3 l2 xl1 dropzone drag-drop" data-folder="{{$doc->id}}">
+<div class="col s6 m3 l2 xl1 dropzone drag-drop" data-folder="{{$doc->id}}"  data-document="{{$doc->id}}">
     @if(!is_null($doc->id))
         <a href="{{route("folder",["condominium"=>$doc->condominium_id,"document"=>$doc->id])}}">
             @else

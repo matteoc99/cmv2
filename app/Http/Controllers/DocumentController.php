@@ -19,7 +19,8 @@ class DocumentController extends Controller
         $doc->id = $document->parent_id;
         $doc->isFolder = true;
         $doc->condominium_id = $condominium->id;
-        $docs = $docs->prepend($doc);
+        if (count($docs) > 0)
+            $docs = $docs->prepend($doc);
         return view("folder", ["docs" => $docs, "condominium" => $condominium, "folder" => $document]);
     }
 
@@ -40,8 +41,7 @@ class DocumentController extends Controller
         if ($doc->condominium_id == $con && (!is_null($par) && $par->condominium_id == $con)) {
             $doc->parent_id = $parent;
             $doc->save();
-        }elseif (is_null($par)&&$doc->condominium_id == $con)
-        {
+        } elseif (is_null($par) && $doc->condominium_id == $con) {
             $doc->parent_id = null;
             $doc->save();
         }
@@ -108,9 +108,10 @@ class DocumentController extends Controller
         return redirect()->back();
     }
 
-    public function delete($condominium,$document){
-        $doc= Document::where("id","=",$document)->get()->first();
-        if($doc->condominium_id==$condominium){
+    public function delete($condominium, $document)
+    {
+        $doc = Document::where("id", "=", $document)->get()->first();
+        if ($doc->condominium_id == $condominium) {
             $doc->recursiveDelete();
         }
         return redirect()->back();
