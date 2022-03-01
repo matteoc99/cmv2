@@ -28,6 +28,7 @@
             @endforelse
         </div>
         @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
+            @include("components.scripts.moveDocumentsScript",["condominium"=>$condominium])
             @include("components.modals.addDocumentModal")
             @include("components.modals.addFolderModal")
         @endif

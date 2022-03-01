@@ -28,8 +28,10 @@
             integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
             crossorigin=""></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
     <script src="{{asset("js/main.js")}}"></script>
     <script src="{{asset("js/chat.js")}}"></script>
+    <script src="{{asset("js/dragndrop.js")}}"></script>
     @livewireStyles
 
 </head>

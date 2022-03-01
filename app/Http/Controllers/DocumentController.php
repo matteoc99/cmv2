@@ -20,6 +20,17 @@ class DocumentController extends Controller
         return view("documents",["docs"=>$docs,"condominium"=>$condominium]);
     }
 
+    public function moveDocument($con,$document, $parent){
+
+        $doc=Document::where("id","=",$document)->get()->first();
+        $par=Document::where("id","=",$parent)->get()->first();
+        if($doc->condominium_id==$con&&$par->condominium_id==$con){
+            $doc->parent_id=$parent;
+            $doc->save();
+        }
+        return redirect()->back();
+    }
+
     public function addFolder(Request $request)
     {
         $request->validate([
