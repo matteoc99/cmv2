@@ -1,6 +1,6 @@
 interact('.dropzone').dropzone({
     accept: '.drag-drop',
-    overlap: 0.75,
+    overlap: 0.30,
     ondropactivate: function (event) {
         event.target.classList.add('drop-active')
     },

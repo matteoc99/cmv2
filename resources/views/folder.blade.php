@@ -3,15 +3,16 @@
 @section("content")
 
     <div class="container">
-        @if(is_null($folder->parent_id))
-            <h3><a href="{{route("documents",$condominium->id)}}"><i
-                        class="material-icons small blue-text text-darken-4">arrow_back</i></a><i
-                    class="material-icons small">folder</i>{{$folder->name}}</h3>
-        @else
-            <h3><a href="{{route("folder",[$condominium->id,$folder->parent_id])}}"><i
-                        class="material-icons small blue-text text-darken-4">arrow_back</i></a><i
-                    class="material-icons small">folder</i>{{$folder->name}}</h3>
-        @endif
+            @if(is_null($folder->parent_id))
+                <h3><a href="{{route("documents",$condominium->id)}}"><i
+                            class="material-icons small blue-text text-darken-4">arrow_back</i></a><i
+                        class="material-icons small">folder</i>{{$folder->name}}</h3>
+            @else
+                <h3><a href="{{route("folder",[$condominium->id,$folder->parent_id])}}"><i
+                            class="material-icons small blue-text text-darken-4">arrow_back</i></a><i
+                        class="material-icons small">folder</i>{{$folder->name}}</h3>
+            @endif
+
         <div class="row">
             @forelse($docs as $doc)
 
