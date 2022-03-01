@@ -1,6 +1,6 @@
 <div wire:poll class=" row message-container">
     @forelse(\App\Models\Message::where("chat_id","=",$chat->id)->get() as $message)
-        @include("components.messageBox",["message"=>$message])
+        @include("components.boxes.messageBox",["message"=>$message])
         @php
             if($message->isNew()){
                 $usermessage = new \App\Models\UserMessage();

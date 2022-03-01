@@ -10,7 +10,7 @@
                 @php
                     $empty=false;
                 @endphp
-                @include("components.craftsmanProfileBox",["craftsman"=>$craftsman,"ticket_id"=>Request::route('ticket')->id])
+                @include("components.boxes.craftsmanProfileBox",["craftsman"=>$craftsman,"ticket_id"=>Request::route('ticket')->id])
             @endif
         @endforeach
         @if($empty)

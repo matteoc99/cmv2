@@ -19,13 +19,21 @@
             @can("create",\App\Models\Ticket::class)
                 <li><a href="{{route("createTicket",Request::route('condominium')->id)}}"
                        class="btn-floating blue  darken-4"><i
-                            class="material-icons">note_add</i></a></li>
+                            class="material-icons">assignment</i></a></li>
             @endcan
         @endif
+        @if((Request::route()->getName()=="documents"||Request::route()->getName()=="folder")&&\Illuminate\Support\Facades\Auth::user()->isAdmin())
+            <li><a href="#addFolderModal"
+                   class="modal-trigger btn-floating blue  darken-4"><i
+                        class="material-icons">create_new_folder</i></a></li>
+                <li><a href="#addDocumentModal"
+                   class="modal-trigger btn-floating blue  darken-4"><i
+                        class="material-icons">note_add</i></a></li>
+        @endif
         @if(\Illuminate\Support\Facades\Auth::user()->isCraftsman())
-                <li><a href="#addTicketModal"
-                       class="btn-floating blue  darken-4 modal-trigger"><i
-                            class="material-icons">note_add</i></a></li>
+            <li><a href="#addTicketModal"
+                   class="btn-floating blue  darken-4 modal-trigger"><i
+                        class="material-icons">note_add</i></a></li>
         @endif
         <li><a href="mailto:matteo.cosi@live.it" class="btn-floating blue  darken-4"><i class="material-icons">help</i></a>
         </li>

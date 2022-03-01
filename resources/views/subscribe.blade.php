@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col s12 m6">
-                @include("components.planBox",["plan"=>$plan])
+                @include("components.boxes.planBox",["plan"=>$plan])
             </div>
             <div class="col s12 m6">
                 <div class="card">

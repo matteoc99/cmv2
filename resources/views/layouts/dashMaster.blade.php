@@ -43,7 +43,7 @@
     @auth
 
         @if(\Illuminate\Support\Facades\Auth::user()->isCraftsman())
-            @include("components.addTicketModal")
+            @include("components.modals.addTicketModal")
         @endif
 
     @endauth

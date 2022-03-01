@@ -56,7 +56,7 @@
                                         <p class="blue-text text-darken-4">Your Estimate has been Declined</p>
                                     @endif
                                 @else
-                                    @include("components.estimateBox",["estimate"=>$ticket->estimateByUserId(\Illuminate\Support\Facades\Auth::user()->id)])
+                                    @include("components.boxes.estimateBox",["estimate"=>$ticket->estimateByUserId(\Illuminate\Support\Facades\Auth::user()->id)])
                                     <p class="blue-text text-darken-4">Pending approval</p>
                                 @endif
                             @else
@@ -79,7 +79,7 @@
                     @endcan
                     @if($ticket->hasApprovedEstimate())
                         <div class="card-action">
-                            @include("components.estimateBox",["estimate"=>$ticket->approvedEstimate()])
+                            @include("components.boxes.estimateBox",["estimate"=>$ticket->approvedEstimate()])
                         </div>
 
                     @else
@@ -247,16 +247,16 @@
             @endif
         </div>
         @if(!is_null(\Illuminate\Support\Facades\Auth::user())&&\Illuminate\Support\Facades\Auth::user()->isAdmin())
-            @include("components.addCraftsmanModal")
+            @include("components.modals.addCraftsmanModal")
         @endif
         @if(!is_null(\Illuminate\Support\Facades\Auth::user())&&!is_null($ticket->craftsman_id))
-            @include("components.profileModal",["user"=>\App\Models\User::where("id","=",$ticket->craftsman_id)->get()->first()])
+            @include("components.modals.profileModal",["user"=>\App\Models\User::where("id","=",$ticket->craftsman_id)->get()->first()])
         @endif
         @can("createEstimate",$ticket)
-            @include("components.createEstimateModal",["ticket"=>$ticket])
+            @include("components.modals.createEstimateModal",["ticket"=>$ticket])
         @endcan
         @can("approveEstimates",$ticket)
-            @include("components.approveEstimatesModal",["estimates"=>$ticket->estimates()->get()])
+            @include("components.modals.approveEstimatesModal",["estimates"=>$ticket->estimates()->get()])
         @endcan
     </div>
 @endsection

@@ -13,6 +13,7 @@
                 <h3><i class="material-icons small">domain</i>{{$condominium->name}}</h3>
             @endif
         @endif
+        <a class="btn waves-effect waves-light blue darken-4 col s12 m6 l3" href="{{route("documents",$condominium->id)}}">Documents</a>
         @if((\Illuminate\Support\Facades\Auth::user()->isAdmin()&&is_countable($families)&&count($families)>0)||is_countable($tickets)&&count($tickets)>0)
             <ul class="collapsible">
                 @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
@@ -24,7 +25,7 @@
                             <div class="collapsible-body">
                                 <div class="row">
                                     @foreach($families as $family)
-                                        @include("components.familyBox",["family"=>$family,"condominium"=>$condominium])
+                                        @include("components.boxes.familyBox",["family"=>$family,"condominium"=>$condominium])
                                     @endforeach
                                 </div>
                             </div>
@@ -64,7 +65,7 @@
                                     <div class="row">
                                         @foreach($tickets as $ticket)
                                             @if($ticket->status_id==$status->id)
-                                                @include("components.ticketBox",["ticket", $ticket])
+                                                @include("components.boxes.ticketBox",["ticket", $ticket])
                                             @endif
                                         @endforeach
                                     </div>

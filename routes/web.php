@@ -104,8 +104,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/export/excel/{condominium}', [App\Http\Controllers\ExportController::class, 'exportToExcel'])->name('exportToExcel');
 
 
+        Route::get('/condominium/{condominium}/documents', "App\\Http\\Controllers\\DocumentController@show")->name("documents");
+        Route::post('/condominium/{condominium}/documents/addDocument', "App\\Http\\Controllers\\DocumentController@addDocument")->name("documents.add");
+        Route::post('/condominium/{condominium}/documents/addFolder', "App\\Http\\Controllers\\DocumentController@addFolder")->name("documents.folder.add");
+        Route::get('/condominium/{condominium}/documents/{document}', "App\\Http\\Controllers\\DocumentController@showFolder")->name("folder");
 
-     // Route::get('/test', 'App\\Http\\Controllers\\FrontendController@test')->name("test");
+
+        // Route::get('/test', 'App\\Http\\Controllers\\FrontendController@test')->name("test");
 
 
     });

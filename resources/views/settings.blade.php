@@ -21,14 +21,14 @@
                 </ul>
             </div>
             <div id="profile" class="col s12">
-                @include("components.profileSettingBox",["img"=>$img,"setting"=>$setting])
+                @include("components.boxes.profileSettingBox",["img"=>$img,"setting"=>$setting])
             </div>
             <div id="notification" class="col s12">
-                @include("components.notificationSettingBox",["setting"=>$setting])
+                @include("components.boxes.notificationSettingBox",["setting"=>$setting])
             </div>
             @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
                 <div id="subscription" class="col s12">
-                    @include("components.subscriptionSettingsBox")
+                    @include("components.boxes.subscriptionSettingsBox")
                 </div>
             @endif
         </div>

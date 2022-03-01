@@ -33,7 +33,7 @@ class MessageController extends Controller
             $fileName = $uuid . '.' . $ext;
             $request->file->move(public_path('uploads'), $fileName);
             $message->uuid = $uuid;
-            $message->mime_type = $ext;;
+            $message->mime_type = $ext;
         }
 
         $message->save();

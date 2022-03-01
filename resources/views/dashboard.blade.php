@@ -27,12 +27,12 @@
             <div class="row">
                 @if(\Illuminate\Support\Facades\Auth::user()->setting()->condominium_box_view)
                     @foreach($condominia as $condominium)
-                        @include("components.condominiumBox",["condominium", $condominium])
+                        @include("components.boxes.condominiumBox",["condominium", $condominium])
                     @endforeach
                 @else
                     <ul class="collection">
                         @foreach($condominia as $condominium)
-                            @include("components.condominiumListItem",["condominium", $condominium])
+                            @include("components.boxes.condominiumListBox",["condominium", $condominium])
                         @endforeach
                     </ul>
                 @endif

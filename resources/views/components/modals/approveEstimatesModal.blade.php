@@ -3,7 +3,7 @@
     <div class="modal-content">
         @foreach($estimates as $estimate)
             <div class="row">
-                @include("components.approvableEstimateBox",["estimate"=>$estimate])
+                @include("components.boxes.approvableEstimateBox",["estimate"=>$estimate])
             </div>
         @endforeach
     </div>
