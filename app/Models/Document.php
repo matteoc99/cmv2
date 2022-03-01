@@ -22,4 +22,20 @@ class Document extends Model
     {
         return !is_null($this->uuid)&&strlen($this->uuid)>1;
     }
+
+    public function recursiveDelete(){
+        $childs = Document::where("parent_id","=",$this->id)->get();
+        foreach ($childs as $child){
+            $child->recursiveDelete();
+        }
+
+
+        if(!is_null($this->uuid)){
+            $fileName = $this->uuid . '.' . $this->mime_type;
+            $con= Condominium::where("id","=",$this->condominium_id)->get()->first();
+            unlink(public_path('uploads/' . $con->uuid . "/". $fileName));
+        }
+
+        $this->delete();
+    }
 }

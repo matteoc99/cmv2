@@ -109,6 +109,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/condominium/{condominium}/documents/addFolder', "App\\Http\\Controllers\\DocumentController@addFolder")->name("documents.folder.add");
         Route::get('/condominium/{condominium}/documents/{document}', "App\\Http\\Controllers\\DocumentController@showFolder")->name("folder");
         Route::get('/condominium/{condominium}/documents/move/{document}/{parent}', "App\\Http\\Controllers\\DocumentController@moveDocument")->name("documents.move");
+        Route::get('/condominium/{condominium}/documents/{document}/delete', "App\\Http\\Controllers\\DocumentController@delete")->name("documents.delete");
 
 
         // Route::get('/test', 'App\\Http\\Controllers\\FrontendController@test')->name("test");

@@ -107,4 +107,12 @@ class DocumentController extends Controller
 
         return redirect()->back();
     }
+
+    public function delete($condominium,$document){
+        $doc= Document::where("id","=",$document)->get()->first();
+        if($doc->condominium_id==$condominium){
+            $doc->recursiveDelete();
+        }
+        return redirect()->back();
+    }
 }

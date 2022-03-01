@@ -6,7 +6,7 @@
             </div>
             <a href="{{$doc->getFile()}}"><i class="material-icons blue-text text-darken-4">file_download</i></a>
             @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
-                <a href="#" class="right"><i class="material-icons blue-text text-darken-4">delete</i></a>
+                <a href="{{route("documents.delete",["condominium"=>$doc->condominium_id,"document"=>$doc->id])}}" class="right"><i class="material-icons blue-text text-darken-4">delete</i></a>
             @endif
         </div>
         <span class="card-title black-text" style="overflow-wrap: break-word;">{{$doc->name}}</span>
