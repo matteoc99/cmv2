@@ -49,7 +49,6 @@ interact('.drag-drop')
 function dragMouseDown(event) {
     target = event.target
     target = $(target).closest(".drag-drop");
-    console.log("prevent default")
     setTimeout(function () {
         $(target).find("a").on("click", function (e) {
             e.preventDefault();
@@ -60,7 +59,6 @@ function dragMouseDown(event) {
 function closeDragElement(event) {
     target = event.target
     target = $(target).closest(".drag-drop");
-    console.log("allow default")
     setTimeout(function () {
         $(target).find("a").unbind("click");
     }, 300);

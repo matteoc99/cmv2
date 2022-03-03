@@ -7,6 +7,7 @@ use App\Models\Setting;
 use App\Models\Tag;
 use App\Models\User;
 use App\Models\UserTag;
+use App\Services\DownsizerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -46,10 +47,8 @@ class SettingController extends Controller
 
     public function update(Request $request)
     {
-
-
         $request->validate([
-            'profile_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:6000',
+            'profile_image' => 'image|mimes:jpeg,png,jpg|max:15000',
         ]);
         $set = Auth::user()->setting();
         $set->first_name = $request->get("first_name");
@@ -82,6 +81,7 @@ class SettingController extends Controller
             $ext = $request->profile_image->extension();
             $imageName = $uuid . '.' . $ext;
             $request->profile_image->move(public_path('uploads'), $imageName);
+            DownsizerService::scaleDown(public_path('uploads/'.$imageName),$ext,0.001);
             $img = new Picture();
             $img->uuid = $uuid;
             $img->mime_type = $ext;
