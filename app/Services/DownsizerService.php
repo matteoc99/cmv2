@@ -14,7 +14,7 @@ class DownsizerService
 
         $oldw = imagesx($image);
         $oldh = imagesy($image);
-        $factor = $factor*$oldw;
+        $factor = max($factor*$oldw,1);
 
         $imgResized = imagescale($image , $oldw/$factor, $oldh/$factor);
         if($mime=="png"){

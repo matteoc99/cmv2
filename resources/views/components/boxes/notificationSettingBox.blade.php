@@ -3,13 +3,13 @@
         <div class="card-header center"><h4>Notification Settings</h4></div>
         <div class="card-body">
 
-            <form method="POST" action="{{ route('updateNotificationSettings') }}" enctype="multipart/form-data">
+            <form id="notificationForm"method="POST" action="{{ route('updateNotificationSettings') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="input-field col s12">
                         <p>
                             <label>
-                                <input id="ticket_notification" type="checkbox" name="ticket_notification"
+                                <input id="ticket_notification" type="checkbox" name="ticket_notification" onclick="$('#notificationSubmit').click()"
                                     {{$setting->recive_ticket_created_notification?"checked=''":""}}>
                                 <span>Receive a Notification when a new Ticket is created</span>
                             </label>
@@ -19,7 +19,7 @@
                         <div class="input-field col s12">
                             <p>
                                 <label>
-                                    <input id="estimate_notification" type="checkbox" name="estimate_notification"
+                                    <input id="estimate_notification" type="checkbox" name="estimate_notification" onclick="$('#notificationSubmit').click()"
                                         {{$setting->revice_approved_estimate_notification?"checked=''":""}}>
                                     <span>Receive a Notification when your estimate has been Approved</span>
                                 </label>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m6 offset-m3">
-                        <button type="submit" id="submit"
+                        <button type="submit" id="notificationSubmit" style="display: none"
                                 class="btn waves-effect waves-light blue darken-4 col s12"> Update
                         </button>
                     </div>
