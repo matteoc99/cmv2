@@ -88,6 +88,7 @@ class TicketController extends Controller
         $ticket->condominium_id = $condominiumId;
         $ticket->title = $request->get("title");
         $ticket->desc = $request->get("desc");
+        $ticket->phone = $request->get("phone");
         if (Auth::user()->hasFamily()) {
             $ticket->family_id = Auth::user()->family_id;
         }
@@ -172,6 +173,11 @@ class TicketController extends Controller
                 $whatChanged = $whatChanged . " Description to: " . $request->get("desc");
                 $somethingChanged = true;
             }
+        if (!is_null($request->get("phone")))
+            if ($ticket->phone != $request->get("phone")) {
+                $whatChanged = $whatChanged . " Phone to: " . $request->get("phone");
+                $somethingChanged = true;
+            }
         if (!is_null($request->get("status")))
             if ($ticket->status_id != $request->get("status")) {
                 $whatChanged = $whatChanged . " Status to: " . Status::where("id", "=", $request->get("status"))->get()->first()->name();
@@ -210,6 +216,8 @@ class TicketController extends Controller
             $ticket->price = str_replace(",", ".", $request->get("price"));
         if (!is_null($request->get("title")))
             $ticket->title = $request->get("title");
+        if (!is_null($request->get("phone")))
+            $ticket->phone = $request->get("phone");
         if (!is_null($request->get("desc")))
             $ticket->desc = $request->get("desc");
         if (!is_null($request->get("status")))

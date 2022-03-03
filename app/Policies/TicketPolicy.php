@@ -69,7 +69,7 @@ class TicketPolicy
     public function approveEstimates(User $user, Ticket $ticket)
     {
         $condominia = Auth::user()->administrates()->where("id", "=", $ticket->condominium_id)->get();
-        return Auth::user()->isAdmin() && $ticket->contractType()->get()->first()->id === 3
+        return Auth::user()->isAdmin() && !is_null($ticket->contractType()->get()->first()) && $ticket->contractType()->get()->first()->id === 3
             ? Response::allow()
             : Response::deny();
     }

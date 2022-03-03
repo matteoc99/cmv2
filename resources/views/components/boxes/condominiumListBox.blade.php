@@ -1,7 +1,7 @@
 <li class="collection-item">
-    <span>{{$condominium->name}} ({{$condominium->address}})</span> Ticket: {{count($condominium->tickets()->get())}}
+    <span>{{$condominium->name}} ({{$condominium->address}})</span>
     @if(count($condominium->unreadTickets())>0)
-        <span class="new badge">{{count($condominium->unreadTickets())}}</span>
+        <span>New Tickets: {{count($condominium->unreadTickets())}} </span>
     @endif
     @php
         $unreadMessages = 0;

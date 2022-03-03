@@ -35,4 +35,7 @@ class Condominium extends Model
         return $unread;
     }
 
+    public function getUnreadTicketsAttribute(){
+        return count($this->unreadTickets());
+    }
 }

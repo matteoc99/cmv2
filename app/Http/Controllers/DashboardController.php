@@ -23,7 +23,7 @@ class DashboardController extends Controller
     }
     public function showCondominiums(Request $request)
     {
-        return view("dashboard",["condominia"=>Auth::user()->administrates()->get()]);
+        return view("dashboard",["condominia"=>Auth::user()->administrates()->get()->sortByDesc("unread_tickets")]);
     }
     public function showCondominium(Request $request)
     {

@@ -38,7 +38,7 @@
                                 <br>
                             @endif
                         </div>
-                        <div class="row">
+                        <!--div class="row">
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">date_range</i>
                                 <input id="period" class="datepicker"  type="text" name="period" value="{{old("period")}}">
@@ -51,7 +51,7 @@
                                         </span>
                                 <br>
                             @endif
-                        </div>
+                        </div-->
                         <div class="row">
                             <div id="map" style="height: 300px"></div>
                             @if($errors->get("lat"))
@@ -74,6 +74,8 @@
         </div>
     </div>
     <script>
+
+
         var lat="{{old("lat")}}";
         var lng="{{old("lng")}}";
         var marker;
@@ -104,5 +106,7 @@
         }
 
         map.on('click', onMapClick);
+
+
     </script>
 @endsection

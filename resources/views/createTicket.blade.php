@@ -39,6 +39,19 @@
                                 <br>
                             @endif
                         </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input class="validate" id="phone" type="text" name="phone" value="{{old("phone")}}">
+                                <label for="phone" data-error="wrong"
+                                       data-success="right"> Phone number for additional information</label>
+                            </div>
+                            @if($errors->get("phone"))
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>The Phone number is missing </strong>
+                                        </span>
+                                <br>
+                            @endif
+                        </div>
                         @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
                             <div class="input-field col s12">
                                 <select name="contractType" id="contractType" onchange="togglePriceContainer()">

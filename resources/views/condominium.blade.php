@@ -7,13 +7,17 @@
             <h3><a href="{{route("dashboard")}}"><i
                         class="material-icons small blue-text text-darken-4">arrow_back</i></a><i
                     class="material-icons small">domain</i>{{$condominium->name}}</h3>
-            <a class="btn waves-effect waves-light blue darken-4 col s12 m6 l3" href="{{route("exportToExcel",$condominium->id)}}">Export To Excel</a>
+            <a class="btn waves-effect waves-light blue darken-4 col s12 m6 l3"
+               href="{{route("exportToExcel",$condominium->id)}}">Export To Excel</a>
         @else
             @if(!is_null($condominium))
                 <h3><i class="material-icons small">domain</i>{{$condominium->name}}</h3>
             @endif
         @endif
-        <a class="btn waves-effect waves-light blue darken-4 col s12 m6 l3" href="{{route("documents",$condominium->id)}}">Documents</a>
+        @if(!is_null($condominium))
+            <a class="btn waves-effect waves-light blue darken-4 col s12 m6 l3"
+               href="{{route("documents",$condominium->id)}}">Documents</a>
+        @endif
         @if((\Illuminate\Support\Facades\Auth::user()->isAdmin()&&is_countable($families)&&count($families)>0)||is_countable($tickets)&&count($tickets)>0)
             <ul class="collapsible">
                 @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())

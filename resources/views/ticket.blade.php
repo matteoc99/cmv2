@@ -14,6 +14,9 @@
                     <div class="card-content ">
                         <span class="card-title">{{$ticket->title}}</span>
                         <p>{{$ticket->desc}}</p>
+                        @if(!is_null($ticket->phone))
+                            <p>Phone: {{$ticket->phone}} </p>
+                        @endif
                         <p>Status: {{$ticket->status()->get()->first()->name()}}</p>
                         <p>Urgency: {{$ticket->urgency()->name()}}</p>
                         <p>Work type: {{$ticket->tag()->name()}}</p>
@@ -23,7 +26,7 @@
                         @if(!is_null($ticket->price()))
                             <p>Price: {{$ticket->price()}}</p>
                         @endif
-                        @if(!is_null($ticket->craftsman_id))
+                        @if(!is_null($ticket->craftsman_id)&&!\Illuminate\Support\Facades\Auth::user()->isCraftsman())
                             <a class=" modal-trigger btn waves-effect waves-light blue darken-4"
                                href="#profileModal">Craftsman Profile</a>
                         @endif
@@ -122,6 +125,19 @@
                                 @if($errors->get("desc"))
                                     <span class="invalid-feedback" role="alert">
                                    <strong>The Description is missing </strong>
+                               </span>
+                                    <br>
+                                @endif
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input class="validate" id="phone" type="text" name="phone" value="{{$ticket->phone}}">
+                                    <label for="phone" data-error="wrong"
+                                           data-success="right"> Phone for additional informations</label>
+                                </div>
+                                @if($errors->get("phone"))
+                                    <span class="invalid-feedback" role="alert">
+                                   <strong>The Phone number is missing </strong>
                                </span>
                                     <br>
                                 @endif
