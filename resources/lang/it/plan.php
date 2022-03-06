@@ -5,7 +5,8 @@ return [
     'condominia' => 'Condominia',
     'userAccounts' => 'User Accounts',
     'tickets' => 'Tickets',
-    'cancel' => 'Chat',
+    'chat' => 'Chat',
+    'cancel' => 'cancel',
     'select' => 'Select',
 
 

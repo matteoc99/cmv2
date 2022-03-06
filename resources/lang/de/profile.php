@@ -1,9 +1,9 @@
 <?php
 return [
-    'address' => 'Address',
-    'phone' => 'Phone',
-    'contact' => 'Contact via E-Mail',
-    'addCraftsman' => 'Add Craftsman to Ticket',
+    'address' => 'Adresse',
+    'phone' => 'Telefon',
+    'contact' => 'via E-Mail kontaktieren',
+    'addCraftsman' => 'Handwerker zum Ticket hinzufügen',
 
 
 ];

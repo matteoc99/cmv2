@@ -1,4 +1,4 @@
 <?php
 return [
-    'subscribe' => 'Subscribe',
+    'subscribe' => 'Abonnieren',
 ];

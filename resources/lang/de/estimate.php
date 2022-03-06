@@ -1,7 +1,7 @@
 <?php
 return [
-    'price' => 'Price',
-    'completion' => 'Estimated Completion',
+    'price' => 'Preis',
+    'completion' => 'Geschätzte Fertigstellung',
 
 
 ];

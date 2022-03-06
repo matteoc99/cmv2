@@ -2,17 +2,17 @@
 return [
     'brandName' => 'Condominium&nbsp;Manager',
     'dashboard' => 'Dashboard',
-    'settings' => 'Settings',
-    'profile' => 'Profile',
+    'settings' => 'Einstellungen',
+    'profile' => 'Profil',
     'logout' => 'Logout',
     'login' => 'Login',
-    'register' => 'Register',
-    'features' => 'Features',
-    'pricing' => 'Pricing',
+    'register' => 'Registrieren',
+    'features' => 'Funktionen',
+    'pricing' => 'Preise',
 
 
-    'soEmpty' => 'So Empty',
-    'usePlusButton' => 'Use the plus-button in the bottom right corner',
+    'soEmpty' => 'So Leer',
+    'usePlusButton' => 'Benutze den Plus-Knopf unten rechts',
 
 
 ];
