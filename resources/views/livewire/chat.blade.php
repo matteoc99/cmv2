@@ -11,7 +11,7 @@
             }
         @endphp
     @empty
-        <p> no Messages yet</p>
+        <p>@lang("ticket.noMessages")</p>
     @endforelse
     <script>
         $(".message-container").css('height', window.innerHeight - 500 + 'px');

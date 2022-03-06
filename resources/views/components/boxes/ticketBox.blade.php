@@ -8,11 +8,11 @@
                 <p>{{$ticket->status()->get()->first()->name()}}</p>
             @endif
             <p>{{$ticket->tag()->name()}}</p>
-            <p>New Messages: {{count($ticket->unreadChatMessages())}}</p>
+            <p>@lang("ticket.newMessages"): {{count($ticket->unreadChatMessages())}}</p>
         </div>
         @can("view",$ticket)
             <div class="card-action">
-                <a href="{{route("ticket",$ticket->id)}}">Manage</a>
+                <a href="{{route("ticket",$ticket->id)}}">@lang("ticket.manage")</a>
             </div>
         @endcan
     </div>

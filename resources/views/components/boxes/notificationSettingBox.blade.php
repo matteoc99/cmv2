@@ -11,7 +11,7 @@
                             <label>
                                 <input id="ticket_notification" type="checkbox" name="ticket_notification" onclick="$('#notificationSubmit').click()"
                                     {{$setting->recive_ticket_created_notification?"checked=''":""}}>
-                                <span>Receive a Notification when a new Ticket is created</span>
+                                <span>@lang("settings.ticketCreatedNotification")</span>
                             </label>
                         </p>
                     </div>
@@ -21,7 +21,7 @@
                                 <label>
                                     <input id="estimate_notification" type="checkbox" name="estimate_notification" onclick="$('#notificationSubmit').click()"
                                         {{$setting->revice_approved_estimate_notification?"checked=''":""}}>
-                                    <span>Receive a Notification when your estimate has been Approved</span>
+                                    <span>@lang("settings.estimateApprovedNotification")</span>
                                 </label>
                             </p>
                         </div>

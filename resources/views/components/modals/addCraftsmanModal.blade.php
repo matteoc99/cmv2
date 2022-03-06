@@ -1,7 +1,7 @@
 <!-- Modal Structure -->
 <div id="addCraftsmanModal" class="modal">
     <div class="modal-content">
-        <h4 class="center">Add A craftsman</h4>
+        <h4 class="center">@lang("modals.addACraftsman")</h4>
         @php
         $empty=true;
             @endphp
@@ -15,8 +15,8 @@
         @endforeach
         @if($empty)
             <div class="center">
-                <p>No Craftsman for the work {{Request::route('ticket')->tag()->name()}} has registered yet. <br>
-                    Generate an access link and invite a craftsman</p>
+                <p>@lang("modals.noCraftsmanRegistered"):{{Request::route('ticket')->tag()->name()}} <br>
+                    @lang("modals.generateLinkPrompt")</p>
             </div>
         @endif
     </div>

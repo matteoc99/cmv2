@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="input-field col s12 center">
                     <button type="button" class="btn waves-effect waves-light blue darken-4"
-                            onclick="document.getElementById('documents').click()">Select the Documents
+                            onclick="document.getElementById('documents').click()">@lang("modals.selectDocuments")
                     </button>
                     <input type='file' name="documents[]" id="documents" style="display:none" multiple onchange="document.getElementById('submit').click()">
                 </div>
@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="input-field col s12 m6 offset-m3">
                     <button type="submit" id="submit" style="display: none"
-                            class="btn waves-effect waves-light blue darken-4 col s12">Add Document
+                            class="btn waves-effect waves-light blue darken-4 col s12">@lang("modals.addDocument")
                     </button>
                 </div>
             </div>

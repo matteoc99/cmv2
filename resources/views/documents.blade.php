@@ -17,7 +17,7 @@
 
             @empty
                 <h5 class="center">
-                    The Document archive is empty
+                    @lang("document.empty")
                 </h5>
             @endforelse
         </div>

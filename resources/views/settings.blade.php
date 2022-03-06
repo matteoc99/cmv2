@@ -8,14 +8,14 @@
             <div class="col s12 m12 l8 xl6 card offset-l2 offset-xl3">
                 <ul class="tabs">
                     <li class="tab col s4"><a href="#profile"
-                                              class="blue-text darken-4 {{session()->has('tab')&&session()->get('tab')=="profile"?"active":""}}">Profile</a>
+                                              class="blue-text darken-4 {{session()->has('tab')&&session()->get('tab')=="profile"?"active":""}}">@lang("settings.profileTab")</a>
                     </li>
                     <li class="tab col s4"><a href="#notification"
-                                              class="blue-text darken-4 {{session()->has('tab')&&session()->get('tab')=="notification"?"active":""}}">Notifications</a>
+                                              class="blue-text darken-4 {{session()->has('tab')&&session()->get('tab')=="notification"?"active":""}}">@lang("settings.notificationTab")</a>
                     </li>
                     @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
                         <li class="tab col s4"><a href="#subscription"
-                                                  class="blue-text darken-4 {{session()->has('tab')&&session()->get('tab')=="subscription"?"active":""}}">Subscription</a>
+                                                  class="blue-text darken-4 {{session()->has('tab')&&session()->get('tab')=="subscription"?"active":""}}">@lang("settings.subscriptionTab")</a>
                         </li>
                     @endif
                 </ul>

@@ -53,7 +53,7 @@
                         <div class="row">
                             <div class="input-field col s12 m6 offset-m3">
                                 <button type="submit"
-                                        class="btn waves-effect waves-light blue darken-4 col s12"> @lang('auth.sendVerification') </button>
+                                        class="btn waves-effect waves-light blue darken-4 col s12"> @lang('auth.resetPassword') </button>
                             </div>
                         </div>
                     </form>

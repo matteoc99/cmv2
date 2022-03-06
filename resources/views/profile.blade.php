@@ -11,14 +11,14 @@
                 <p>{{$set->desc}}</p>
                 <p>{{$set->first_name}} {{$set->last_name}}</p>
                 @if(!is_null($set->address))
-                    <p>Adress: {{$set->address}}</p>
+                    <p>@lang("profile.address"): {{$set->address}}</p>
                 @endif
                 @if(!is_null($set->phone))
-                    <p>Phone: {{$set->phone}}</p>
+                    <p>@lang("profile.phone"): {{$set->phone}}</p>
                 @endif
 
                 <a href="mailto:{{$user->email}}" class="btn waves-effect waves-light blue darken-4">
-                    Contact via E-Mail
+                    @lang("profile.contact")
                 </a>
             </div>
         </div>

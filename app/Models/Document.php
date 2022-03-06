@@ -9,6 +9,11 @@ class Document extends Model
 {
     use HasFactory;
 
+    public function condominium()
+    {
+        return $this->belongsTo(Condominium::class)->get()->first();
+    }
+
     public function getFile(){
         $file = "";
         if($this->hasFile()){

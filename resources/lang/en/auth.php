@@ -29,5 +29,10 @@ return [
     'administrator' => 'Condominium Administrator',
     'worker' => 'Craftsman',
     'passDontMatch' => 'The Passwords don\'t match',
+    'changePassword' => 'Change Password',
+    'newPassword' => 'New Password',
+    'newPasswordConfirm' => 'Confirm New Password',
+    'resetPassowrd' => 'Reset Password',
+    'sendVerification' => 'Send Reset Verification',
 
 ];

@@ -8,7 +8,7 @@
                         class="material-icons small blue-text text-darken-4">arrow_back</i></a><i
                     class="material-icons small">domain</i>{{$condominium->name}}</h3>
             <a class="btn waves-effect waves-light blue darken-4 col s12 m6 l3"
-               href="{{route("exportToExcel",$condominium->id)}}">Export To Excel</a>
+               href="{{route("exportToExcel",$condominium->id)}}">@lang("condominium.toExcel")</a>
         @else
             @if(!is_null($condominium))
                 <h3><i class="material-icons small">domain</i>{{$condominium->name}}</h3>
@@ -16,14 +16,14 @@
         @endif
         @if(!is_null($condominium))
             <a class="btn waves-effect waves-light blue darken-4 col s12 m6 l3"
-               href="{{route("documents",$condominium->id)}}">Documents</a>
+               href="{{route("documents",$condominium->id)}}">@lang("condominium.documents")</a>
         @endif
         @if((\Illuminate\Support\Facades\Auth::user()->isAdmin()&&is_countable($families)&&count($families)>0)||is_countable($tickets)&&count($tickets)>0)
             <ul class="collapsible">
                 @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
                     @if(is_countable($families)&&count($families)>0)
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">person</i>Tenants
+                            <div class="collapsible-header"><i class="material-icons">person</i>@lang("condominium.tenants")
                                 <span class="badge">{{count($families)}}</span>
                             </div>
                             <div class="collapsible-body">
@@ -60,7 +60,7 @@
                                 @php
                                     $openFirst=false;
                                 @endphp
-                                <div class="collapsible-header"><i class="material-icons">insert_drive_file</i>Tickets
+                                <div class="collapsible-header"><i class="material-icons">insert_drive_file</i>@lang("condominium.tickets")
                                     : {{$status->name()}}
                                     <span
                                         class="{{$anyNew?"new blue darken-4" : ""}} badge">{{count($ticketsByStatus)}}</span>

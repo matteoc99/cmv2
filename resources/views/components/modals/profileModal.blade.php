@@ -13,15 +13,15 @@
                     <p>{{$user->setting()->desc}}</p>
                 @endif
                 @if(!is_null($user->setting()->address))
-                    <p>Adress: {{$user->setting()->address}}</p>
+                    <p>@lang("modals.address"): {{$user->setting()->address}}</p>
                 @endif
                 @if(!is_null($user->setting()->phone))
-                    <p>Phone: {{$user->setting()->phone}}</p>
+                    <p>@lang("modals.phone"): {{$user->setting()->phone}}</p>
                 @endif
 
                 @if(\Illuminate\Support\Facades\Auth::user()->id != $user->id)
                     <a href="mailto:{{$user->email}}" class="btn waves-effect waves-light blue darken-4">
-                        Contact via E-Mail
+                        @lang("modals.contact")
                     </a>
                 @endif
             </div>

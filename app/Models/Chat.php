@@ -13,4 +13,8 @@ class Chat extends Model
     {
         return $this->hasMany(Message::class);
     }
+    public function ticket()
+    {
+        return $this->belongsTo(Ticket::class)->get()->first();
+    }
 }

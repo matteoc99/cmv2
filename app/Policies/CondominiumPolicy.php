@@ -114,4 +114,11 @@ class CondominiumPolicy
     {
         //
     }
+
+    public function showDocuments(User $user, Condominium $condominium)
+    {
+        return $user->isAdmin()||$user->isUser()
+            ? Response::allow()
+            : Response::deny('You do not an Administrator');
+    }
 }

@@ -5,8 +5,8 @@
     </div>
 </div>
 <div class="center">
-    <h3>So empty</h3>
-    <h5>Use the plus-button in the bottom right corner</h5>
+    <h3>@lang("navigation.soEmpty")</h3>
+    <h5>@lang("navigation.usePlusButton")</h5>
 
 </div>
 <script>

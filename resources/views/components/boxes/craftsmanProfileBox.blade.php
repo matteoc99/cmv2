@@ -11,14 +11,14 @@
                     <p>{{$craftsman->setting()->desc}}</p>
                     <p>{{$craftsman->setting()->first_name}} {{$craftsman->setting()->last_name}}</p>
                     @if(!is_null($craftsman->setting()->address))
-                        <p>Adress: {{$craftsman->setting()->address}}</p>
+                        <p>@lang("profile.address"): {{$craftsman->setting()->address}}</p>
                     @endif
                     @if(!is_null($craftsman->setting()->phone))
-                        <p>Phone: {{$craftsman->setting()->phone}}</p>
+                        <p>@lang("profile.phone"): {{$craftsman->setting()->phone}}</p>
                     @endif
 
                     <a href="{{route("addCraftsmanToTicket",[$ticket_id,$craftsman->id])}}" class="btn waves-effect waves-light blue darken-4">
-                        Add Craftsman to Ticket
+                        @lang("profile.addCraftsman")
                     </a>
                 </div>
             </div>

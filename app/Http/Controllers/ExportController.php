@@ -36,10 +36,10 @@ class ExportController extends Controller
             array_push($data, $row);
         }
 
-        $fileName = "{$condominium->name}_ticket_" . date('Ymd') . ".xlsx";
+        $fileName = "{$condominium->name}_ticket_" . date('Ymd') . ".csv";
 
         header("Content-Disposition: attachment; filename=\"$fileName\"");
-        header("Content-Type: application/vnd.ms-excel");
+        header("Content-Type: text/csv");
         $resp = "";
         foreach ($data as $row) {
             // filter data

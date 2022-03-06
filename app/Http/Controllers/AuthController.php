@@ -27,9 +27,10 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
+
         $details = $request->only(["email","password"]);
 
-        if(Auth::attempt($details)){
+        if(Auth::attempt($details,!is_null($request->get('remember')))){
             return redirect("dashboard");
         }
         return redirect("login")->with("credError",true);

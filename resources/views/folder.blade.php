@@ -24,7 +24,7 @@
 
             @empty
                 <h5 class="center">
-                    This Folder is empty
+                    @lang("document.emptyFolder")
                 </h5>
             @endforelse
         </div>

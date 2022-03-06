@@ -9,7 +9,7 @@
                 <div class="input-field col s12 m6 l4 xl3">
                     <i class="material-icons prefix">search</i>
                     <input id="search" type="text" class="validate">
-                    <label for="search">Search</label>
+                    <label for="search">@lang("dashboard.search")</label>
                 </div>
                 <div class="input-field col s12 m6 l4 xl3 ">
                     @if(\Illuminate\Support\Facades\Auth::user()->setting()->condominium_box_view)

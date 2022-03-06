@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Condominium;
 use App\Models\Document;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class DocumentController extends Controller
@@ -12,6 +13,9 @@ class DocumentController extends Controller
 
     public function showFolder(Condominium $condominium, Document $document)
     {
+        if (Auth::user()->cannot("showFolder", $document))
+            return response("401", 401);
+
 
         $docs = Document::where("condominium_id", "=", $condominium->id)->where("parent_id", "=", $document->id)->orderBy("isFolder", "desc")->orderBy("name", "asc")->get();
         $doc = new Document();
@@ -26,6 +30,9 @@ class DocumentController extends Controller
 
     public function show(Condominium $condominium)
     {
+        if (Auth::user()->cannot("showDocuments", $condominium))
+            return response("401", 401);
+
         $docs = Document::where("condominium_id", "=", $condominium->id)->where("parent_id", "=", null)->orderBy("isFolder", "desc")->orderBy("name", "asc")->get();
 
         return view("documents", ["docs" => $docs, "condominium" => $condominium]);
@@ -34,10 +41,20 @@ class DocumentController extends Controller
     public function moveDocument($con, $document, $parent)
     {
 
+
         $doc = Document::where("id", "=", $document)->get()->first();
         $par = null;
         if ($parent > 0) //-2 if moving to root layer
             $par = Document::where("id", "=", $parent)->get()->first();
+
+        if (is_null($par)) {
+            if (Auth::user()->cannot("moveDocument", $doc))
+                return response("401", 401);
+        } else {
+            if (Auth::user()->cannot("moveDocumentWithParent", [$doc, $par]))
+                return response("401", 401);
+        }
+
         if ($doc->condominium_id == $con && (!is_null($par) && $par->condominium_id == $con)) {
             $doc->parent_id = $parent;
             $doc->save();
@@ -50,6 +67,9 @@ class DocumentController extends Controller
 
     public function addFolder(Request $request)
     {
+
+        if (Auth::user()->cannot("createFolder", Document::class))
+            return response("401", 401);
         $request->validate([
             "name" => "required",
         ]);
@@ -69,6 +89,9 @@ class DocumentController extends Controller
 
     public function addDocument(Request $request)
     {
+
+        if (Auth::user()->cannot("createDocument", Document::class))
+            return response("401", 401);
         $request->validate([
             'documents' => 'required',
             'documents.*' => 'required'
@@ -111,6 +134,10 @@ class DocumentController extends Controller
     public function delete($condominium, $document)
     {
         $doc = Document::where("id", "=", $document)->get()->first();
+
+        if (Auth::user()->cannot("remove", $doc))
+            return response("401", 401);
+
         if ($doc->condominium_id == $condominium) {
             $doc->recursiveDelete();
         }

@@ -4,7 +4,7 @@
             <span class="card-title">{{$condominium->name}}</span>
             <p>{{$condominium->address}}</p>
             <p>{{$condominium->period}}</p>
-            <p>Ticket: {{count($condominium->tickets()->get())}}
+            <p>@lang("condominium.ticket"): {{count($condominium->tickets()->get())}}
                 @if(count($condominium->unreadTickets())>0)
                     <span class="new badge">{{count($condominium->unreadTickets())}}</span>
                 @endif
@@ -16,12 +16,12 @@
                 }
             @endphp
             @if($unreadMessages > 0)
-                <p>New Messages: {{$unreadMessages}}</p>
+                <p>@lang("condominium.newMessage"): {{$unreadMessages}}</p>
             @endif
         </div>
         <div class="card-action">
-            <a href="{{route("condominium",$condominium->id)}}">Manage</a>
-            <a href="{{route("editCondominium",$condominium->id)}}" class="right">Edit</a>
+            <a href="{{route("condominium",$condominium->id)}}">@lang("condominium.manage")</a>
+            <a href="{{route("editCondominium",$condominium->id)}}" class="right">@lang("condominium.edit")</a>
         </div>
     </div>
 </div>

@@ -8,10 +8,10 @@
             <form method="POST" action="{{route("deleteFamily",$family->id)}}" id="deleteForm-{{$family->id}}">
                 @csrf
                 @can("update",$family)
-                    <a href="{{route("editFamily",[$condominium->id,$family->id])}}">Edit</a>
+                    <a href="{{route("editFamily",[$condominium->id,$family->id])}}">@lang("family.edit")</a>
                 @endcan
                 @can("delete", $family)
-                    <a onclick="$('#deleteForm-{{$family->id}}').submit();" href="#">Delete</a>
+                    <a onclick="$('#deleteForm-{{$family->id}}').submit();" href="#">@lang("family.delete")</a>
                 @endcan
             </form>
         </div>

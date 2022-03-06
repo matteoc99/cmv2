@@ -22,6 +22,11 @@ class Message extends Model
         return $file;
     }
 
+    public function chat()
+    {
+        return $this->belongsTo(Chat::class)->get()->first();
+    }
+
     public function hasImage()
     {
        return $this->hasFile()&&in_array($this->mime_type,["jpg","png","jpeg"]);

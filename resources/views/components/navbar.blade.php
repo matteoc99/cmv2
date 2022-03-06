@@ -1,15 +1,15 @@
 <ul id="nav-mobile" class="sidenav">
     <h5 href="#" class="brand-logo center light-green-text">
-        Condominium&nbsp;Manager
+        @lang("navigation.brandName")
     </h5>
 
     @if(is_null(Auth::user()))
-        <li><a data-value="features" class="scrollto" href="{{route("landing")}}">Features</a></li>
-        <li><a data-value="pricing" class="scrollto" href="{{route("landing")}}">Pricing</a></li>
-        <li><a href="{{route("login")}}">Login</a></li>
-        <li><a href="{{route("register")}}">Register</a></li>
+        <li><a data-value="features" class="scrollto" href="{{route("landing")}}">@lang("navigation.features")</a></li>
+        <li><a data-value="pricing" class="scrollto" href="{{route("landing")}}">@lang("navigation.pricing")</a></li>
+        <li><a href="{{route("login")}}">@lang("navigation.login")</a></li>
+        <li><a href="{{route("register")}}">@lang("navigation.register")</a></li>
     @else
-        <li><a href="{{route("logout")}}">Logout</a></li>
+        <li><a href="{{route("logout")}}">@lang("navigation.logout")</a></li>
     @endif
 </ul>
 <div class="navbar-fixed">
@@ -18,21 +18,21 @@
         <div class="nav-wrapper container">
             <a id="logo-container" data-value="top"
                class="brand-logo center hide-on-med-and-down hide-on-large-only show-on-extra-large scrollto">
-                Condominium&nbsp;Manager
+                @lang("navigation.brandName")
             </a>
             <ul class="left hide-on-med-and-down">
                 @if(is_null(Auth::user()))
-                    <li><a data-value="features" class="scrollto" href="{{route("landing")}}">Features</a></li>
-                <li><a data-value="pricing" class="scrollto" href="{{route("landing")}}">Pricing</a></li>
+                    <li><a data-value="features" class="scrollto" href="{{route("landing")}}">@lang("navigation.features")</a></li>
+                <li><a data-value="pricing" class="scrollto" href="{{route("landing")}}">@lang("navigation.pricing")</a></li>
                 @endif
             </ul>
             <ul class="right hide-on-med-and-down">
                 @include("components.langSelect")
                 @if(is_null(Auth::user()))
-                    <li><a href="{{route("login")}}">Login</a></li>
-                    <li><a href="{{route("register")}}">Register</a></li>
+                    <li><a href="{{route("login")}}">@lang("navigation.login")</a></li>
+                    <li><a href="{{route("register")}}">@lang("navigation.register")</a></li>
                 @else
-                    <li><a href="{{route("logout")}}">Logout</a></li>
+                    <li><a href="{{route("logout")}}">@lang("navigation.logout")</a></li>
                 @endif
             </ul>
 
