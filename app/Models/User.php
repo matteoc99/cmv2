@@ -76,6 +76,10 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Family')->get()->first();
     }
 
+    public function getAdmin(){
+
+        return $this->family()->condominium()->Admin();
+    }
     public function setting()
     {
         if (is_null($this->setting_id)) {

@@ -8,7 +8,7 @@
             </div>
             <div class="col s12 m6">
                 <div class="card">
-                    <h3 class="center">@lang("subscribe.subscribe")</h3>
+                    <h3 class="center">@lang("subscription.subscribe")</h3>
                     <form action="{{route("subscribe",$plan->id)}}" method="POST" id="paymentForm">
                         @csrf
                         <input type="hidden" name="platform" id="platform">

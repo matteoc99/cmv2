@@ -60,8 +60,24 @@ class TicketPolicy
      */
     public function create(User $user)
     {
+        $admin = null;
+        if ($user->isAdmin()) {
+            $admin = $user;
+        } else if($user->isUser()) {
+            $admin = $user->getAdmin();
+        }else{
+            return Response::deny();
+        }
 
-        return $user->isUser() || $user->isAdmin()
+        $maxTicket = $admin->subscription()->plan()->max_ticket;
+
+        $currentTicket = 0;
+        foreach ($admin->administrates() as $con) {
+            $currentTicket += $con->tickets();
+        }
+
+
+        return ($user->isUser() || $user->isAdmin()) && $currentTicket <= $maxTicket
             ? Response::allow()
             : Response::deny();
     }

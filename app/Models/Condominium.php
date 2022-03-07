@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\Auth;
 class Condominium extends Model
 {
     use HasFactory;
+
     public function Admin(){
-        return $this->belongsTo('App\Models\User',"admin_id","id");
+        return $this->belongsTo('App\Models\User',"admin_id","id")->get()->first();
     }
     public function families()
     {

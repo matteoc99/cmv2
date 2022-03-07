@@ -72,7 +72,7 @@ class CondominiumPolicy
      */
     public function update(User $user, Condominium $condominium)
     {
-        return $condominium->Admin()->get()->id === $user->id
+        return $condominium->Admin()->id === $user->id
             ? Response::allow()
             : Response::deny('You do not an Administrator');;
     }
@@ -86,7 +86,7 @@ class CondominiumPolicy
      */
     public function delete(User $user, Condominium $condominium)
     {
-        return $condominium->Admin()->get()->id === $user->id
+        return $condominium->Admin()->id === $user->id
             ? Response::allow()
             : Response::deny('You do not an Administrator');
     }

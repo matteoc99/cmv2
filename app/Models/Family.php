@@ -15,7 +15,7 @@ class Family extends Model
     }
     public function condominium()
     {
-        return $this->hasOne(User::class)->get()->first();
+        return $this->belongsTo(Condominium::class)->get()->first();
     }
     public function tickets()
     {

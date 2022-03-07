@@ -26,9 +26,13 @@ class SubscriptionController extends Controller
 
     public function subscribe(Request $request,Plan $plan)
     {
+
         $request->validate([
             "platform" => "required|exists:payment_platforms,id"
         ]);
+
+        if(!is_null(Auth::user()->subscription()) && !is_null(Auth::user()->subscription()->platform_id))
+            $this->cancel();
 
         $paymentPlatform = $this->paymentPlatformResolver->resolveService($request->get("platform"));
         session()->put("platform", $request->get("platform"));

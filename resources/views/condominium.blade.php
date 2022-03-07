@@ -3,6 +3,7 @@
 @section("content")
     <div class="container">
 
+
         @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
             <h3><a href="{{route("dashboard")}}"><i
                         class="material-icons small blue-text text-darken-4">arrow_back</i></a><i
