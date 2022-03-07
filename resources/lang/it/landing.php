@@ -1,13 +1,13 @@
 <?php
 return [
     'brandName' => 'Condominium Manager',
-    'catchPhrase' => 'The All-In-One Condominium Administration Tool',
-    'getStarted' => 'Get Started for Free',
-    'start4Free' => 'Start now for Free and Upgrade your plan based on your needs',
-    'pricing' => 'Pricing',
-    'block1Title' => 'Speeds Up Administration Tasks',
-    'block2Title' => 'User Experience Focused',
-    'block3Title' => 'Easy to Organize Work',
+    'catchPhrase' => 'Lo strumento di amministrazione di condominio All-In-One',
+    'getStarted' => 'inizia gratuitamente',
+    'start4Free' => 'Inizia ora gratuitamente e aggiorna il tuo piano in base alle tue esigenze',
+    'pricing' => 'prezzi',
+    'block1Title' => 'Velocizza le attività di amministrazione',
+    'block2Title' => 'Incentrato sull\'esperienza dell\'utente',
+    'block3Title' => 'facile da organizzare',
     'block1Text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id semper
                         ante.
                         Fusce ultrices nec libero viverra tincidunt. Pellentesque auctor aliquet nulla, in imperdiet

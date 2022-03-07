@@ -1,13 +1,13 @@
 <?php
 return [
-    'popular' => 'POPULAR',
-    'monthAbbreviation' => 'mo',
-    'condominia' => 'Condominia',
-    'userAccounts' => 'User Accounts',
+    'popular' => 'POPOLARE',
+    'monthAbbreviation' => 'mese',
+    'condominia' => 'Condomini',
+    'userAccounts' => 'Famiglie',
     'tickets' => 'Tickets',
     'chat' => 'Chat',
-    'cancel' => 'cancel',
-    'select' => 'Select',
+    'cancel' => 'cancella',
+    'select' => 'seleziona',
 
 
 ];

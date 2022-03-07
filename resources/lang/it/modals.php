@@ -1,29 +1,29 @@
 <?php
 return [
-    'addACraftsman' => 'Add A craftsman',
-    'generateLinkPrompt' => 'Generate an access link and invite a craftsman',
-    'noCraftsmanRegistered' => 'No Craftsman has registered yet for the work',
 
-    'selectDocuments' => 'Select the Documents',
-    'addDocument' => 'Add Document',
-    'name' => 'Name',
-    'createFolder' => 'Create Folder',
-    'createFolderTitle' => 'Create a Folder',
+    'addACraftsman' => 'Aggiungi un artigiano',
+    'generateLinkPrompt' => 'Genera un link di accesso e invita un artigiano',
+    'noCraftsmanRegistered' => 'Nessun artigiano si è ancora registrato per il lavoro',
 
-    'addTicketTitle' => 'Add a ticket via Link',
-    'insertLink' => 'Insert Link',
-    'addTicket' => 'Add Ticket',
+    'selectDocuments' => 'Seleziona i documenti',
+    'addDocument' => 'Aggiungi documento',
+    'name' => 'Nome',
+    'createFolder' => 'Crea cartella',
+    'createFolderTitle' => 'Crea una cartella',
 
-
-    'createEstimate' => 'Create Estimate',
-    'description' => 'Description',
-    'price' => 'Price',
-    'estimatedCompletion' => 'Estimated Completion',
-    'create' => 'Create',
+    'addTicketTitle' => 'Aggiungi un Ticket tramite link',
+    'insertLink' => 'Inserisci collegamento',
+    'addTicket' => 'Aggiungi Ticket',
 
 
-    'contact' => ' Contact via E-Mail',
-    'phone' => ' Phone',
-    'address' => ' Address',
+    'createEstimate' => 'Crea preventivo',
+    'description' => 'Descrizione',
+    'price' => 'Prezzo',
+    'estimatedCompletion' => 'Completamento stimato',
+    'create' => 'Crea',
 
+
+    'contact' => 'Contatto via e-mail',
+    'phone' => 'telefono',
+    'address' => 'Indirizzo',
 ];

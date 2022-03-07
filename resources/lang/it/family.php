@@ -1,20 +1,20 @@
 <?php
 
 return [
-    'edit' => ' Edit',
-    'delete' => 'Delete ',
+    'edit' => ' modifica',
+    'delete' => 'cancella ',
 
 
 
-    'createTitle' => 'Add a new Family',
-    'editTitle' => 'edit the Family',
-    'name' => 'Name ',
-    'nameMissing' => 'The Name is missing',
+    'createTitle' => 'aggiungi una nuova famiglia',
+    'editTitle' => 'modifica la famiglia',
+    'name' => 'Nome',
+    'nameMissing' => 'manca il nome',
     'email' => 'E-Mail ',
-    'emailMissing' => 'The email is missing, wrong or already in use',
-    'size' => 'Family Size ',
-    'create' => 'Create ',
-    'update' => 'Update ',
+    'emailMissing' => 'l\'e-mail manca, é errata oppure é giá in uso',
+    'size' => 'dimensione della famiglia ',
+    'create' => 'Crea',
+    'update' => 'Aggiorna ',
 
 
 ];
