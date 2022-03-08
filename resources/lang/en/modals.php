@@ -26,4 +26,10 @@ return [
     'phone' => ' Phone',
     'address' => ' Address',
 
+
+
+    'upgradeNow' => 'Upgrade your plan now',
+    'youNeedToUpgrade' => 'This action is not supported by your current plan',
+    'upgradeNowUser' => 'Ask your administrator to upgrade your plan',
+
 ];

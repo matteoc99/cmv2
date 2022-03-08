@@ -20,20 +20,27 @@
             </div>
             <div class="card-content">
                 <ul class="collection">
-                    <li class="collection-item black-text"><b>{{$plan->max_con>100?"unlimited":$plan->max_con}}</b>
+                    <li class="collection-item black-text"><b>{{$plan->max_con>100000?"unlimited":$plan->max_con}}</b>
                         @lang("plan.condominia")
                     </li>
-                    <li class="collection-item black-text"><b>{{$plan->max_user>100?"unlimited":$plan->max_user}}</b>
+                    <li class="collection-item black-text"><b>{{$plan->max_user>100000?"unlimited":$plan->max_user}}</b>
                         @lang("plan.userAccounts")
                     </li>
                     <li class="collection-item black-text">
-                        <b>{{$plan->max_ticket>100?"unlimited":$plan->max_ticket}}</b> @lang("plan.tickets")
+                        <b>{{$plan->max_ticket>100000?"unlimited":$plan->max_ticket}}</b> @lang("plan.tickets")
                     </li>
                     @if($plan->can_chat)
-                        <li data-tooltip="directly communicate with your User avoiding email communication"
+                        <li data-tooltip="@lang("plan.chatTooltip")"
                             data-delay="10"
                             data-position="top"
                             class="collection-item tooltipped black-text">@lang("plan.chat")<i
+                                class="material-icons right black-text">info_outline</i></li>
+                    @endif
+                    @if($plan->can_documents)
+                        <li data-tooltip="@lang("plan.documentTooltip")"
+                            data-delay="10"
+                            data-position="top"
+                            class="collection-item tooltipped black-text"><b>{{$plan->max_gb}} GB</b> @lang("plan.document")<i
                                 class="material-icons right black-text">info_outline</i></li>
                     @endif
 

@@ -16,6 +16,9 @@ use Nette\Utils\Image;
 class SettingController extends Controller
 {
 
+    public function showSubscribe(Request $request){
+        return redirect(route("settings"))->with('tab', "subscription");
+    }
     public function show(Request $request)
     {
         if (is_null(Auth::user()->setting_id)) {

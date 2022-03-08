@@ -39,4 +39,13 @@ class Condominium extends Model
     public function getUnreadTicketsAttribute(){
         return count($this->unreadTickets());
     }
+
+    public function totalFileSizeOfDocuments(){
+        $docs = Document::where("condominium_id","=",$this->id)->get();
+        $fileSize=0;
+        foreach ($docs as $doc){
+            $fileSize+=$doc->size;
+        }
+        return $fileSize;
+    }
 }

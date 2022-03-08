@@ -48,6 +48,8 @@
             @include("components.modals.addTicketModal")
         @endif
 
+        @include("components.modals.upgradeCallModal")
+
     @endauth
 </main>
 @livewireScripts

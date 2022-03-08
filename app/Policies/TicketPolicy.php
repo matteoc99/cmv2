@@ -41,6 +41,15 @@ class TicketPolicy
             : Response::deny();
     }
 
+    public function useChat(User $user, Ticket $ticket)
+    {
+        $admin = $ticket->condominium()->Admin();
+
+        return $admin->subscription()->plan()->can_chat
+                 ? Response::allow()
+            : Response::deny();
+    }
+
     public function view(User $user, Ticket $ticket)
     {
         $administrates = $user->administrates()->where("id", "=", $ticket->condominium_id)->get();
@@ -63,9 +72,9 @@ class TicketPolicy
         $admin = null;
         if ($user->isAdmin()) {
             $admin = $user;
-        } else if($user->isUser()) {
+        } else if ($user->isUser()) {
             $admin = $user->getAdmin();
-        }else{
+        } else {
             return Response::deny();
         }
 

@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/profile/{user}', 'App\\Http\\Controllers\\UserController@show')->name("profile");
         Route::get('/settings', 'App\\Http\\Controllers\\SettingController@show')->name("settings");
+        Route::get('/settings/subscribe', 'App\\Http\\Controllers\\SettingController@showSubscribe')->name("settings.subscribe");
         Route::post('/updateSettings', 'App\\Http\\Controllers\\SettingController@update')->name("updateSettings");
         Route::post('/updateNotificationSettings', 'App\\Http\\Controllers\\SettingController@updateNotification')->name("updateNotificationSettings");
         Route::get('/settings/setBoxView', 'App\\Http\\Controllers\\SettingController@setBoxView')->name("setBoxView");

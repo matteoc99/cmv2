@@ -25,7 +25,14 @@ class DocumentPolicy
     public function createDocument(User $user)
     {
 
-        return $user->isAdmin()
+        if(!$user->isAdmin())
+            return Response::deny('');
+        $cons = $user->administrates()->get();
+        $totalSize =0;
+        foreach ($cons as $con){
+            $totalSize+=$con->totalFileSizeOfDocuments();
+        }
+        return  $user->subscription()->plan()->can_documents && $user->subscription()->plan()->max_gb>$totalSize/1000000000
             ? Response::allow()
             : Response::deny('');
     }

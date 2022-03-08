@@ -130,7 +130,8 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input class="validate" id="phone" type="text" name="phone" value="{{$ticket->phone}}">
+                                    <input class="validate" id="phone" type="text" name="phone"
+                                           value="{{$ticket->phone}}">
                                     <label for="phone" data-error="wrong"
                                            data-success="right"> @lang("ticket.phone")</label>
                                 </div>
@@ -234,10 +235,18 @@
                                            data-success="right">@lang("ticket.message") </label>
                                 </div>
                                 <div class="input-field col s3">
-                                    <button type="submit" id="submit"
-                                            class="btn waves-effect waves-light blue darken-4 col s12"><i
-                                            class="material-icons">send</i>
-                                    </button>
+                                    @can("useChat",$ticket)
+                                        <button type="submit" id="submit"
+                                                class="btn waves-effect waves-light blue darken-4 col s12"><i
+                                                class="material-icons">send</i>
+                                        </button>
+                                    @endcan
+                                    @cannot("useChat",$ticket)
+                                        <a href="#upgradeCallModal" id="submit" onclick="$('#mailtoadmin').attr('href','mailto:{{$ticket->condominium()->Admin()->email}}')"
+                                                class="modal-trigger btn waves-effect waves-light blue darken-4 col s12"><i
+                                                class="material-icons">send</i>
+                                        </a>
+                                    @endcannot
                                 </div>
                             </div>
                         </form>

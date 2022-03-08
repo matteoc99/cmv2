@@ -116,6 +116,7 @@ class DocumentController extends Controller
                 $doc->condominium_id = $condominium_id;
                 $doc->name = $file->getClientOriginalName();
                 $doc->parent_id = $parent_id;
+                $doc->size=$file->getSize();
 
                 $uuid = Str::uuid()->toString();
                 $ext = $file->extension();

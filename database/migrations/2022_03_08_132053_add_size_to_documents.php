@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddLangAndViewToSettings extends Migration
+class AddSizeToDocuments extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddLangAndViewToSettings extends Migration
      */
     public function up()
     {
-        Schema::table('settings', function (Blueprint $table) {
-            $table->boolean("condominium_box_view")->default(true);
-            $table->string("language")->default("de");
+        Schema::table('documents', function (Blueprint $table) {
+            $table->bigInteger("size")->default(0);
         });
     }
 
@@ -26,7 +25,7 @@ class AddLangAndViewToSettings extends Migration
      */
     public function down()
     {
-        Schema::table('settings', function (Blueprint $table) {
+        Schema::table('documents', function (Blueprint $table) {
             //
         });
     }

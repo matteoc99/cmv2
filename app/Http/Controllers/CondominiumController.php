@@ -41,7 +41,6 @@ class CondominiumController extends Controller
             'address' => "required",
             'lat' => 'required',
             "lng" => "required",
-            "period" => "required",
         ]);
 
         $con = new Condominium();

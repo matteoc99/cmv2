@@ -6,8 +6,11 @@ return [
     'userAccounts' => 'User Accounts',
     'tickets' => 'Tickets',
     'cancel' => 'Cancel',
-    'chat' => 'Chat',
     'select' => 'Select',
+    'chat' => 'Chat',
+    'chatTooltip' => 'Directly communicate with your user avoiding e-mail communication',
+    'documentTooltip' => 'Document Archive for your Condominia',
+    'document' => 'Documents',
 
 
 ];
