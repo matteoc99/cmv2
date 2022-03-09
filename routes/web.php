@@ -32,6 +32,8 @@ Route::get("register", function () {
 Route::post("register", "App\\Http\\Controllers\\AuthController@register");
 Route::get("logout", "App\\Http\\Controllers\\AuthController@logout")->name("logout");
 Route::get('/privacy', 'App\\Http\\Controllers\\FrontendController@privacy')->name('privacy');
+Route::get('/terms', 'App\\Http\\Controllers\\FrontendController@terms')->name('terms');
+Route::get('/impressum', 'App\\Http\\Controllers\\FrontendController@impressum')->name('impressum');
 Route::get('/language/{locale}', 'App\\Http\\Controllers\\FrontendController@language')->name('language');
 
 

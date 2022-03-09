@@ -4,6 +4,7 @@ return [
 
 
     'agree' => 'I accept',
-    'privacy' => 'the privacy policy',
-
+    'privacy' => 'the Privacy Policy',
+    'connection' => 'and the',
+    'terms' => 'Terms and Conditions',
 ];

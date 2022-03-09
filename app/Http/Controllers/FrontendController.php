@@ -34,7 +34,14 @@ class FrontendController extends Controller
     {
         return view('privacy');
     }
-
+    public function terms()
+    {
+        return view('terms');
+    }
+    public function impressum()
+    {
+        return view('impressum');
+    }
     public function test(Request $request){
         return Ticket::where("id","=",3)->get()->first()->unreadChatMessages();
     }

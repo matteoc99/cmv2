@@ -4,24 +4,17 @@
             <div class="col offset-l1 l6 m8 s12">
                 <h5 class="white-text">Condominium Manager</h5>
                 <p class="grey-text text-lighten-4 justified">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id semper ante.
-                    Fusce ultrices nec libero viverra tincidunt. Pellentesque auctor aliquet nulla, in imperdiet lacus
-                    tincidunt quis.
-                    Fusce facilisis cursus eros, eu consectetur justo elementum sed. Curabitur id eros sit amet tellus
-                    dignissim lacinia euismod at nunc.
-                    Integer egestas vulputate ornare. Vivamus interdum nulla neque, quis sollicitudin mi pulvinar et.
-                    Ut et scelerisque ex. Cras nunc nisl, vestibulum eu diam a
+                    @lang("landing.footerDesc")
                 </p>
 
 
             </div>
             <div class="col l4 m4 s12">
-                <h5 class="white-text">Web Portals for: </h5>
+                <h5 class="white-text">@lang("landing.legal")</h5>
                 <ul>
-                    <li><a class="white-text" href="">Condominium Administrators</a></li>
-                    <li><a class="white-text" href="">tenants/residents</a></li>
-                    <li><a class="white-text" href="">Craftsman</a></li>
-                    <li><a class="white-text" href="">Partner</a></li>
+                    <li><a class="white-text " href="{{route("privacy")}}">@lang("landing.privacy")</a></li>
+                    <li><a class="white-text " href="{{route("terms")}}">@lang("landing.terms")</a></li>
+                    <li><a class="white-text " href="{{route("impressum")}}">@lang("landing.impressum")</a></li>
                 </ul>
             </div>
         </div>
