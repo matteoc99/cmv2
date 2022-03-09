@@ -51,6 +51,8 @@
         @include("components.modals.upgradeCallModal")
 
     @endauth
+        @include("components.cookie_modal")
+
 </main>
 @livewireScripts
 

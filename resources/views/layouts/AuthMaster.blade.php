@@ -27,6 +27,7 @@
     @yield("content")
 </main>
 @include('components.footer')
+@include("components.cookie_modal")
 
 <script>
     $(document).ready(function () {

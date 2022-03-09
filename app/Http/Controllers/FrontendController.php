@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class FrontendController extends Controller
 {
@@ -22,6 +23,16 @@ class FrontendController extends Controller
             return (new DashboardController)->show($request);
         }
         return view("landing");
+    }
+
+    public function cookie_agree()
+    {
+        Session::put('cookie_shown', 'true');
+        return redirect()->back();
+    }
+    public function privacy()
+    {
+        return view('privacy');
     }
 
     public function test(Request $request){

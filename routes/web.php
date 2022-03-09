@@ -31,12 +31,14 @@ Route::get("register", function () {
 })->name("register");
 Route::post("register", "App\\Http\\Controllers\\AuthController@register");
 Route::get("logout", "App\\Http\\Controllers\\AuthController@logout")->name("logout");
-Route::get('/privacy', 'FrontendController@privacy')->name('privacy');
-Route::get('/terms', 'FrontendController@terms')->name('terms');
+Route::get('/privacy', 'App\\Http\\Controllers\\FrontendController@privacy')->name('privacy');
 Route::get('/language/{locale}', 'App\\Http\\Controllers\\FrontendController@language')->name('language');
 
 
 Route::get('/ticket/token/{token}', 'App\\Http\\Controllers\\TicketController@showBytoken')->name('ticketByToken');
+
+Route::post('/cookie_agree', 'App\\Http\\Controllers\\FrontendController@cookie_agree')->name('cookie_agree');
+
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get("/changePassword", function () {

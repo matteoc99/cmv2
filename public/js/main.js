@@ -49,3 +49,26 @@ $(window).load(function(){
         }
     });
 });
+
+function waitForJQuery() {
+    console.log("wait");
+    if (window.jQuery) {
+        var elems = document.querySelectorAll('.modal.cookie-modal ');
+        var instances = M.Modal.init(elems, {
+            dismissible: true
+        });
+        instances.forEach(function (elem, index, array) {
+            elem.open();
+
+        });
+        $("#cookie-modal").siblings(".modal-overlay").click(function () {
+            $("#cookie-modal").find(".modal-close").click();
+
+        });
+
+
+    } else {
+        setTimeout(waitForJQuery, 500);
+    }
+}
+
