@@ -13,41 +13,14 @@ return [
     'terms' => 'Terms and Conditions',
     'impressum' => 'Impressum',
 
-    'block1Text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id semper
-                        ante.
-                        Fusce ultrices nec libero viverra tincidunt. Pellentesque auctor aliquet nulla, in imperdiet
-                        lacus tincidunt quis.
-                        Fusce facilisis cursus eros, eu consectetur justo elementum sed. Curabitur id eros sit amet
-                        tellus dignissim lacinia euismod at nunc.
-                        Integer egestas vulputate ornare. Vivamus interdum nulla neque, quis sollicitudin mi pulvinar
-                        et.
-                        Ut et scelerisque ex. Cras nunc nisl, vestibulum eu diam a',
-    'block2Text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id semper
-                        ante.
-                        Fusce ultrices nec libero viverra tincidunt. Pellentesque auctor aliquet nulla, in imperdiet
-                        lacus tincidunt quis.
-                        Fusce facilisis cursus eros, eu consectetur justo elementum sed. Curabitur id eros sit amet
-                        tellus dignissim lacinia euismod at nunc.
-                        Integer egestas vulputate ornare. Vivamus interdum nulla neque, quis sollicitudin mi pulvinar
-                        et.
-                        Ut et scelerisque ex. Cras nunc nisl, vestibulum eu diam a',
-    'block3Text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id semper
-                        ante.
-                        Fusce ultrices nec libero viverra tincidunt. Pellentesque auctor aliquet nulla, in imperdiet
-                        lacus tincidunt quis.
-                        Fusce facilisis cursus eros, eu consectetur justo elementum sed. Curabitur id eros sit amet
-                        tellus dignissim lacinia euismod at nunc.
-                        Integer egestas vulputate ornare. Vivamus interdum nulla neque, quis sollicitudin mi pulvinar
-                        et.
-                        Ut et scelerisque ex. Cras nunc nisl, vestibulum eu diam a',
-    "footerDesc" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id semper
-                        ante.
-                        Fusce ultrices nec libero viverra tincidunt. Pellentesque auctor aliquet nulla, in imperdiet
-                        lacus tincidunt quis.
-                        Fusce facilisis cursus eros, eu consectetur justo elementum sed. Curabitur id eros sit amet
-                        tellus dignissim lacinia euismod at nunc.
-                        Integer egestas vulputate ornare. Vivamus interdum nulla neque, quis sollicitudin mi pulvinar
-                        et.
-                        Ut et scelerisque ex. Cras nunc nisl, vestibulum eu diam a"
+    'block1Text' => 'With Condominium Manager you can handle all of your condominiums problems in one place without the need to resort to
+    email or phone communication. Assign a craftsman to any ticket and let them directly communicate with your tenants without you needing to interfere.',
+    'block2Text' => 'Condominium Manager has an intuitive and consistent design, meaning you will feel right at home.
+     There is no need to learn yet an other complex Administration Software. Additionally Condominium Manager is fully optimized
+      for mobile, meaning you can keep up with work even on the go',
+    'block3Text' => 'Condominium Manager features a completely customizable document archive. Upload files of any type and make them available to your tenants.
+    In Condominium Manager you can create multiple condominia, each with its own tenants, document archive, and tickets. making it as easy as possible to oversee all your administration tasks',
+    "footerDesc" => "The Condominium Manager is an Administration tool with its main focus at Tickets to signal problems at your condominium. Created by your tenants and easily
+    assignable to capable craftsman. Condominium Manager also features a document archive and a real time chat to keep the conversation away from email"
 
 ];
