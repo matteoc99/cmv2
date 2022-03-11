@@ -20,6 +20,10 @@
 /* COMMON STYLE */
 .pricing .price {
     padding: 15px 0;
+    cursor: default;
+}
+.pricing .plan-title{
+    cursor: default;
 }
 .pricing .price h4,
 .pricing .plan-title h5{

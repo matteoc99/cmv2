@@ -1,6 +1,4 @@
-@if($plan->price > 0)
-    <a href="{{route("subscribe.show",$plan->id)}}">
-        @endif
+
         <div class="card pricing style-2 full-height">
             @if(isset($ribbon)&& $ribbon)
                 <div class="ribbon"><span>@lang("plan.popular")</span></div>
@@ -40,13 +38,14 @@
                         <li data-tooltip="@lang("plan.documentTooltip")"
                             data-delay="10"
                             data-position="top"
-                            class="collection-item tooltipped black-text"><b>{{$plan->max_gb}} GB</b> @lang("plan.document")<i
+                            class="collection-item tooltipped black-text"><b>{{$plan->max_gb}}
+                                GB</b> @lang("plan.document")<i
                                 class="material-icons right black-text">info_outline</i></li>
                     @endif
 
                 </ul>
-                <div class="card-action">
-                    @auth
+                @auth
+                    <div class="card-action">
                         @if($plan->price > 0 && Request::route()->getName() !== "subscribe.show" )
                             @if(\Illuminate\Support\Facades\Auth::user()->subscription()->plan_id == $plan->id)
                                 <a class="btn waves-effect waves-light blue darken-4 col s12"
@@ -56,11 +55,9 @@
                                    href="{{route("subscribe.show",$plan->id)}}">@lang("plan.select")</a>
                             @endif
                         @endif
-                    @endauth
-                </div>
+                    </div>
+                @endauth
 
             </div>
         </div>
-        @if($plan->price > 0)
-    </a>
-@endif
+
