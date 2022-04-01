@@ -37,9 +37,12 @@ class EstimateController extends Controller
 
     public function create(Request $request)
     {
+
+
         $ticket = Ticket::where("id", "=",  $request->get("ticket"))->get()->first();
 
-        if(Auth::user()->cannot("approveEstimates",$ticket))
+        return dd($ticket);
+        if(Auth::user()->cannot("createEstimate",$ticket))
             return response("401",401);
         $estimate = new Estimate();
         $estimate->desc = $request->get("description");
