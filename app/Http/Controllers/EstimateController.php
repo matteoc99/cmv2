@@ -22,6 +22,8 @@ class EstimateController extends Controller
         $estimate->approved = true;
 
         $ticket->status_id=3;
+        $ticket->price=$estimate->price;
+
         if($estimate->user_id !== $ticket->craftsman_id)
             $ticket->craftsman_id=$estimate->user_id;
         $craftsman = User::where("id","=",$estimate->user_id)->get()->first();

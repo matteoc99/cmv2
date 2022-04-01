@@ -15,7 +15,7 @@
                             class="material-icons">group_add</i></a></li>
             @endcannot
         @endif
-        @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
+        @if(\Illuminate\Support\Facades\Auth::user()->isAdmin()&&(Request::route()->getName()=="dashboard"||Request::route()->getName()=="landing"))
             @can("create",\App\Models\Condominium::class)
                 <li><a href="{{route("createCondominium")}}" class="btn-floating blue  darken-4"><i
                             class="material-icons">home</i></a></li>

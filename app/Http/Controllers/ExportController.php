@@ -43,7 +43,7 @@ class ExportController extends Controller
         $resp = "";
         foreach ($data as $row) {
             // filter data
-            $resp .= implode("\t", array_values($row)) . "\n";
+            $resp .= implode(";", array_values($row)) . "\n";
         }
         echo $resp;
     }
