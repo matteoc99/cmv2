@@ -42,6 +42,15 @@
                     @foreach(explode("<br>",$message->message) as $msg)
                         <p style=" overflow-wrap: break-word; margin-bottom: 5px;margin-top: 5px">{{$msg}}</p>
                     @endforeach
+                    @if($message->hasFile())
+                        @if($message->hasImage())
+                            <a href="{{$message->getFile()}}">
+                                <img class="profile-pic " src="{{$message->getFile()}}">
+                            </a>
+                        @else
+                            <a href="{{$message->getFile()}}"><i class="material-icons">file_download</i></a>
+                        @endif
+                    @endif
                     <p class="small">{{$message->created_at}}</p>
                 </div>
             </div>
