@@ -1,7 +1,7 @@
 <?php
 return [
     'brandName' => 'Condominium Manager',
-    'catchPhrase' => 'The All-In-One Condominium Administration Tool',
+    'catchPhrase' => 'The All-In-One Condominium maintenance management tool',
     'getStarted' => 'Get Started for Free',
     'start4Free' => 'Start now for Free and Upgrade your plan based on your needs',
     'pricing' => 'Pricing',

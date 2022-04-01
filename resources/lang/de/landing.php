@@ -1,7 +1,7 @@
 <?php
 return [
     'brandName' => 'Condominium Manager',
-    'catchPhrase' => 'Das Condominium Verwaltungs Tool',
+    'catchPhrase' => 'Das Condominium Instandhaltungsmanagement Tool',
     'getStarted' => 'Starte Gratis',
     'start4Free' => 'Starte jetzt gratis und steigere den plan anhand deiner Bedürfnisse',
     'pricing' => 'Preise',

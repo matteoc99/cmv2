@@ -1,7 +1,7 @@
 <?php
 return [
     'brandName' => 'Condominium Manager',
-    'catchPhrase' => 'Lo strumento di amministrazione di condominio All-In-One',
+    'catchPhrase' => 'gestione delle manutenzioni dei condomini All-In-One',
     'getStarted' => 'inizia gratuitamente',
     'start4Free' => 'Inizia ora gratuitamente e aggiorna il tuo piano in base alle tue esigenze',
     'pricing' => 'prezzi',
