@@ -4,7 +4,9 @@
             <!-- my message-->
             <div class="card" style="padding: 15px">
                 <h5>{{\App\Models\User::where("id","=",$message->sender_id)->get()->first()->name()}}</h5>
-                <p style=" overflow-wrap: break-word;">{{$message->message}}</p>
+                @foreach(explode("<br>",$message->message) as $msg)
+                    <p style=" overflow-wrap: break-word; margin-bottom: 5px;margin-top: 5px">{{$msg}}</p>
+                @endforeach
                 @if($message->hasFile())
                     @if($message->hasImage())
                         <a href="{{$message->getFile()}}">
@@ -24,8 +26,10 @@
         <div class="row">
             <div class="col s8 offset-s2">
                 <div class="card" style="padding: 15px">
-                    <p style=" overflow-wrap: break-word;">{{$message->message}}</p>
-                    <p class="small">{{$message->created_at}}</p>
+                    @foreach(explode("<br>",$message->message) as $msg)
+                        <p style=" overflow-wrap: break-word; margin-bottom: 5px;margin-top: 5px">{{$msg}}</p>
+                    @endforeach
+                        <p class="small">{{$message->created_at}}</p>
                 </div>
             </div>
         </div>
@@ -35,7 +39,9 @@
             <div class="col s8 ">
                 <div class="card" style="padding: 15px">
                     <h5>{{\App\Models\User::where("id","=",$message->sender_id)->get()->first()->name()}}</h5>
-                    <p style=" overflow-wrap: break-word;">{{$message->message}}</p>
+                    @foreach(explode("<br>",$message->message) as $msg)
+                        <p style=" overflow-wrap: break-word; margin-bottom: 5px;margin-top: 5px">{{$msg}}</p>
+                    @endforeach
                     <p class="small">{{$message->created_at}}</p>
                 </div>
             </div>

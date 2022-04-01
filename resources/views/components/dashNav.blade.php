@@ -3,7 +3,7 @@
         @lang("navigation.brandName")
     </h5>
     <li><a href="{{route("dashboard")}}">@lang("navigation.dashboard")</a></li>
-    @include("components.langSelect",["id"=>"langmodal"])
+    @include("components.langSelect",["id"=>"langmobile"])
     <li><a href="{{route("settings")}}">@lang("navigation.settings")</a></li>
     @auth
         <ul id="userDropModal" class="dropdown-content">

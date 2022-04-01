@@ -97,7 +97,7 @@
                         @endcan
                     @endif
                 </div>
-                @if(!is_null(\Illuminate\Support\Facades\Auth::user()))
+                @if(!is_null(\Illuminate\Support\Facades\Auth::user()) && $ticket->status_id!=4)
                     @if(!\Illuminate\Support\Facades\Auth::user()->isCraftsman())
                         <form method="POST" action="{{ route('updateTicketPost',$ticket->id) }}">
                             @csrf
@@ -216,41 +216,44 @@
                     <h3 class="center">@lang("ticket.chat")</h3>
 
                     @livewire("chat",["chat"=>$ticket->chat()])
-                    <div>
-                        <form method="POST" action="{{ route('sendMessage',$ticket->chat()->id) }}"
-                              enctype="multipart/form-data">
-                            @csrf
-                            <div class="row" style="display: flex;align-items: center">
-                                <div class="input-field col s2">
-                                    <button type="button" class="btn waves-effect waves-light blue darken-4"
-                                            onclick="document.getElementById('file').click()"><i id="upload_icon"
-                                                                                                 class="material-icons">file_upload</i>
-                                    </button>
-                                    <input type='file' name="file" id="file" style="display:none"
-                                           onchange="document.getElementById('upload_icon').innerHTML='check'">
-                                </div>
-                                <div class="input-field col s7">
-                                    <input class="validate" id="message" type="text" name="message">
-                                    <label for="message" data-error="wrong"
-                                           data-success="right">@lang("ticket.message") </label>
-                                </div>
-                                <div class="input-field col s3">
-                                    @can("useChat",$ticket)
-                                        <button type="submit" id="submit"
-                                                class="btn waves-effect waves-light blue darken-4 col s12"><i
-                                                class="material-icons">send</i>
+                    @if($ticket->status_id!=4)
+                        <div>
+                            <form method="POST" action="{{ route('sendMessage',$ticket->chat()->id) }}"
+                                  enctype="multipart/form-data">
+                                @csrf
+                                <div class="row" style="display: flex;align-items: center">
+                                    <div class="input-field col s2">
+                                        <button type="button" class="btn waves-effect waves-light blue darken-4"
+                                                onclick="document.getElementById('file').click()"><i id="upload_icon"
+                                                                                                     class="material-icons">file_upload</i>
                                         </button>
-                                    @endcan
-                                    @cannot("useChat",$ticket)
-                                        <a href="#upgradeCallModal" id="submit" onclick="$('#mailtoadmin').attr('href','mailto:{{$ticket->condominium()->Admin()->email}}')"
-                                                class="modal-trigger btn waves-effect waves-light blue darken-4 col s12"><i
-                                                class="material-icons">send</i>
-                                        </a>
-                                    @endcannot
+                                        <input type='file' name="file" id="file" style="display:none"
+                                               onchange="document.getElementById('upload_icon').innerHTML='check'">
+                                    </div>
+                                    <div class="input-field col s7">
+                                        <input class="validate" id="message" type="text" name="message">
+                                        <label for="message" data-error="wrong"
+                                               data-success="right">@lang("ticket.message") </label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        @can("useChat",$ticket)
+                                            <button type="submit" id="submit"
+                                                    class="btn waves-effect waves-light blue darken-4 col s12"><i
+                                                    class="material-icons">send</i>
+                                            </button>
+                                        @endcan
+                                        @cannot("useChat",$ticket)
+                                            <a href="#upgradeCallModal" id="submit"
+                                               onclick="$('#mailtoadmin').attr('href','mailto:{{$ticket->condominium()->Admin()->email}}')"
+                                               class="modal-trigger btn waves-effect waves-light blue darken-4 col s12"><i
+                                                    class="material-icons">send</i>
+                                            </a>
+                                        @endcannot
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
+                            </form>
+                        </div>
+                    @endif
                     <script>
                         $(document).ready(function () {
                             $(".message-container").css('height', window.innerHeight - 500 + 'px');

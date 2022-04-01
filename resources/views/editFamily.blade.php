@@ -28,15 +28,6 @@
                         </div>
 
                         <div class="row">
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">child_friendlya</i>
-                                <input class="validate" id="count" type="number" name="count" min="0" value="{{$family->count}}">
-                                <label for="count" data-error="wrong"
-                                       data-success="right"> @lang("family.size")</label>
-                            </div>
-
-                        </div>
-                        <div class="row">
                             <div class="input-field col s12 m6 offset-m3">
                                 <button type="submit"
                                         class="btn waves-effect waves-light blue darken-4 col s12">@lang("family.update")

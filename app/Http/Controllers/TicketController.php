@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Notifications\PasswordResetRequest;
 use App\Notifications\TicketCreatedNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
@@ -29,7 +30,7 @@ class TicketController extends Controller
 
         $ticket = Ticket::where("token", "=", $request->route("token"))->get()->first();
 
-        if(!is_null(Auth::user()) && !Auth::user()->isCraftsman())
+        if (!is_null(Auth::user()) && !Auth::user()->isCraftsman())
             return redirect(route("ticket", $ticket->id));
 
         if (is_null($ticket))
@@ -89,6 +90,7 @@ class TicketController extends Controller
         $ticket->title = $request->get("title");
         $ticket->desc = $request->get("desc");
         $ticket->phone = $request->get("phone");
+        $ticket->contract_type_id = 1;
         if (Auth::user()->hasFamily()) {
             $ticket->family_id = Auth::user()->family_id;
         }
@@ -132,6 +134,25 @@ class TicketController extends Controller
         if (Auth::user()->cannot("completeTicket", $ticket))
             return response("401", 401);
         $ticket->status_id = 4;
+
+        $msg = "";
+        switch (App::getLocale()) {
+            case "it":
+                $msg="Lavoro approvato da: ";
+                break;
+            case "de":
+                $msg="Als Fertig gekennzeichnet von : ";
+                break;
+            case "en":
+                $msg="Marked as Completed by: ";
+                break;
+        }
+        $message = new Message();
+        $message->chat_id = $ticket->chat()->id;
+
+        $message->message = $msg . Auth::user()->name();
+        $message->save();
+
         $ticket->save();
         return redirect(route("condominium", $ticket->condominium_id));
     }

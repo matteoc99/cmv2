@@ -111,7 +111,7 @@ class TicketPolicy
 
     public function createEstimate(User $user, Ticket $ticket)
     {
-        return Auth::user()->isCraftsman() && $ticket->contractType()->get()->first()->id === 3
+        return Auth::user()->isCraftsman() && !is_null($ticket->contractType()->get()->first()) && $ticket->contractType()->get()->first()->id === 3
             ? Response::allow()
             : Response::deny();
     }
@@ -133,7 +133,14 @@ class TicketPolicy
 
     public function completeTicket(User $user, Ticket $ticket)
     {
-        return $ticket->status_id == 3 && Auth::user()->id == $ticket->user_id
+        $admin= Auth::user();
+        if(Auth::user()->isCraftsman()){
+            $admin=null;
+        }
+        if(Auth::user()->isUser()){
+            $admin = Auth::user()->family()->condominium()->Admin();
+        }
+        return $ticket->status_id == 3 && (Auth::user()->id == $ticket->user_id || (!is_null($admin) &&$admin->id == Auth::user()->id))
             ? Response::allow()
             : Response::deny();
     }

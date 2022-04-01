@@ -11,6 +11,8 @@
     @else
         <li><a href="{{route("logout")}}">@lang("navigation.logout")</a></li>
     @endif
+    @include("components.langSelect",["id"=>"langmobile"])
+
 </ul>
 <div class="navbar-fixed">
 
@@ -27,7 +29,7 @@
                 @endif
             </ul>
             <ul class="right hide-on-med-and-down">
-                @include("components.langSelect")
+                @include("components.langSelect",["id"=>"lang"])
                 @if(is_null(Auth::user()))
                     <li><a href="{{route("login")}}">@lang("navigation.login")</a></li>
                     <li><a href="{{route("register")}}">@lang("navigation.register")</a></li>
