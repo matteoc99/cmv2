@@ -56,6 +56,7 @@ class CondominiumController extends Controller
     }
     public function update(Request $request,Condominium $condominium)
     {
+
         if(Auth::user()->cannot("edit",$condominium))
             return response("401",401);
         $request->validate([
@@ -63,7 +64,6 @@ class CondominiumController extends Controller
             'address' => "required",
             'lat' => 'required',
             "lng" => "required",
-            "period" => "required",
         ]);
 
         $condominium->name=$request->get("name");
@@ -72,7 +72,8 @@ class CondominiumController extends Controller
         $condominium->lng=$request->get("lng");
         $condominium->period=$request->get("period");
         $condominium->save();
-        return redirect()->back()->with('success', "edit");
+
+        return redirect("dashboard");
 
     }
 }
