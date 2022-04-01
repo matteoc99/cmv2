@@ -22,7 +22,7 @@
                 <i class="material-icons prefix">mail_outline</i>
                 <input class="validate" id="email" type="email" name="email"
                        value="{{ old('email') }}"
-                       required >
+                       required>
                 <label for="email" data-error="wrong"
                        data-success="right"> @lang('auth.mail') </label>
                 <div class="col">
@@ -38,14 +38,16 @@
                 <i class="material-icons prefix">lock_outline</i>
                 <input id="password" type="password" name="password" required>
                 <label for="password">@lang('auth.password') </label>
-                <a class="toggle-password blue-text text-darken-4" onclick="togglePassword('password')"><i class="material-icons">remove_red_eye</i></a>
+                <a class="toggle-password blue-text text-darken-4" onclick="togglePassword('password')"><i
+                        class="material-icons">remove_red_eye</i></a>
             </div>
 
             <div class="input-field col s12">
                 <i class="material-icons prefix">lock_outline</i>
                 <input id="password-confirm" type="password" name="password_confirmation" required>
                 <label for="password-confirm">@lang('auth.passwordConf') </label>
-                <a class="toggle-password blue-text text-darken-4" onclick="togglePassword('password-confirm')"><i class="material-icons">remove_red_eye</i></a>
+                <a class="toggle-password blue-text text-darken-4" onclick="togglePassword('password-confirm')"><i
+                        class="material-icons">remove_red_eye</i></a>
             </div>
             <div class="col">
                 @foreach($errors->get("password") as $error)
@@ -58,7 +60,9 @@
 
             <div class="input-field col s12">
                 <select class="browser-default" id="role" name="role">
-                    <option value="2" {{$selected==2?"selected":""}}>@lang("auth.administrator")</option>
+                    @if($selected==2)
+                        <option value="2" {{$selected==2?"selected":""}}>@lang("auth.administrator")</option>
+                    @endif
                     <option value="3" {{$selected==3?"selected":""}}>@lang("auth.worker")</option>
                 </select>
             </div>

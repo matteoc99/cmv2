@@ -3,14 +3,14 @@
         @lang("navigation.brandName")
     </h5>
     <li><a href="{{route("dashboard")}}">@lang("navigation.dashboard")</a></li>
-    @include("components.langSelect")
+    @include("components.langSelect",["id"=>"langmodal"])
     <li><a href="{{route("settings")}}">@lang("navigation.settings")</a></li>
     @auth
-        <ul id="userDrop" class="dropdown-content">
+        <ul id="userDropModal" class="dropdown-content">
             <li><a href="{{route("settings")}}" class="light-green-text">@lang("navigation.profile")</a></li>
             <li><a href="{{route("logout")}}" class="light-green-text">@lang("navigation.logout")</a></li>
         </ul>
-        <li><a class="dropdown-trigger" href="#!" data-target="userDrop">{{\Illuminate\Support\Facades\Auth::user()->name()}}<i
+        <li><a class="dropdown-trigger" href="#!" data-target="userDropModal">{{\Illuminate\Support\Facades\Auth::user()->name()}}<i
                     class="material-icons right">arrow_drop_down</i></a>
     @endauth
     @guest
@@ -28,7 +28,7 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="{{route("dashboard")}}">@lang("navigation.dashboard")</a></li>
                 <li><a href="{{route("settings")}}">@lang("navigation.settings")</a></li>
-                @include("components.langSelect")
+                @include("components.langSelect",["id"=>"lang"])
                 @auth
                     <ul id="userDrop" class="dropdown-content">
                         <li><a href="{{route("settings")}}" class="light-green-text">@lang("navigation.profile")</a></li>

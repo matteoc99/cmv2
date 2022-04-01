@@ -1,4 +1,4 @@
-<ul id="dropdown1" class="dropdown-content">
+<ul id="{{$id}}" class="dropdown-content">
     @if(!App::isLocale('en'))
         <li><a href="{{route("language","en")}}" data-value="en" class="lang-change "><span id="en-switch"
                                                                      class="light-green-text">English</span></a>
@@ -15,5 +15,5 @@
     @endif
 
 </ul>
-<li><a class="dropdown-trigger" href="#!" data-target="dropdown1">@lang("global.currentLang")<i
+<li><a class="dropdown-trigger" href="#!" data-target="{{$id}}">@lang("global.currentLang")<i
             class="material-icons right">arrow_drop_down</i></a>
