@@ -23,6 +23,8 @@ class Family extends Model
     }
 
     public function getIsUserDeletedAttribute(){
+        if(is_null($this->user()))
+            return true;
         return $this->user()->deleted;
     }
 }

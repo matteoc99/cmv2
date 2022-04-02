@@ -22,5 +22,6 @@ return [
     'createTitle' => 'Create a new Condominium',
     'editTitle' => 'Edit the Condominium',
 
+    'openTicket' => 'Open Tickets',
 
 ];

@@ -31,4 +31,11 @@ return [
     'upgradeNowUser' => 'Chiedi al tuo Amministratore di aggironare il tuo piano',
     'youNeedToUpgrade' => 'Questa azione non è supportata dal tuo piano attuale',
 
+    'documentTitle' => 'aggiungi uno o piu documenti',
+
+    'userImportTitle' => 'Importa da excel nel seguente formato',
+    'userImportSelect' => 'seleziona il file',
+
+
+
 ];

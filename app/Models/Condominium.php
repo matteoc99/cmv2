@@ -22,6 +22,12 @@ class Condominium extends Model
         return $this->hasMany(Ticket::class);
     }
 
+    public function hasOpenTickets(){
+        return !is_null($this->tickets()->where("status_id","<",4)->get()->first());
+    }
+    public function openTickets(){
+        return $this->tickets()->where("status_id","<",4)->get();
+    }
     public function unreadTickets(){
         $tickets = $this->tickets()->get();
         $userTickets = Auth::user()->seenTickets()->get();

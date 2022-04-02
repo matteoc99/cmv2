@@ -47,8 +47,12 @@ class FamilyController extends Controller
     {
         if (Auth::user()->cannot("delete", $family))
             return response("401", 401);
-        $family->user()->markAsDeleted();
         $condominiumId = $family->condominium_id;
+        $user=$family->user();
+        $user->markAsDeleted();
+        $user->back_up_email = $user->email;
+        $user->email=str_random(40);
+        $user->save();
         return redirect(route("condominium", $condominiumId));
     }
     public function create(Request $request)

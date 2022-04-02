@@ -32,4 +32,10 @@ return [
     'youNeedToUpgrade' => 'This action is not supported by your current plan',
     'upgradeNowUser' => 'Ask your administrator to upgrade your plan',
 
+    'documentTitle' => 'Add one or more Documents',
+
+    'userImportTitle' => 'Import from Excel in the following format',
+    'userImportSelect' => 'select the file',
+
+
 ];

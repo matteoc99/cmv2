@@ -15,6 +15,8 @@ return [
     'size' => 'Familien Größe ',
     'create' => 'Erstellen',
     'update' => 'Ändern',
+    'createFromExcel' => 'Familien von Excel Importieren',
+    'or' => 'oder',
 
 
 ];

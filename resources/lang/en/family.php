@@ -16,5 +16,8 @@ return [
     'create' => 'Create ',
     'update' => 'Update ',
 
+    'createFromExcel' => 'import families from Excel',
+    'or' => 'or',
+
 
 ];

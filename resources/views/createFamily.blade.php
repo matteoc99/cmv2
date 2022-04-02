@@ -1,8 +1,8 @@
-
 @extends("layouts.dashMaster")
 
 @section("content")
     <div class="container">
+        @include("components.session_messages")
         <h3><a href="{{route("condominium",$condominium->id)}}"><i
                     class="material-icons small blue-text text-darken-4">arrow_back</i></a><i
                 class="material-icons small">domain</i>{{$condominium->name}}</h3>
@@ -12,7 +12,8 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('createFamilyPost') }}">
                         @csrf
-                        <input type="hidden" name="condominium" id="condominium" value="{{Request::route('condominium')}}">
+                        <input type="hidden" name="condominium" id="condominium"
+                               value="{{Request::route('condominium')}}">
                         <div class="row">
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">people</i>
@@ -51,7 +52,14 @@
                         </div>
                     </form>
                 </div>
+
+            </div>
+            <div class="col s12 m8 l6 xl4 offset-l3 offset-m2 offset-xl4">
+                <h5 class="center"> @lang("family.or")</h5>
+                <a href="#importUserModal" class="modal-trigger btn waves-effect waves-light blue darken-4 col s12"> @lang("family.createFromExcel")
+                </a>
             </div>
         </div>
     </div>
+    @include("components.modals.importUserModal")
 @endsection

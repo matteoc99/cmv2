@@ -12,30 +12,53 @@
                     <label for="search">@lang("dashboard.search")</label>
                 </div>
                 <div class="input-field col s12 m6 l4 xl3 ">
-                    @if(\Illuminate\Support\Facades\Auth::user()->setting()->condominium_box_view)
-                        <a class="waves-effect waves-light btn blue darken-4" href="{{route("setListView")}}">
-                            <i class="material-icons ">list</i>
-                        </a>
-                    @else
+                    @switch(\Illuminate\Support\Facades\Auth::user()->setting()->condominium_box_view)
+                        @case(0)
                         <a class="waves-effect waves-light btn blue darken-4" href="{{route("setBoxView")}}">
                             <i class="material-icons ">check_box_outline_blank</i>
                         </a>
-                    @endif
+                        @break
+                        @case(1)
+                        <a class="waves-effect waves-light btn blue darken-4" href="{{route("setTicketView")}}">
+                            <i class="material-icons ">assignment</i>
+                        </a>
+                        @break
+                        @case(2)
+                        <a class="waves-effect waves-light btn blue darken-4" href="{{route("setListView")}}">
+                            <i class="material-icons ">list</i>
+                        </a>
+                        @break
+                    @endswitch
                 </div>
 
             </div>
             <div class="row">
-                @if(\Illuminate\Support\Facades\Auth::user()->setting()->condominium_box_view)
-                    @foreach($condominia as $condominium)
-                        @include("components.boxes.condominiumBox",["condominium", $condominium])
-                    @endforeach
-                @else
+                @switch(\Illuminate\Support\Facades\Auth::user()->setting()->condominium_box_view)
+                    @case(0)
                     <ul class="collection">
                         @foreach($condominia as $condominium)
                             @include("components.boxes.condominiumListBox",["condominium", $condominium])
                         @endforeach
                     </ul>
-                @endif
+                    @break
+                    @case(1)
+                        @foreach($condominia as $condominium)
+                            @include("components.boxes.condominiumBox",["condominium", $condominium])
+                        @endforeach
+                    @break
+                    @case(2)
+                    <ul class="collapsible">
+                        @foreach($condominia as $condominium)
+                            @if($condominium->hasOpenTickets())
+                                @include("components.boxes.condominiumTicket",["condominium", $condominium])
+                            @endif
+                        @endforeach
+                    </ul>
+
+                    @break
+                @endswitch
+
+
             </div>
         @else
             @include("components.fabDiscovery")

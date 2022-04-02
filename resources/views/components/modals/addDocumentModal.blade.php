@@ -1,6 +1,6 @@
 <div id="addDocumentModal" class="modal">
     <div class="modal-content">
-        <h4 class="center">Add one or more Documents</h4>
+        <h4 class="center">@lang("modals.documentTitle")</h4>
         <form method="POST" action="{{ route('documents.add',Request::route("condominium")) }}" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="condominium_id" value="{{Request::route("condominium")}}">

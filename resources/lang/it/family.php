@@ -16,5 +16,8 @@ return [
     'create' => 'Crea',
     'update' => 'Aggiorna ',
 
+    'createFromExcel' => 'Importa famiglie da Excel',
+    'or' => 'oppure',
+
 
 ];

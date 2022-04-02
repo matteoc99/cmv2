@@ -59,6 +59,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/updateNotificationSettings', 'App\\Http\\Controllers\\SettingController@updateNotification')->name("updateNotificationSettings");
         Route::get('/settings/setBoxView', 'App\\Http\\Controllers\\SettingController@setBoxView')->name("setBoxView");
         Route::get('/settings/setListView', 'App\\Http\\Controllers\\SettingController@setListView')->name("setListView");
+        Route::get('/settings/setTicketView', 'App\\Http\\Controllers\\SettingController@setTicketView')->name("setTicketView");
 
 
         Route::get('/createCondominium', 'App\\Http\\Controllers\\CondominiumController@showCreate')->name("createCondominium");
@@ -107,6 +108,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
         Route::get('/export/excel/{condominium}', [App\Http\Controllers\ExportController::class, 'exportToExcel'])->name('exportToExcel');
+        Route::post('/import/excel', [App\Http\Controllers\ImportController::class, 'userExcelImport'])->name('user.import.excel');
 
 
         Route::get('/condominium/{condominium}/documents', "App\\Http\\Controllers\\DocumentController@show")->name("documents");

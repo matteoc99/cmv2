@@ -107,14 +107,20 @@ class SettingController extends Controller
 
     public function setListView(Request $request){
         $set = Auth::user()->setting();
-        $set->condominium_box_view=false;
+        $set->condominium_box_view=0;
         $set->save();
         return redirect()->back();
     }
 
     public function setBoxView(Request $request){
         $set = Auth::user()->setting();
-        $set->condominium_box_view=true;
+        $set->condominium_box_view=1;
+        $set->save();
+        return redirect()->back();
+    }
+    public function setTicketView(Request $request){
+        $set = Auth::user()->setting();
+        $set->condominium_box_view=2;
         $set->save();
         return redirect()->back();
     }

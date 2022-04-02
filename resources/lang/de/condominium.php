@@ -22,5 +22,7 @@ return [
     'createTitle' => 'Erstelle ein neues Condominium',
     'editTitle' => 'bearbeite das Condominium',
 
+    'openTicket' => 'Offene Tickets',
+
 
 ];

@@ -30,7 +30,10 @@ return [
     'upgradeNow' => 'Verbessern Sie jetzt Ihren Plan',
     'youNeedToUpgrade' => 'Diese Aktion wird von Ihrem aktuellen Plan nicht unterstützt',
     'upgradeNowUser' => 'Frage deinen Administrator deinen Plan zu verbessern',
+    'documentTitle' => 'Füge ein oder mehrere Dokumente hinzu',
 
+    'userImportTitle' => 'von Excel im folgenden Format importieren',
+    'userImportSelect' => 'wähle die Datei aus',
 
 
 ];

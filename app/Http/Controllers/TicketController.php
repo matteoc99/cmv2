@@ -113,7 +113,7 @@ class TicketController extends Controller
         $families = $ticket->condominium()->families()->get();
         foreach ($families as $fam) {
             $user = $fam->user();
-            if ($user->id != Auth::user()->id && $user->setting()->recive_ticket_created_notification) {
+            if ($user->id != Auth::user()->id&& !$user->deleted && $user->setting()->recive_ticket_created_notification) {
                 $user->notify(
                     new TicketCreatedNotification(Auth::user()->name(), $ticket, $ticket->condominium())
                 );
